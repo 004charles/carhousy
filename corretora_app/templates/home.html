@@ -378,9 +378,7 @@
                     </div>
                     <div class="title-holder">
                         <h3><a href="{% url 'house_buy' %}">À venda</a></h3>
-                        <div class="inner-text">
-                            <p>Imóveis com confiança.</p>
-                        </div>
+                        
                     </div>
                 </div>
             </div> 
@@ -393,9 +391,7 @@
                     </div>
                     <div class="title-holder">
                         <h3><a href="https://mehedi.asiandevelopers.com/hoppex/services-details.html">Terrenos</a></h3>
-                        <div class="inner-text">
-                            <p>Terrenos prontos para construcao.</p>
-                        </div>
+                        
                     </div>
                 </div>
             </div> 
@@ -408,9 +404,7 @@
                     </div>
                     <div class="title-holder">
                         <h3><a href="https://mehedi.asiandevelopers.com/hoppex/services-details.html">Comercial</a></h3>
-                        <div class="inner-text">
-                            <p>Espaços comerciais estratégicos para impulsionar o seu negócio. </p>
-                        </div>
+                        
                     </div>
                 </div>
             </div> 
@@ -423,9 +417,7 @@
                     </div>
                     <div class="title-holder">
                         <h3><a href="https://mehedi.asiandevelopers.com/hoppex/services-details.html">Para alugar</a></h3>
-                        <div class="inner-text">
-                            <p>Alugue imóveis de qualidade com praticidade.</p>
-                        </div>
+                        
                     </div>
                 </div>
             </div> 
@@ -449,24 +441,24 @@
             <h2 style="font-size: 25px;">Imóveis de Qualidade e Confiabilidade.</h2>
         </div>
         <div class="row text-right-rtl">
-            {% for casa_venda in imovel_venda %}
-            <div class="col-6 col-md-6 col-xl-4 wow fadeInUp" data-wow-delay="00ms" data-wow-duration="1500ms">
-                <div class="project-block">
-                    <div class="img-holder">
-                        <div class="inner">
-                            <img src="{{ casa_venda.imagem.url }}" alt="">
+            {% for casa_venda in  imovel_venda %}
+            <div class="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="00ms" data-wow-duration="1500ms">
+                    <div class="project-block">
+                        <div class="img-holder">
+                            <div class="inner">
+                                <img src="{{ casa_venda.imagem.url }}" alt="">
+                            </div>
+                        </div>
+                        <div class="text-holder">
+                            <h3><a href="{% url 'detalhe_projecto' id=casa_venda.id %}">{{casa_venda.titulo}}</a></h3>
+                            <p>{{casa_venda.endereco}}</p>
+                            <ul>
+                                <li><span>Tipo:</span>{{casa_venda.tipo}}</li>
+                                <li><span>Status:</span>{{casa_venda.status}}</li>
+                                <li><span>Area:</span>{{casa_venda.area}}m²</li>
+                            </ul>
                         </div>
                     </div>
-                    <div class="text-holder">
-                        <h3><a href="{% url 'detalhe_projecto' id=casa_venda.id %}">{{ casa_venda.titulo }}</a></h3>
-                        <p>{{ casa_venda.endereco }}</p>
-                        <ul>
-                            <li><span>Tipo:</span>{{ casa_venda.tipo }}</li>
-                            <li><span>Status:</span>{{ casa_venda.status }}</li>
-                            <li><span>Área:</span>{{ casa_venda.area }} m²</li>
-                        </ul>
-                    </div>
-                </div>
             </div>
             {% endfor %}
         </div>
@@ -548,7 +540,7 @@
         </div>
         <div class="row text-right-rtl">
             <!--Start Single project Item Style2-->
-            <div class="col-6 col-md-6 col-xl-3">
+            <div class=" col-md-6 col-xl-3">
                 <div class="single-project-item-style2">
                     <div class="img-holder">
                         <div class="inner">
@@ -569,7 +561,7 @@
             </div>
             <!--End Single project Item Style2-->
             <!--Start Single project Item Style2-->
-            <div class="col-6 col-md-6 col-xl-3">
+            <div class=" col-md-6 col-xl-3">
                 <div class="single-project-item-style2">
                     <div class="img-holder">
                         <div class="inner">
@@ -590,7 +582,7 @@
             </div>
             <!--End Single project Item Style2-->
             <!--Start Single project Item Style2-->
-            <div class="col-6 col-md-6 col-xl-3">
+            <div class=" col-md-6 col-xl-3">
                 <div class="single-project-item-style2">
                     <div class="img-holder">
                         <div class="inner">
@@ -611,7 +603,7 @@
             </div>
             <!--End Single project Item Style2-->
             <!--Start Single project Item Style2-->
-            <div class="col-6 col-md-6 col-xl-3">
+            <div class=" col-md-6 col-xl-3">
                 <div class="single-project-item-style2">
                     <div class="img-holder">
                         <div class="inner">
@@ -667,7 +659,7 @@
         </div>
         <div class="row text-right-rtl">
             {% for casa_venda in office %}
-            <div class="col-6 col-md-6 col-xl-4 wow fadeInUp" data-wow-delay="00ms" data-wow-duration="1500ms">
+            <div class=" col-md-6 col-xl-4 wow fadeInUp" data-wow-delay="00ms" data-wow-duration="1500ms">
                 <div class="project-block">
                     <div class="img-holder">
                         <div class="inner">
@@ -925,8 +917,8 @@
         <div class="row">
             <!--Início do Membro da Equipe-->
             {% for corretor in corretores %}
-                <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4">
-                    <div class="single-team-style1 wow fadeInRight animated" data-wow-delay="100ms" data-wow-duration="1500ms">
+                <div class=" col-sm-6 col-md-4 col-lg-4 col-xl-4">
+                    <div class="single-team-style1 wow fadeInRight animated " data-wow-delay="100ms" data-wow-duration="1500ms">
                         <div class="img-holder">
                             <div class="inner">
                                 {% if corretor.imagem %}
