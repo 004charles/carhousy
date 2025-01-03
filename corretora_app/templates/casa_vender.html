@@ -1,0 +1,732 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Casas a venda</title>
+
+	<!-- responsive meta -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- For IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'assets/css/animate.css' %}">  
+	<link rel="stylesheet" href="{% static 'assets/css/aos.css' %}">  
+	<link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">	
+	<link rel="stylesheet" href="{% static 'assets/css/bootstrap-select.min.css' %}">
+	<link rel="stylesheet" href="{% static 'assets/css/custom-animate.css' %}">
+	<link rel="stylesheet" href="{% static 'assets/css/fancybox.min.css' %}">
+	<link rel="stylesheet" href="{% static 'assets/css/flaticon.css' %}">
+	<link rel="stylesheet" href="{% static 'assets/css/font-awesome.min.css' %}">
+	<link rel="stylesheet" href="{% static 'assets/css/imp.css' %}">
+	<link rel="stylesheet" href="{% static 'assets/css/jquery-ui.css' %}">
+	<link rel="stylesheet" href="{% static 'assets/css/magnific-popup.css' %}">
+	<link rel="stylesheet" href="{% static 'assets/css/owl.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/rtl.css' %}">
+	<link rel="stylesheet" href="{% static 'assets/css/scrollbar.css' %}">
+	<link rel="stylesheet" href="{% static 'assets/css/icomoon.css' %}">
+	<link rel="stylesheet" href="{% static 'assets/css/jquery.bootstrap-touchspin.css' %}">
+	<link rel="stylesheet" href="{% static 'assets/css/nice-select.css' %}">
+
+    <!-- Module css -->
+    <link rel="stylesheet" href="{% static 'assets/css/module-css/header-section.css' %}">
+	<link rel="stylesheet" href="{% static 'assets/css/module-css/banner-section.css' %}">
+	<link rel="stylesheet" href="{% static 'assets/css/module-css/about-section.css' %}">
+	<link rel="stylesheet" href="{% static 'assets/css/module-css/blog-section.css' %}">
+	<link rel="stylesheet" href="{% static 'assets/css/module-css/fact-counter-section.css' %}">
+	<link rel="stylesheet" href="{% static 'assets/css/module-css/faq-section.css' %}">
+	<link rel="stylesheet" href="{% static 'assets/css/module-css/contact-page.css' %}">
+	<link rel="stylesheet" href="{% static 'assets/css/module-css/breadcrumb-section.css' %}">
+	<link rel="stylesheet" href="{% static 'assets/css/module-css/team-section.css' %}">
+	<link rel="stylesheet" href="{% static 'assets/css/module-css/partner-section.css' %}">
+	<link rel="stylesheet" href="{% static 'assets/css/module-css/testimonial-section.css' %}">
+	<link rel="stylesheet" href="{% static 'assets/css/module-css/services-section.css' %}">
+	<link rel="stylesheet" href="{% static 'assets/css/module-css/footer-section.css' %}">
+  
+    <link href="{% static 'assets/css/color/theme-color.css' %}" id="jssDefault" rel="stylesheet">        
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+	<link rel="stylesheet" href="{% static 'assets/css/responsive.css' %}">
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'assets/images/logo.png' %}">
+    <link rel="icon" type="image/png" href="{% static 'assets/images/logo.png' %}" sizes="32x32">
+    <link rel="icon" type="image/png" href="{% static 'assets/images/logo.png' %}" sizes="16x16">
+
+    <!-- Fixing Internet Explorer-->
+    <!--[if lt IE 9]>
+        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <script src="assets/js/html5shiv.js"></script>
+    <![endif]-->
+    
+</head>
+
+<body>
+
+<div class="boxed_wrapper ltr">
+
+<!-- Preloader -->
+<div class="loader-wrap">
+    <div class="preloader"><div class="preloader-close">cancelar</div></div>
+    <div class="layer layer-one"><span class="overlay"></span></div>
+    <div class="layer layer-two"><span class="overlay"></span></div>        
+    <div class="layer layer-three"><span class="overlay"></span></div>        
+</div>
+
+<!-- page-direction -->
+<div class="page_direction">
+    <div class="demo-rtl direction_switch"><button class="rtl">RTL</button></div>
+    <div class="demo-ltr direction_switch"><button class="ltr">LTR</button></div>
+</div>
+<!-- page-direction end -->
+
+<!-- switcher menu -->
+
+<!-- end switcher menu --> 
+
+
+<!-- Main header-->
+<header class="main-header header-style-one">
+    <!--Start Header Top-->
+    <div class="header-top text-right-rtl">
+        <div class="auto-container">
+            <div class="outer-box">
+                
+                <div class="header-top__left">
+                    <div class="header-contact-info">
+                        <ul>
+                            <li>
+                                <div class="icon">
+                                    <span class="flaticon-pin-1"></span>
+                                </div>
+                                <div class="text">
+                                    <h6>Rua da Missão, Luanda, Angola</h6>
+                                </div>
+                                
+                            </li>
+                            <li>
+                                <div class="icon">
+                                    <span class="flaticon-clock"></span>
+                                </div>
+                                <div class="text">
+                                    <h6>Seg - Sáb 9:00 - 18:00</h6>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="icon">
+                                    <span class="flaticon-phone-call-2"></span>
+                                </div>
+                                <div class="text">
+                                    <h6><a href="tel:123456789">+244 923908353</a></h6>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>    
+                </div>
+    
+                <div class="header-top__right">
+                    <div class="header-social-link">
+                        <div class="social-link">
+                            <ul class="clearfix">
+                                <li>
+                                    <a href="projects.html#"><i class="fa fa-twitter" aria-hidden="true"></i></a> 
+                                </li>
+                                <li>
+                                    <a href="projects.html#"><i class="fa fa-facebook" aria-hidden="true"></i></a> 
+                                </li>
+                                <li>
+                                    <a href="projects.html#"><i class="fa fa-google-plus" aria-hidden="true"></i></a> 
+                                </li>
+                                <li>
+                                    <a href="projects.html#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="thm-space-box"></div>
+                    
+                </div>
+    
+            </div>    
+        </div>
+    </div>
+    
+    <!--End Header Top-->
+
+    <!--Start Header--> 
+    <div class="header header--style3">
+        <div class="auto-container">
+            <div class="outer-box">
+                <div class="header-left">
+                    <div class="logo">
+                        <a href="{% url 'home' %}">
+                            <img style="width: 100px;" src="{% static 'assets/images/logo.png' %}" alt="Awesome Logo" title="">
+                        </a>
+                    </div>
+                </div>
+            
+                <div class="header-middle">
+                    <div class="nav-outer style1 clearfix">
+                        <!--Mobile Navigation Toggler-->
+                        <div class="mobile-nav-toggler">
+                            <div class="inner">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </div>
+                        </div>
+                        <!-- Main Menu -->
+                        <nav class="main-menu style1 navbar-expand-md navbar-light">
+                            <div class="collapse navbar-collapse show clearfix" id="navbarSupportedContent">
+                                <ul class="navigation clearfix">
+                                    <li>
+                                        <a href="{% url 'home' %}">
+                                            <i class="fas fa-home"></i> Início
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="about.html">
+                                            <i class="fas fa-users"></i> Sobre nós
+                                        </a>
+                                    </li>
+                                    <li class="dropdown">
+                                        <a href="index-3.html#">
+                                            <i class="fas fa-project-diagram"></i> Projetos
+                                        </a>
+                                        <ul>
+                                            <li>
+                                                <a href="projects.html">
+                                                    <i class="fas fa-eye"></i> Ver Todos os Projetos
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown">
+                                        <a href="index-3.html#">
+                                            <i class="fas fa-file-alt"></i> Páginas
+                                        </a>
+                                        <ul>
+                                            <li>
+                                                <a href="mission.html">
+                                                    <i class="fas fa-bullseye"></i> Nossa Missão
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="award-recognition.html">
+                                                    <i class="fas fa-trophy"></i> Premiação & Reconhecimento
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="team.html">
+                                                    <i class="fas fa-users"></i> Nossa Equipe
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="team-single.html">
+                                                    <i class="fas fa-user"></i> Equipe Individual
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="testimonials.html">
+                                                    <i class="fas fa-comment"></i> Depoimentos
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="faq.html">
+                                                    <i class="fas fa-question-circle"></i> FAQ’s
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown">
+                                        <a href="index.html">
+                                            <i class="fas fa-cogs"></i> Serviços
+                                        </a>
+                                    </li>
+                                    <li class="dropdown">
+                                        <a href="index-3.html#">
+                                            <i class="fas fa-blog"></i> Blog
+                                        </a>
+                                        <ul>
+                                            <li>
+                                                <a href="blog.html">
+                                                    <i class="fas fa-rss"></i> Estilo de Blog 01
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="blog-2.html">
+                                                    <i class="fas fa-rss-square"></i> Estilo de Blog 02
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="blog-single.html">
+                                                    <i class="fas fa-file-alt"></i> Detalhes do Blog
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="contact.html">
+                                            <i class="fas fa-envelope"></i> Contato
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                </div> 
+            
+                <div class="header-right">
+                    <div class="serach-button-style1">
+                        <button type="button" class="search-toggler">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                    <div class="thm-space-box-2"></div>
+                    <div class="header-right_buttom">
+                        <div class="btns-box">
+                            <a class="btn-one" href="login.html">
+                                <i class="fas fa-user-circle"></i> 
+                                <span class="txt"> login | cadastro</span>
+                            </a>
+                        </div>
+                    </div> 
+                </div>
+            </div>
+            
+        </div>    
+    </div>
+    <!--End header-->
+
+    <!--Sticky Header-->
+    <div class="sticky-header">
+        <div class="container">
+            <div class="clearfix">
+                <!--Logo-->
+                <div class="logo float-left">
+                    <a href="index.html" class="img-responsive"><img style="width: 100px;" src="{% static 'assets/images/logo.png' %}" alt="Awesome Logo" title=""></a>
+                </div>
+                <!--Right Col-->
+                <div class="right-col float-right">
+                    <!-- Main Menu -->
+                    <nav class="main-menu clearfix">
+                    <!--Keep This Empty / Menu will come through Javascript-->
+                    </nav>   
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--End Sticky Header-->
+    
+    <!-- Mobile Menu  -->
+    <div class="mobile-menu">
+        <div class="menu-backdrop"></div>
+        <div class="close-btn"><span class="icon fa fa-times-circle"></span></div>
+        <nav class="menu-box">
+            <div class="nav-logo"><a href="index.html"><img style="width: 100px;" src="{% static 'assets/images/logo.png' %}" alt="Awesome Logo" title=""></a></div>
+            <div class="menu-outer"><!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header--></div>
+            <!--Social Links-->
+            <div class="social-links">
+                <ul class="clearfix">
+                    <li><a href="projects.html#"><span class="fab fa fa-facebook-square"></span></a></li>
+                    <li><a href="projects.html#"><span class="fab fa fa-twitter-square"></span></a></li>
+                    <li><a href="projects.html#"><span class="fab fa fa-pinterest-square"></span></a></li>
+                    <li><a href="projects.html#"><span class="fab fa fa-google-plus-square"></span></a></li>
+                    <li><a href="projects.html#"><span class="fab fa fa-youtube-square"></span></a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <!-- End Mobile Menu --> 
+</header>
+
+
+<!--Start breadcrumb area paroller-->     
+<section class="breadcrumb-area">
+    <div class="breadcrumb-area-bg" style="background-image: url('{% static 'assets/images/breadcrumb/breadcrumb-1.jpg' %}');"></div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="inner-content">
+                    <div class="title">
+                       <h2>Imoveis a venda</h2>
+                    </div>
+                    <div class="breadcrumb-menu">
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li><i class="fa fa-angle-right" aria-hidden="true"></i></li>
+                            <li class="active">imovies a venda</li>
+                        </ul>    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--End breadcrumb area-->
+
+
+<!--Start Project Form Area-->
+<section class="project-form-area">
+    <div class="shape1" data-aos="fade-right" data-aos-easing="linear" data-aos-duration="5000">
+        <img class="float-bob" src="assets/images/shape/key-2.png" alt="">
+    </div>
+    <div class="container">
+        <div class="row text-right-rtl">
+            <div class="col-xl-12">
+                <div class="project-form-box clearfix">
+
+                    <form id="project-form" name="project_form" class="default-form1 clearfix" action="projects.html#" method="post">
+
+                        <div class="single-box">
+                            <div class="inner clearfix">
+                                <h5>Status do Projeto</h5>
+                                <div class="input-box"> 
+                                    <input type="text" name="project_status" value="" placeholder="Ex: A venda, Alguel" required="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="single-box">
+                            <div class="inner clearfix">
+                                <h5>Tipo de imovel</h5>
+                                <div class="select-box">
+                                    <select class="wide">
+                                       <option data-display="Tipo de Projeto 01">Tipo</option>
+                                       <option value="apartamento">apartamento</option>
+                                       <option value="casa">casa</option>
+                                       <option value="terreno">terreno</option>
+                                       <option value="comercial">comercial</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="single-box">
+                            <div class="inner clearfix">
+                                <h5>Orçamento</h5>
+                                <div class="select-box">
+                                    <select class="wide">
+                                       <option data-display="Orçamento">Orçamento</option>
+                                       <option value="1">15000kz</option>
+                                       <option value="2">200000kz</option>
+                                       <option value="3">500000kz</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="single-box">
+                            <div class="inner clearfix">
+                                <h5>Localização</h5>
+                                <div class="select-box">
+                                    <select class="wide">
+                                       <option data-display="Localização">Localização</option>
+                                       <option value="1">zango1</option>
+                                       <option value="2">zango2</option>
+                                       <option value="3">zango3</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="single-box button-box">
+                            <div class="inner clearfix">
+                                <button class="btn-one" type="submit" data-loading-text="Aguarde...">
+                                    <span class="txt">Pesquisar</span>
+                                </button>     
+                            </div>
+                        </div> 
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--End Project Form Area-->
+
+
+<!--Start Project Page One-->
+<section class="project-page-one">
+    <div class="shape1 wow slideInRight" data-wow-delay="400ms" data-wow-duration="6500ms">
+        <img src="assets/images/shape/shape-round-5.png" alt="">
+    </div>
+    <div class="container">
+        <div class="row text-right-rtl">
+            {% for casa_venda in  imovel_venda %}
+            <div class="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="00ms" data-wow-duration="1500ms">
+                    <div class="project-block">
+                        <div class="img-holder">
+                            <div class="inner">
+                                <img src="{{ casa_venda.imagem.url }}" alt="">
+                            </div>
+                        </div>
+                        <div class="text-holder">
+                            <h3><a href="{% url 'detalhe_projecto' id=casa_venda.id %}">{{casa_venda.titulo}}</a></h3>
+                            <p>{{casa_venda.endereco}}</p>
+                            <ul>
+                                <li><span>Tipo:</span>{{casa_venda.tipo}}</li>
+                                <li><span>Status:</span>{{casa_venda.status}}</li>
+                                <li><span>Area:</span>{{casa_venda.area}}m²</li>
+                            </ul>
+                        </div>
+                    </div>
+            </div>
+            {% endfor %}
+
+            <!--End project block-->
+            <!--Start project block-->
+            
+            <!--End project block-->
+        </div>
+
+        <div class="row">
+            <div class="col-xl-12">
+                <ul class="styled-pagination clearfix">
+                    <li class="arrow prev"><a href="projects.html#"><span class="icon-right-arrow-1 left"></span></a></li>
+                    <li class="active"><a href="projects.html#">1</a></li>
+                    <li><a href="projects.html#">2</a></li>
+                    <li class="arrow next"><a href="projects.html#"><span class="icon-right-arrow-1 right"></span></a></li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</section>
+<!--End Project Page One-->
+
+
+
+<!--Start footer area -->  
+<footer class="footer-area">
+    <div class="shape3 wow slideInLeft" data-wow-delay="500ms" data-wow-duration="7500ms">
+        <img src="{% static 'assets/images/shape/shape-round-3.png' %}" alt="">
+    </div>
+    <div class="shape4 wow slideInRight" data-wow-delay="1000ms" data-wow-duration="6500ms">
+        <img src="{% static 'assets/images/shape/shape-round-4.png' %}" alt="">
+    </div>
+    <div class="subscribe-cotent-box">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-6 col-lg-6 text-right-rtl">
+                    <div class="subscribe-box">
+                        <div class="inner-title">
+                            <h2>Inscreva-se para o Boletim<br> e receba as últimas notícias &<br> atualizações.</h2>
+                        </div>
+                        <form class="subscribe-form" action="index-3.html#">
+                            <input type="email" name="email" placeholder="Seu endereço de e-mail">
+                            <button class="btn-one" type="submit"><span class="txt">Inscreva-se Agora</span></button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="col-xl-6 col-lg-6">
+                    <div class="subscribe-box-house wow slideInRight" data-wow-delay="500ms" data-wow-duration="4500ms">
+                        <div class="inner float-bob-y">
+                            <img class="paroller" src="{% static 'assets/images/shape/house-2.png' %}" alt="">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!--Início do Rodapé-->
+    <div class="footer">
+        <div class="shape1 wow slideInLeft" data-wow-delay="500ms" data-wow-duration="4500ms">
+            <img class="float-bob-y" src="{% static 'assets/images/shape/footer-hand-1.png' %}" alt="">
+        </div>
+        <div class="shape2 wow slideInRight" data-wow-delay="500ms" data-wow-duration="4500ms">
+            <img src="{% static 'assets/images/shape/footer-hand-2.png' %}" alt="">
+        </div>
+        <div class="container">
+            <div class="row text-right-rtl">
+
+                <!--Início do widget de rodapé único-->
+                <div class="col-xl-6 col-lg-5 col-md-12 col-sm-12 wow animated fadeInUp" data-wow-delay="0.1s">
+                    <div class="single-footer-widget marbtm50">
+                        <div class="our-company-info">
+                            <div class="footer-logo">
+                                <a href="index.html"><img style="width: 100px;" src="{% static 'assets/images/logo.png' %}" alt=""/></a>
+                            </div>
+                            <div class="text-box">
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempor incididunt ut labore et dolore magna aliqua.</p>
+                            </div>
+                            <div class="footer-social-link">
+                                <ul class="clearfix">
+                                    <li><a href="index-3.html#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                    <li><a href="index-3.html#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                    <li><a href="index-3.html#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+                                    <li><a href="index-3.html#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                                </ul>
+                            </div>
+                           
+                        </div>     
+                    </div>
+                </div>
+                <!--Fim do widget de rodapé único-->
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 wow animated fadeInUp" data-wow-delay="0.3s">
+                    <div class="single-footer-widget margin__top">
+                        <div class="title">
+                            <h3>Services</h3>
+                        </div>
+                        <div class="footer-widget-links">
+                            <ul>
+                                <li><a href="index-3.html#">Sobre Nós</a></li>    
+                                <li><a href="index-3.html#">Listagens</a></li>             
+                                <li><a href="index-3.html#">Como Funciona</a></li>             
+                                <li><a href="index-3.html#">Nossos Serviços</a></li>             
+                                <li><a href="index-3.html#">Nosso Blog</a></li>                                    
+                                <li><a href="index-3.html#">Contate-Nos</a></li>                         
+                            </ul>                   
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 wow animated fadeInUp" data-wow-delay="0.5s">
+                    <div class="single-footer-widget margin__top pdtop50">
+                        <div class="title">
+                            <h3>Contatos</h3>
+                        </div>
+                        <div class="footer-widget-contact-info">
+                            <ul>
+                                <li>
+                                    <div class="inner">
+                                        <div class="icon mapmarker">
+                                            <span class="flaticon-maps-and-flags"></span>
+                                        </div>
+                                        <div class="text">
+                                            <p>Apartamento 20, Reynolds Neck,<br> North Helenaville, FV77 8WS</p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="inner">
+                                        <div class="icon">
+                                            <span class="flaticon-microphone-black-shape"></span>
+                                        </div>
+                                        <div class="text">
+                                            <p>Ligue para nós: <a href="tel:123456789">+2(305) 587-3407</a></p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="inner">
+                                        <div class="icon">
+                                            <span class="flaticon-email"></span>
+                                        </div>
+                                        <div class="text">
+                                            <p><a href="mailto:yourmail@email.com">info@Hoppex.com</a></p>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>                       
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Fim do Rodapé-->
+
+    <div class="footer-bottom">
+        <div class="container">
+            <div class="bottom-inner">
+                <div class="copyright">
+                    <p>Copyright &copy;<a href="index.html"> 2022 Carhouse .</a> Todos os direitos reservados.</p>
+                </div>
+                <div class="footer-menu">
+                    <ul class="footer-nav">
+                        <li><a href="index.html">Termos de Serviço</a></li>
+                        <li><a href="index.html">Política de Privacidade</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</footer>
+
+<!--End footer area-->
+
+
+<button class="scroll-top scroll-to-target" data-target="html">
+    <span class="flaticon-up-arrow"></span>
+</button> 
+
+
+
+<!-- search-popup -->
+<div id="search-popup" class="search-popup">
+    <div class="close-search"><i class="icon-close"></i></div>
+    <div class="popup-inner">
+        <div class="overlay-layer"></div>
+        <div class="search-form">
+            <form method="post" action="index.html">
+                <div class="form-group">
+                    <fieldset>
+                        <input type="search" class="form-control" name="search-input" value="" placeholder="Search Here" required >
+                        <input type="submit" value="Search Now!" class="theme-btn style-four">
+                    </fieldset>
+                </div>
+            </form>
+            <h3>Recent Search Keywords</h3>
+            <ul class="recent-searches">
+                <li><a href="index.html">Safety Tips</a></li>
+                <li><a href="index.html">Filteration</a></li>
+                <li><a href="index.html">Accessories</a></li>
+                <li><a href="index.html">Tools</a></li>
+                <li><a href="index.html">Design</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- search-popup end -->
+
+
+</div> 
+
+
+
+
+
+
+<script src="{% static 'assets/js/jquery.js' %}"></script>
+<script src="{% static 'assets/js/aos.js' %}"></script>
+<script src="{% static 'assets/js/appear.js' %}"></script>
+<script src="{% static 'assets/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'assets/js/bootstrap-select.min.js' %}"></script>
+<script src="{% static 'assets/js/isotope.js' %}"></script>
+<script src="{% static 'assets/js/jquery.countTo.js' %}"></script>
+<script src="{% static 'assets/js/jquery.easing.min.js' %}"></script>
+<script src="{% static 'assets/js/jquery.enllax.min.js' %}"></script>
+<script src="{% static 'assets/js/jquery.fancybox.js' %}"></script>
+<script src="{% static 'assets/js/jquery.magnific-popup.min.js' %}"></script>
+<script src="{% static 'assets/js/jquery.paroller.min.js' %}"></script>
+<script src="{% static 'assets/js/jquery-ui.js' %}"></script>
+<script src="{% static 'assets/js/knob.js' %}"></script>
+<script src="{% static 'assets/js/map-script.js' %}"></script>
+<script src="{% static 'assets/js/owl.js' %}"></script>
+<script src="{% static 'assets/js/pagenav.js' %}"></script>
+<script src="{% static 'assets/js/parallax.min.js' %}"></script>
+<script src="{% static 'assets/js/scrollbar.js' %}"></script>
+<script src="{% static 'assets/js/TweenMax.min.js' %}"></script>
+<script src="{% static 'assets/js/validation.js' %}"></script>
+<script src="{% static 'assets/js/wow.js' %}"></script>
+<script src="{% static 'assets/js/color-switcher.min.js' %}"></script>
+
+<script src="{% static 'assets/js/jquery.bootstrap-touchspin.js' %}"></script>
+<script src="{% static 'assets/js/jquery.nice-select.min.js' %}"></script>
+<script src="{% static 'assets/js/tilt.jquery.js' %}"></script>
+
+
+
+<!-- thm custom script -->
+<script src="{% static 'assets/js/custom.js' %}"></script>
+
+
+
+</body>
+</html>

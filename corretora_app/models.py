@@ -37,6 +37,8 @@ class Imovel(models.Model):
         ('vendido', 'Vendido'),
         ('indisponivel', 'Indisponível'),
     ]
+    titulo = models.CharField(max_length=255, verbose_name="Ex: vivenda T5", blank=True, null=True)
+    imagem = models.ImageField(upload_to='imoveis/', verbose_name="Imagem Corretor", blank=True, null=True)
     endereco = models.CharField(max_length=255)
     preco = models.DecimalField(max_digits=10, decimal_places=2)
     tipo = models.CharField(max_length=20, choices=TIPO_IMOVEL)
@@ -52,6 +54,35 @@ class Imovel(models.Model):
 
     def __str__(self):
         return f"{self.tipo.title()} - {self.endereco} - {self.status.title()}"
+
+class DadosAdicionais(models.Model):
+    imovel = models.OneToOneField(Imovel, on_delete=models.CASCADE, related_name="dados_adicionais")
+    exterior_varanda = models.BooleanField(default=False)
+    exterior_piscina_coletiva = models.BooleanField(default=False)
+    exterior_estacionamento_privativo = models.BooleanField(default=False)
+    exterior_churrasqueira = models.BooleanField(default=False)
+    exterior_campos_polidesportivos = models.BooleanField(default=False)
+
+    interior_suites = models.IntegerField(default=0)  # Número de suítes
+    interior_roupeiros_embutidos = models.BooleanField(default=False)
+    interior_cozinha_equipada = models.BooleanField(default=False)
+    interior_ar_condicionado = models.BooleanField(default=False)
+
+    segurança_24h = models.BooleanField(default=False)
+    reservatorio_agua = models.BooleanField(default=False)
+    ginásio = models.BooleanField(default=False)
+    gerador = models.BooleanField(default=False)
+    area_servico = models.BooleanField(default=False)  # Área de serviço/lavandaria
+
+    def __str__(self):
+        return f"Dados adicionais de {self.imovel.tipo.title()} - {self.imovel.endereco}"
+
+class GaleriaImovel(models.Model):
+    imovel = models.ForeignKey('Imovel', on_delete=models.CASCADE, related_name='galeria')
+    imagem = models.ImageField(upload_to='imoveis/galeria/')
+    descricao = models.CharField(max_length=255, blank=True, null=True)
+
+
 
 class Contrato(models.Model):
     TIPO_CONTRATO = [
@@ -152,3 +183,103 @@ class FeedbackCliente(models.Model):
 
     def __str__(self):
         return f"Feedback do Cliente {self.cliente.nome} - {self.nota} estrelas"
+
+
+#---------------------------novo---------------------------------------------
+
+# Modelo de Proposta de Aluguel
+class Proposta(models.Model):
+    imovel = models.ForeignKey(Imovel, on_delete=models.CASCADE)
+    locatario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+    valor_ofertado = models.DecimalField(max_digits=10, decimal_places=2)
+    data_envio = models.DateTimeField(auto_now_add=True)
+    status = models.CharField(
+        max_length=15,
+        choices=[('pendente', 'Pendente'), ('aceita', 'Aceita'), ('recusada', 'Recusada')],
+        default='pendente'
+    )
+
+# Modelo de Visitas
+class Visita(models.Model):
+    imovel = models.ForeignKey(Imovel, on_delete=models.CASCADE)
+    locatario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+    data_horario = models.DateTimeField()
+    status = models.CharField(
+        max_length=15,
+        choices=[('pendente', 'Pendente'), ('confirmada', 'Confirmada'), ('cancelada', 'Cancelada')],
+        default='pendente'
+    )
+
+# Modelo de Contratos
+class Contrato(models.Model):
+    imovel = models.ForeignKey(Imovel, on_delete=models.CASCADE)
+    locatario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+    data_inicio = models.DateField(null=True, blank=True)
+    data_fim = models.DateField(null=True, blank=True)
+    valor_mensal = models.DecimalField(max_digits=10, decimal_places=2)
+    ativo = models.BooleanField(default=True)
+
+
+# Modelo de Pagamentos
+class Pagamento(models.Model):
+    contrato = models.ForeignKey(Contrato, on_delete=models.CASCADE)
+    data_pagamento = models.DateTimeField(auto_now_add=True)
+    valor_pago = models.DecimalField(max_digits=10, decimal_places=2)
+    forma_pagamento = models.CharField(
+        max_length=50, choices=[('boleto', 'Boleto'), ('cartao', 'Cartão'), ('pix', 'Pix')]
+    )
+    status = models.CharField(
+        max_length=15, choices=[('pendente', 'Pendente'), ('pago', 'Pago'), ('falhou', 'Falhou')],
+        default='pendente'
+    )
+
+    def __str__(self):
+        return f"Pagamento de {self.valor_pago} para o contrato {self.contrato.id} em {self.data_pagamento}"
+
+
+# Modelo de Manutenções
+class SolicitacaoManutencao(models.Model):
+    imovel = models.ForeignKey(Imovel, on_delete=models.CASCADE)
+    locatario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+    descricao = models.TextField()
+    data_solicitacao = models.DateTimeField(auto_now_add=True)
+    status = models.CharField(
+        max_length=15,
+        choices=[('pendente', 'Pendente'), ('em andamento', 'Em andamento'), ('concluida', 'Concluída')],
+        default='pendente'
+    )
+
+# Modelo de Favoritos
+class Favorito(models.Model):
+    cliente = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+    imovel = models.ForeignKey(Imovel, on_delete=models.CASCADE)
+    data_adicionado = models.DateTimeField(auto_now_add=True)
+
+# Modelo de Notificações
+class Notificacao(models.Model):
+    usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+    mensagem = models.TextField()
+    lida = models.BooleanField(default=False)
+    data_envio = models.DateTimeField(auto_now_add=True)
+
+# Modelo de Simulação de Financiamento
+class SimulacaoFinanciamento(models.Model):
+    imovel = models.ForeignKey(Imovel, on_delete=models.CASCADE)
+    cliente = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+    valor_entrada = models.DecimalField(max_digits=10, decimal_places=2)
+    parcelas = models.IntegerField()
+    taxa_juros = models.FloatField()
+    valor_final = models.DecimalField(max_digits=10, decimal_places=2)
+
+# Modelo de Participação em Leilões
+class Leilao(models.Model):
+    imovel = models.ForeignKey(Imovel, on_delete=models.CASCADE)
+    data_inicio = models.DateTimeField()
+    data_fim = models.DateTimeField()
+    lance_inicial = models.DecimalField(max_digits=10, decimal_places=2)
+
+class Lance(models.Model):
+    leilao = models.ForeignKey(Leilao, on_delete=models.CASCADE)
+    cliente = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+    valor = models.DecimalField(max_digits=10, decimal_places=2)
+    data_lance = models.DateTimeField(auto_now_add=True)

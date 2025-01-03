@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from django.http import HttpResponse
-from .models import Usuario
+from django.shortcuts import render, get_object_or_404
+from .models import Usuario, Imovel,GaleriaImovel
 from django.contrib.auth.hashers import make_password
 import random
 import string
@@ -115,7 +116,8 @@ def login_usuario(request):
     return render(request, 'login.html')
 
 def home(request):
-    return render(request, 'home.html')
+    imovel_venda = Imovel.objects.all()
+    return render(request, 'home.html',{'imovel_venda':imovel_venda})
 
 
 def sign_up(request):
@@ -130,4 +132,9 @@ def register(request):
 #------------------------------fim autenticacao-------------------------------
 
 def house_buy(request):
-    pass
+    imovel_venda = Imovel.objects.all()
+    return render(request, 'casa_vender.html', {'imovel_venda':imovel_venda})
+
+def detalhe_projecto(request, id):
+    imovel_venda = get_object_or_404(Imovel, id=id)
+    return render(request, 'detalhe_projecto.html', {'imovel_venda':imovel_venda})

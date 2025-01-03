@@ -215,7 +215,7 @@
                     <div class="thm-space-box-2"></div>
                     <div class="header-right_buttom">
                         <div class="btns-box">
-                            <a class="btn-one" href="login.html">
+                            <a class="btn-one" href="{% url 'sign_up' %}">
                                 <i class="fas fa-user-circle"></i> 
                                 <span class="txt"> login | cadastro</span>
                             </a>
@@ -355,13 +355,13 @@
     <div class="container">
         <div class="row">
             <!--Start Single Service Style1-->
-            <div class="col-xl-3 col-lg-6 wow fadeInUp" data-wow-delay="00ms" data-wow-duration="1500ms">
+            <div class="col-6 col-md-6 col-xl-3 wow fadeInUp" data-wow-delay="00ms" data-wow-duration="1500ms">
                 <div class="single-service-style1 single-service-style1--instyle2 text-center">
                     <div class="icon-holder">
                         <img src="{% static 'assets/images/icon/services/service-v1-1.png' %}" alt="">
                     </div>
                     <div class="title-holder">
-                        <h3><a href="https://mehedi.asiandevelopers.com/hoppex/services-details.html">À venda</a></h3>
+                        <h3><a href="{% url 'house_buy' %}">À venda</a></h3>
                         <div class="inner-text">
                             <p>Imóveis com confiança.</p>
                         </div>
@@ -370,22 +370,22 @@
             </div> 
             <!--End Single Service Style1-->
             <!--Start Single Service Style1-->
-            <div class="col-xl-3 col-lg-6 wow fadeInUp" data-wow-delay="200ms" data-wow-duration="1500ms">
+            <div class="col-6 col-md-6 col-xl-3 wow fadeInUp" data-wow-delay="200ms" data-wow-duration="1500ms">
                 <div class="single-service-style1 active single-service-style1--instyle2 text-center">
                     <div class="icon-holder">
                         <img src="{% static 'assets/images/icon/services/service-v1-2.png' %}" alt="">
                     </div>
                     <div class="title-holder">
-                        <h3><a href="https://mehedi.asiandevelopers.com/hoppex/services-details.html">Residencial</a></h3>
+                        <h3><a href="https://mehedi.asiandevelopers.com/hoppex/services-details.html">Terrenos</a></h3>
                         <div class="inner-text">
-                            <p>Casas e apartamentos prontos para morar. Conforto e segurança em ambientes planejados para sua família.</p>
+                            <p>Terrenos prontos para construcao.</p>
                         </div>
                     </div>
                 </div>
             </div> 
             <!--End Single Service Style1-->
             <!--Start Single Service Style1-->
-            <div class="col-xl-3 col-lg-6 wow fadeInUp" data-wow-delay="00ms" data-wow-duration="1500ms">
+            <div class="col-6 col-md-6 col-xl-3 wow fadeInUp" data-wow-delay="00ms" data-wow-duration="1500ms">
                 <div class="single-service-style1 single-service-style1--instyle2 text-center">
                     <div class="icon-holder">
                         <img src="{% static 'assets/images/icon/services/service-v1-3.png' %}" alt="">
@@ -393,14 +393,14 @@
                     <div class="title-holder">
                         <h3><a href="https://mehedi.asiandevelopers.com/hoppex/services-details.html">Comercial</a></h3>
                         <div class="inner-text">
-                            <p> Espaços comerciais estratégicos para impulsionar o seu negócio. Localizações privilegiadas para crescimento.</p>
+                            <p>Espaços comerciais estratégicos para impulsionar o seu negócio. </p>
                         </div>
                     </div>
                 </div>
             </div> 
             <!--End Single Service Style1-->
             <!--Start Single Service Style1-->
-            <div class="col-xl-3 col-lg-6 wow fadeInUp" data-wow-delay="300ms" data-wow-duration="1500ms">
+            <div class="col-6 col-md-6 col-xl-3 wow fadeInUp" data-wow-delay="300ms" data-wow-duration="1500ms">
                 <div class="single-service-style1 single-service-style1--instyle2 text-center">
                     <div class="icon-holder">
                         <img src="{% static 'assets/images/icon/services/service-v1-4.png' %}" alt="">
@@ -408,17 +408,68 @@
                     <div class="title-holder">
                         <h3><a href="https://mehedi.asiandevelopers.com/hoppex/services-details.html">Para alugar</a></h3>
                         <div class="inner-text">
-                            <p>Alugue imóveis de qualidade com praticidade. Flexibilidade para atender demandas residenciais ou comerciais.</p>
+                            <p>Alugue imóveis de qualidade com praticidade.</p>
                         </div>
                     </div>
                 </div>
             </div> 
             <!--End Single Service Style1-->
-
         </div>
     </div>
 </section>
+
 <!--End Service Style1 Area-->
+
+
+<section class="project-page-one">
+    <div class="shape1 wow slideInRight" data-wow-delay="400ms" data-wow-duration="6500ms">
+        <img src="assets/images/shape/shape-round-5.png" alt="">
+    </div>
+    <div class="container">
+        <div class="sec-title text-center">
+            <div class="sub-title">
+                <p>Nossos Imóveis</p>
+            </div>
+            <h2 style="font-size: 25px;">Imóveis de Qualidade e Confiabilidade.</h2>
+        </div>
+        <div class="row text-right-rtl">
+            {% for casa_venda in imovel_venda %}
+            <div class="col-6 col-md-6 col-xl-4 wow fadeInUp" data-wow-delay="00ms" data-wow-duration="1500ms">
+                <div class="project-block">
+                    <div class="img-holder">
+                        <div class="inner">
+                            <img src="{{ casa_venda.imagem.url }}" alt="">
+                        </div>
+                    </div>
+                    <div class="text-holder">
+                        <h3><a href="{% url 'detalhe_projecto' id=casa_venda.id %}">{{ casa_venda.titulo }}</a></h3>
+                        <p>{{ casa_venda.endereco }}</p>
+                        <ul>
+                            <li><span>Tipo:</span>{{ casa_venda.tipo }}</li>
+                            <li><span>Status:</span>{{ casa_venda.status }}</li>
+                            <li><span>Área:</span>{{ casa_venda.area }} m²</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+
+        <div class="row">
+            <div class="col-xl-12">
+                <ul class="styled-pagination clearfix">
+                    <li class="arrow prev"><a href="projects.html#"><span class="icon-right-arrow-1 left"></span></a></li>
+                    <li class="active"><a href="projects.html#">1</a></li>
+                    <li><a href="projects.html#">2</a></li>
+                    <li class="arrow next"><a href="projects.html#"><span class="icon-right-arrow-1 right"></span></a></li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</section>
+
 
 <!--Start About Style2 Area-->
 <section class="about-style2-area pdtop0">
@@ -430,7 +481,7 @@
             <div class="col-xl-6">
                 <div class="about-style2__image-box">
                     <div class="inner">
-                        <img src="{% static 'assets/images/about/about-style2.jpg' %}" alt="">
+                        <img src="{% static 'assets/images/pexels-jonathan-quiuma-36423983-18451042.jpg' %}" alt="">
                     </div>
                     <div class="content-box paroller wow zoomIn" data-wow-delay="500ms" data-wow-duration="2500ms">
                         <span class="flaticon-trophy"></span>
@@ -477,82 +528,85 @@
             <div class="sub-title">
                 <p>Nossos Projetos</p>
             </div>
-            <h2>Projetos Recentes Em<br> Imobiliária.</h2>
+            <h2>Imobiliária.</h2>
         </div>
         <div class="row text-right-rtl">
             <!--Start Single project Item Style2-->
-            <div class="col-xl-3 col-lg-6 col-md-6">
+            <div class="col-6 col-md-6 col-xl-3">
                 <div class="single-project-item-style2">
                     <div class="img-holder">
                         <div class="inner">
-                            <img src="{% static 'assets/images/portfolio/project-v3-1.jpg' %}" alt="Imagem Incrível">
+                            <img style="height: 250px;" src="{% static 'assets/images/pexels-expect-best-79873-323780.jpg' %}" alt="Imagem Incrível">
                         </div>
-                        <div class="overlay-content">
+                        <div class="overlay-content d-flex justify-content-center align-items-center text-center">
                             <div class="text-holder">
-                                <h4><a href="project-details.html">Projetos Residenciais</a></h4>
+                                <h4 style="font-size: 17px;"><a href="project-details.html">Residenciais</a></h4>
                                 <div class="category">
                                     <div class="border-box"></div>
                                     <p>Residencial</p>
                                 </div>
-                            </div> 
+                            </div>
                         </div>
+                        
                     </div>   
                 </div>
             </div>
             <!--End Single project Item Style2-->
             <!--Start Single project Item Style2-->
-            <div class="col-xl-3 col-lg-6 col-md-6">
+            <div class="col-6 col-md-6 col-xl-3">
                 <div class="single-project-item-style2">
                     <div class="img-holder">
                         <div class="inner">
-                            <img src="{% static 'assets/images/portfolio/project-v3-2.jpg' %}" alt="Imagem Incrível">
+                            <img style="height: 250px;" src="{% static 'assets/images/pexels-pixabay-276724.jpg' %}" alt="Imagem Incrível">
                         </div>
-                        <div class="overlay-content">
+                        <div class="overlay-content d-flex justify-content-center align-items-center text-center">
                             <div class="text-holder">
-                                <h4><a href="project-details.html">Projetos Residenciais</a></h4>
+                                <h4 style="font-size: 17px;"><a href="project-details.html">Residenciais</a></h4>
                                 <div class="category">
                                     <div class="border-box"></div>
                                     <p>Apartamento</p>
                                 </div>
-                            </div> 
+                            </div>
                         </div>
+                        
                     </div>   
                 </div>
             </div>
             <!--End Single project Item Style2-->
             <!--Start Single project Item Style2-->
-            <div class="col-xl-3 col-lg-6 col-md-6">
+            <div class="col-6 col-md-6 col-xl-3">
                 <div class="single-project-item-style2">
                     <div class="img-holder">
                         <div class="inner">
-                            <img src="{% static 'assets/images/portfolio/project-v3-3.jpg' %}" alt="Imagem Incrível">
+                            <img style="height: 250px;" src="{% static 'assets/images/pexels-bluerhinomedia-3728184.jpg' %}" alt="Imagem Incrível">
                         </div>
-                        <div class="overlay-content">
+                        <div class="overlay-content d-flex justify-content-center align-items-center text-center">
                             <div class="text-holder">
-                                <h4><a href="project-details.html">Projetos Residenciais</a></h4>
+                                <h4 style="font-size: 17px;"><a href="project-details.html">Empresariais</a></h4>
                                 <div class="category">
                                     <div class="border-box"></div>
                                     <p>Escritório</p>
                                 </div>
-                            </div> 
+                            </div>
                         </div>
+                        
                     </div>   
                 </div>
             </div>
             <!--End Single project Item Style2-->
             <!--Start Single project Item Style2-->
-            <div class="col-xl-3 col-lg-6 col-md-6">
+            <div class="col-6 col-md-6 col-xl-3">
                 <div class="single-project-item-style2">
                     <div class="img-holder">
                         <div class="inner">
-                            <img src="{% static 'assets/images/portfolio/project-v3-4.jpg' %}" alt="Imagem Incrível">
+                            <img style="height: 250px;" src="{% static 'assets/images/pexels-magda-ehlers-pexels-636342.jpg' %}" alt="Imagem Incrível">
                         </div>
                         <div class="overlay-content">
                             <div class="text-holder">
-                                <h4><a href="project-details.html">Projetos Residenciais</a></h4>
+                                <h4><a href="project-details.html">Projetos</a></h4>
                                 <div class="category">
                                     <div class="border-box"></div>
-                                    <p>Características</p>
+                                    <p>Terrenos</p>
                                 </div>
                             </div> 
                         </div>
@@ -561,17 +615,26 @@
             </div>
             <!--End Single project Item Style2-->
         </div>
+    </div>
+</section>
 
-        <div class="row">
-            <div class="col-xl-12">
-                <div class="project-style3-viewmore-project-btn">
-                    <a class="btn-one" href="projects.html">
-                        <span class="txt">Ver Todos os Projetos</span>
-                    </a>
+
+
+<section class="video-gallery-style2">
+    <div class="auto-container">
+        <div class="video-gallery-style1_content">
+            <div class="video-gallery-img" style="background-image: url('{% static 'assets/images/pexels-tubarones-16094814.jpg' %}');">
+
+                <div class="video-gallery-inner">
+                    <h2>Assista o Nosso Trabalho ao Vivo</h2>
+                    <div class="icon wow zoomIn animated" data-wow-delay="300ms" data-wow-duration="1500ms">
+                        <a class="video-popup" title="Video Gallery" href="https://www.youtube.com/watch?v=p25gICT63ek">
+                            <span class="flaticon-play-button"></span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
-
     </div>
 </section>
 
@@ -613,7 +676,6 @@
                                 </div>
                             </div>
                         </div>
-                    
                     </div>
                 </div>
             </div>
@@ -678,6 +740,7 @@
         </div>
     </div>
 </section>
+
    
 <!--End Fact Counter Area-->
 
@@ -784,7 +847,7 @@
         </div>
         <div class="row">
             <!--Início do Membro da Equipe-->
-            <div class="col-xl-4 col-lg-4">
+            <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4">
                 <div class="single-team-style1 wow fadeInLeft animated" data-wow-delay="100ms" data-wow-duration="1500ms">
                     <div class="img-holder">
                         <div class="inner">
@@ -814,7 +877,7 @@
             <!--Fim do Membro da Equipe-->
 
             <!--Início do Membro da Equipe-->
-            <div class="col-xl-4 col-lg-4">
+            <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4">
                 <div class="single-team-style1 wow fadeInUp animated" data-wow-delay="300ms" data-wow-duration="1500ms">
                     <div class="img-holder">
                         <div class="inner">
@@ -844,7 +907,7 @@
             <!--Fim do Membro da Equipe-->
 
             <!--Início do Membro da Equipe-->
-            <div class="col-xl-4 col-lg-4">
+            <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4">
                 <div class="single-team-style1 wow fadeInRight animated" data-wow-delay="100ms" data-wow-duration="1500ms">
                     <div class="img-holder">
                         <div class="inner">
@@ -877,6 +940,7 @@
     </div>
 </section>
 
+
 <!--End Team Style1 Area-->
 
 
@@ -884,10 +948,10 @@
 <section class="slogan-area">
     <div class="slogan-area__bg" style="background-image: url(static/assets/images/shape/slogan-area-bg.jpg);"></div>
     <div class="shape wow slideInLeft" data-wow-delay="500ms" data-wow-duration="4500ms">
-        <img class="float-bob-x" src="static/assets/images/shape/house-1.png" alt="">
+        <img class="float-bob-x" src="{% static 'assets/images/shape/house-1.png' %}" alt="">
     </div>
     <div class="shape2 wow slideInRight" data-wow-delay="100ms" data-wow-duration="3500ms">
-        <img class="float-bob-y" src="static/assets/images/shape/shape-1.png" alt="">
+        <img class="float-bob-y" src="{% static 'assets/images/shape/shape-1.png' %}" alt="">
     </div>
     <div class="container">
         <div class="row">
@@ -896,7 +960,7 @@
                     <h2 class="paroller">Encontre a casa dos seus sonhos.<br> Agende gratuitamente um<br> horário.</h2>
                     <h4 class="paroller">Amet consectetur adipicing elit do.</h4>
                     <div class="btns-box paroller">
-                        <a class="btn-one" href="contact.html">
+                        <a class="btn-one" href="{%  url 'house_buy' %}">
                             <span class="txt">Agendar um horário</span>
                         </a>
                     </div>
