@@ -1,0 +1,178 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Mofi admin is super flexible, powerful, clean &amp; modern responsive bootstrap 5 admin template with unlimited possibilities.">
+    <meta name="keywords" content="admin template, Mofi admin template, dashboard template, flat admin template, responsive admin template, web app">
+    <meta name="author" content="pixelstrap">
+    <link rel="icon" href="../assets/images/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../assets/images/favicon.png" type="image/x-icon">
+    <title>Carhousy | Register</title>
+    <!-- Google font-->
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places&callback=initAutocomplete" async defer></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'assets1/css/font-awesome.css' %}">
+    <!-- ico-font-->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets1/css/vendors/icofont.css' %}">
+    <!-- Themify icon-->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets1/css/vendors/themify.css' %}">
+    <!-- Flag icon-->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets1/css/vendors/flag-icon.css' %}">
+    <!-- Feather icon-->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets1/css/vendors/feather-icon.css' %}">
+    <!-- Bootstrap css-->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets1/css/vendors/bootstrap.css' %}">
+    <!-- App css-->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets1/css/style.css' %}">
+    <link id="color" rel="stylesheet" href="{% static 'assets/css/color-1.css' %}" media="screen">
+    <!-- Responsive css-->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets1/css/responsive.css' %}">
+
+  </head>
+  <body>
+    <!-- login page start-->
+    <div class="container-fluid p-0"> 
+      <div class="row m-0">
+        <div class="col-xl-7 p-0"><img class="bg-img-cover bg-center" src="{% static 'assets/images/login_image.jpg' %}" alt="looginpage"></div>
+        <div class="col-xl-5 p-0"> 
+            <div class="login-card login-dark" style="background-color: #252323; color: #fff;">
+              <div>
+                <div><a class="logo text-start" href="index.html">
+                  <img style="width: 100px;" class="img-fluid for-light" src="{% static 'assets/images/logo.png' %}" alt="loginpage">
+                  <img style="width: 100px;" class="img-fluid for-dark" src="{% static 'assets/images/logo.png' %}" alt="loginpage">
+                </a></div>
+                <div class="login-main"> 
+                    {% if status == '0' %}
+                    <div class="alert alert-success" role="alert">
+                        <strong>Sucesso!</strong> Cadastro realizado com sucesso
+                      </div>
+                        
+                    {% endif %}
+                    {% if status == '1' %}
+                        <div class="alert alert-danger" role="alert">
+                            <strong>Erro!</strong> Todos os campos são obrigatórios. Por favor, preencha todos antes de continuar!
+                        </div>
+                    {% endif %}
+
+                    {% if status == '2' %}
+                    <div class="alert alert-danger" role="alert">
+                        <strong>Erro!</strong> A senha deve conter pelo menos 8 caracteres!
+                    </div>
+                    {% endif %}
+
+                    {% if status == '3' %}
+                    <div class="alert alert-danger" role="alert">
+                        <strong>Erro!</strong> Usuario ja existe no sistema!
+                    </div>
+                    {% endif %}
+
+                    {% if status == '4' %}
+                    <div class="alert alert-danger" role="alert">
+                        <strong>Erro!</strong> Problema no sistema volte a tentar mais tarde!
+                    </div>
+                    {% endif %}
+
+                    {% if status == '5' %}
+                    <div class="alert alert-danger" role="alert">
+                        <strong>Erro!</strong> tipo de usuário inválido, preencha!
+                    </div>
+                    {% endif %}
+
+
+                  <form class="theme-form" method="POST" action="{% url 'cadastrar_usuario' %}">{% csrf_token %}
+                    <h4 style="color: #e60000;">Crie sua conta</h4>
+                    <p>Insira seus dados pessoais para criar uma conta</p>
+                    <div class="form-group">
+                        <div class="form-group">
+                            <label class="col-form-label" for="imagem" style="color: #e60000;">Selecione uma Imagem</label>
+                            <input name="imagem" type="file" id="imagem" class="form-control" accept="image/*" required />
+                        </div>
+
+                      <label class="col-form-label pt-0" style="color: #e60000;">Seu Nome</label>
+                      <div class="row g-2">
+                        <div class="col-6">
+                          <input name="nome" class="form-control" type="text" required="" placeholder="Primeiro nome">
+                        </div>
+                        <div class="col-6">
+                          <input name="sobrenome" class="form-control" type="text" required="" placeholder="Sobrenome">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-form-label" style="color: #e60000;">E-mail</label>
+                      <input name="email" class="form-control" type="email" required="" placeholder="Teste@gmail.com">
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label" style="color: #e60000;">Endereço</label>
+                        <input name="endereco" class="form-control" type="text" required="" placeholder="Angola, Luanda">
+                      </div>
+                      <div class="form-group">
+                        <label class="col-form-label" style="color: #e60000;">Telefone</label>
+                        <input name="telefone" class="form-control" type="tel" required="" placeholder="+244 923608355">
+                      </div>
+                    <div class="form-group">
+                      <label class="col-form-label" style="color: #e60000;">Senha</label>
+                      <div class="form-input position-relative">
+                        <input name="senha" class="form-control" type="password" name="login[password]" required="" placeholder="*********">
+                        <div class="show-hide"><span class="show"></span></div>
+                      </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="col-form-label" style="color: #e60000;">Tipo de Usuário</label>
+                        <select name="tipousuario" class="form-control" required>
+                          <option value="cliente">Cliente</option>
+                          <option value="vendedor">Vendedor</option>
+                          <option value="corretor">Corretor</option>
+                        </select>
+                      </div>
+          
+                    <div class="form-group mb-0">
+                      <div class="checkbox p-0">
+                        <input id="checkbox1" type="checkbox">
+                        <label class="text-muted" for="checkbox1" style="color: #fff;">Concordo com<a class="ms-2" href="sign-up-two.html#">Política de Privacidade</a></label>
+                      </div>
+                      <button class="btn btn-danger btn-block w-100" type="submit">Criar Conta</button>
+                    </div>
+                    <h6 class="text-muted mt-4 or" style="color: #e60000;">Ou cadastre-se com</h6>
+                    <div class="social mt-4">
+                      <div class="btn-showcase">
+                        <a class="btn btn-light" href="https://accounts.google.com/signin" target="_blank">
+                          <i class="fab fa-google"></i> Google
+                        </a>
+                        <a class="btn btn-light" href="https://www.facebook.com/" target="_blank">
+                          <i class="txt-fb" data-feather="facebook"></i> Facebook
+                        </a>
+                      </div>
+                    </div>
+                    <p class="mt-4 mb-0 text-center" style="color: #fff;">Já tem uma conta?<a class="ms-2" href="{% url 'sign_up' %}" style="color: #e60000;">Faça login</a></p>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+      <!-- latest jquery-->
+      <script src="{% static 'assets1/js/jquery.min.js' %}"></script>
+      <!-- Bootstrap js-->
+      <script src="{% static 'assets1/js/bootstrap/bootstrap.bundle.min.js' %}"></script>
+      <!-- feather icon js-->
+      <script src="{% static 'assets1/js/icons/feather-icon/feather.min.js' %}"></script>
+      <script src="{% static 'assets1/js/icons/feather-icon/feather-icon.js' %}"></script>
+      <!-- Sidebar jquery-->
+      <script src="{% static 'assets1/js/config.js' %}"></script>
+      <!-- Theme js-->
+      <script src="{% static 'assets1/js/script.js' %}"></script>
+      <script src="{% static 'assets1/js/script1.js' %}"></script>
+    </div>
+  </body>
+</html>
