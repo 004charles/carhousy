@@ -249,12 +249,6 @@ class SolicitacaoManutencao(models.Model):
         default='pendente'
     )
 
-# Modelo de Favoritos
-class Favorito(models.Model):
-    cliente = models.ForeignKey(Usuario, on_delete=models.CASCADE)
-    imovel = models.ForeignKey(Imovel, on_delete=models.CASCADE)
-    data_adicionado = models.DateTimeField(auto_now_add=True)
-
 # Modelo de Notificações
 class Notificacao(models.Model):
     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)

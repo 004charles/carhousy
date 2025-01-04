@@ -6,10 +6,14 @@ from .models import Usuario, Imovel,GaleriaImovel
 from django.contrib.auth.hashers import make_password
 import random
 import string
-from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.hashers import check_password
 from .models import Usuario
+from django.core.mail import send_mail
+from django.conf import settings
+
+
+
 
 def gerar_codigo():
     """Função para gerar um código único para o usuário"""
@@ -29,21 +33,21 @@ def cadastrar_usuario(request):
 
         if not nome or not sobrenome or not email or not senha or not telefone or not endereco or not tipo_usuario:
             messages.error(request, "Todos os campos são obrigatórios!")
-            return redirect('/carhousy/register?status=1')  # Alerta de campos obrigatórios
+            return redirect('/carhousy/register/?status=1')  # Alerta de campos obrigatórios
 
         if len(senha) < 8:
             messages.error(request, "A senha precisa ter pelo menos 8 caracteres.")
-            return redirect('/carhousy/register?status=2')  # Alerta de senha fraca
+            return redirect('/carhousy/register/?status=2')  # Alerta de senha fraca
 
         if Usuario.objects.filter(email=email).exists():
             messages.error(request, "Este e-mail já está cadastrado.")
-            return redirect('/carhousy/register?status=3')  # Alerta de e-mail já cadastrado
+            return redirect('/carhousy/register/?status=3')  # Alerta de e-mail já cadastrado
 
         # Verifica se o tipo de usuário é válido
         tipos_validos = ['cliente', 'vendedor', 'corretor']
         if tipo_usuario not in tipos_validos:
             messages.error(request, "Tipo de usuário inválido.")
-            return redirect('/carhousy/register?status=5')  # Alerta de tipo de usuário inválido
+            return redirect('/carhousy/register/?status=5')  # Alerta de tipo de usuário inválido
 
         # Geração do código único
         codigo = gerar_codigo()
@@ -64,16 +68,32 @@ def cadastrar_usuario(request):
             )
             usuario.save()  # Salva no banco de dados
 
+            # Mensagem personalizada com base no tipo de usuário
+            if tipo_usuario == 'cliente':
+                mensagem = f'Olá {nome}!\n\nObrigado por se cadastrar na Carhousy. Estamos felizes em tê-lo conosco!\n\nRumo ao teu sonho da casa própria! Estamos aqui para ajudar você a encontrar o lar dos seus sonhos.\n\nAtenciosamente,\nEquipe Carhousy'
+            elif tipo_usuario == 'vendedor':
+                mensagem = f'Olá {nome}!\n\nObrigado por se cadastrar como vendedor na Carhousy. Agora você pode oferecer os melhores imóveis para nossos clientes. Estamos aqui para ajudá-lo a alcançar suas metas!\n\nAtenciosamente,\nEquipe Carhousy'
+            elif tipo_usuario == 'corretor':
+                mensagem = f'Olá {nome}!\n\nObrigado por se cadastrar como corretor na Carhousy. Sua jornada começa agora para conectar clientes a imóveis incríveis. Estamos aqui para ajudá-lo a ter sucesso!\n\nAtenciosamente,\nEquipe Carhousy'
+
+            # Envio do e-mail de boas-vindas
+            send_mail(
+                'Bem-vindo à Carhousy',  # Assunto
+                mensagem,  # Corpo do e-mail com a mensagem personalizada
+                settings.EMAIL_HOST_USER,  # Remetente
+                [email],  # Destinatário
+                fail_silently=False,  # Caso ocorra algum erro, não falhar silenciosamente
+            )
+
             messages.success(request, "Usuário cadastrado com sucesso!")
-            return redirect('/carhousy/register?status=0')  # Sucesso no cadastro
+            return redirect('/carhousy/register/?status=0')  # Sucesso no cadastro
 
         except Exception as e:
             print(f"Erro ao cadastrar usuário: {e}")
             messages.error(request, "Ocorreu um erro ao cadastrar o usuário. Tente novamente.")
-            return redirect('/carhousy/register?status=4')  # Erro de salvamento
+            return redirect('/carhousy/register/?status=4')  # Erro de salvamento
     else:
         return render(request, 'register.html')  # Exibe o formulário de cadastro
-
 
 def login_usuario(request):
     if request.method == "POST":
@@ -86,39 +106,36 @@ def login_usuario(request):
         # Se não encontrar nenhum usuário
         if not usuario:
             messages.error(request, "Credenciais inválidas. Tente novamente.")
-            return redirect('/carhousy/sign_up?status=8')  # Redireciona para a página de login com mensagem de erro
+            return redirect('/carhousy/sign_up/?status=8')  # Redireciona para a página de login com mensagem de erro
 
         # Verifica a senha de forma segura
         if not check_password(senha, usuario.senha):
             messages.error(request, "Credenciais inválidas. Tente novamente.")
-            return redirect('/carhousy/sign_up?status=8')  # Redireciona para a página de login com mensagem de erro
+            return redirect('/carhousy/sign_up/?status=8')  # Redireciona para a página de login com mensagem de erro
 
-        # Caso encontre um usuário
+        # Caso encontre um usuário, armazena o id na sessão
         request.session['usuario'] = usuario.id
 
-        # Obtém o tipo de usuário
-        usuario_tipo = usuario.tipo_usuario
-
-        # Verifica se o tipo de usuário foi encontrado
-        if not usuario_tipo:
-            messages.error(request, "Erro ao identificar o tipo de usuário.")
-            return redirect('/carhousy/sign_up?status=7')  # Redireciona para a página de cadastro caso não encontre o tipo
-
         # Redireciona o usuário dependendo do tipo
-        if usuario_tipo == 'cliente':
-            return redirect('/carhousy/candidato_home')  # Redireciona para a home do cliente
-        elif usuario_tipo == 'vendedor':
-            return redirect('/carhousy/empresa_home')  # Redireciona para a home do vendedor
-        elif usuario_tipo == 'corretor':
-            return redirect('/carhousy/corretor_home')  # Redireciona para a home do corretor
+        if usuario.tipo_usuario == 'cliente':
+            return redirect('home')  # Redireciona para a home do cliente
+        elif usuario.tipo_usuario == 'vendedor':
+            return redirect('home')  # Redireciona para a home do vendedor
+        elif usuario.tipo_usuario == 'corretor':
+            return redirect('home')  # Redireciona para a home do corretor
 
     # Se não for um POST, apenas renderiza a página de login
     return render(request, 'login.html')
 
 def home(request):
+    usuario_logado = None
+    if 'usuario' in request.session:
+        try:
+            usuario_logado = Usuario.objects.get(id=request.session['usuario'])
+        except Usuario.DoesNotExist:
+            pass
     imovel_venda = Imovel.objects.all()
-    return render(request, 'home.html',{'imovel_venda':imovel_venda})
-
+    return render(request, 'home.html', {'usuario_logado': usuario_logado, 'imovel_venda':imovel_venda})
 
 def sign_up(request):
     status = request.GET.get('status')

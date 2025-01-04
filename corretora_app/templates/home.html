@@ -57,6 +57,7 @@
     
 </head>
 
+
 <body>
 
 <div class="boxed_wrapper ltr">
@@ -81,7 +82,96 @@
 <!-- end switcher menu --> 
 
 <!-- Main header-->
-<header class="main-header header-style-three">
+<header class="main-header header-style-one">
+    <!--Start Header Top-->
+    <div class="header-top text-right-rtl">
+        <div class="auto-container">
+            <div class="outer-box">
+                
+                <div class="header-top__left">
+                    <div class="header-contact-info">
+                        <ul>
+                            <li>
+                                <div class="icon">
+                                    <span class="flaticon-pin-1"></span>
+                                </div>
+                                <div class="text">
+                                    <h6>Rua da Missão, Luanda, Angola</h6>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="icon">
+                                    <span class="flaticon-clock"></span>
+                                </div>
+                                <div class="text">
+                                    <h6>Seg - Sáb 9:00 - 18:00</h6>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="icon">
+                                    <span class="flaticon-phone-call-2"></span>
+                                </div>
+                                <div class="text">
+                                    <h6><a href="tel:123456789">+244 923908353</a></h6>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>    
+                </div>
+    
+                <div class="header-top__right">
+                    <div class="header-social-link">
+                        <div class="social-link">
+                            <ul class="clearfix">
+                                <li>
+                                    <a href="projects.html#"><i class="fa fa-twitter" aria-hidden="true"></i></a> 
+                                </li>
+                                <li>
+                                    <a href="projects.html#"><i class="fa fa-facebook" aria-hidden="true"></i></a> 
+                                </li>
+                                <li>
+                                    <a href="projects.html#"><i class="fa fa-google-plus" aria-hidden="true"></i></a> 
+                                </li>
+                                <li>
+                                    <a href="projects.html#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+    
+                    <div class="thm-space-box"></div>
+    
+                    
+                    <div class="signin-box">
+                        {% if usuario_logado and usuario_logado.id %}
+                            <div class="dropdown">
+                                <button class="btn btn-light" type="button" id="dropdownMenuButton">
+                                    {% if usuario_logado.imagem %}
+                                        <img src="{{ usuario_logado.imagem.url }}" alt="Foto de perfil" class="rounded-circle" width="40" height="40">
+                                    {% else %}
+                                        <span class="flaticon-user-2"></span>
+                                    {% endif %}
+                                    <a href="#" style="color: black;"></a>
+                                </button>
+                            </div>
+                        {% else %}
+                            <a href="{% url 'sign_up' %}">
+                                <span class="flaticon-user-2"></span> Login | Cadastro
+                            </a>
+                        {% endif %}
+                    </div>
+                    
+     
+                    <div class="thm-space-box"></div>
+                    
+                </div>
+    
+            </div>    
+        </div>
+    </div>
+    
+    
+    <!--End Header Top-->
 
     <!--Start Header--> 
     <div class="header header--style3">
@@ -110,15 +200,11 @@
                             <div class="collapse navbar-collapse show clearfix" id="navbarSupportedContent">
                                 <ul class="navigation clearfix">
                                     <li>
-                                        <a href="index-3.html#">
+                                        <a href="{% url 'home' %}">
                                             <i class="fas fa-home"></i> Início
                                         </a>
                                     </li>
-                                    <li>
-                                        <a href="about.html">
-                                            <i class="fas fa-users"></i> Sobre nós
-                                        </a>
-                                    </li>
+                                    
                                     <li class="dropdown">
                                         <a href="index-3.html#">
                                             <i class="fas fa-project-diagram"></i> Projetos
@@ -168,6 +254,35 @@
                                             </li>
                                         </ul>
                                     </li>
+                                    <li class="dropdown"><a href="index.html">Zonas de Investimento</a>
+                                        <div class="megamenu">
+                                            <div class="row clearfix">
+                                                <div class="col-xl-6 column">
+                                                    <ul>
+                                                        <li><a href="zona-centro.html"><i class="fas fa-city"></i> Centro da Cidade</a></li>
+                                                        <li><a href="zona-praia.html"><i class="fas fa-umbrella-beach"></i> Área de Praia</a></li>
+                                                        <li><a href="zona-residencial.html"><i class="fas fa-home"></i> Zona Residencial</a></li>
+                                                        <li><a href="zona-comercial.html"><i class="fas fa-store"></i> Zona Comercial</a></li>
+                                                        <li><a href="zona-industrial.html"><i class="fas fa-industry"></i> Zona Industrial</a></li>
+                                                        <li><a href="zona-campo.html"><i class="fas fa-tree"></i> Área Rural</a></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col-xl-6 column">
+                                                    <ul>
+                                                        <li><a href="loteamentos.html"><i class="fas fa-map"></i> Loteamentos Disponíveis</a></li>
+                                                        <li><a href="apartamentos.html"><i class="fas fa-building"></i> Apartamentos</a></li>
+                                                        <li><a href="casas.html"><i class="fas fa-house-user"></i> Casas</a></li>
+                                                        <li><a href="condominios.html"><i class="fas fa-door-open"></i> Condomínios Fechados</a></li>
+                                                        <li><a href="escritorios.html"><i class="fas fa-briefcase"></i> Escritórios</a></li>
+                                                        <li><a href="galpoes.html"><i class="fas fa-warehouse"></i> Galpões</a></li>
+                                                        <li><a href="terrenos.html"><i class="fas fa-map-marker-alt"></i> Terrenos à Venda</a></li>
+                                                        <li><a href="faq.html"><i class="fas fa-question-circle"></i> Dúvidas Frequentes</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    
                                     <li class="dropdown">
                                         <a href="index.html">
                                             <i class="fas fa-cogs"></i> Serviços
@@ -215,17 +330,21 @@
                     <div class="thm-space-box-2"></div>
                     <div class="header-right_buttom">
                         <div class="btns-box">
-                            <a class="btn-one" href="{% url 'sign_up' %}">
-                                <i class="fas fa-user-circle"></i> 
-                                <span class="txt"> login | cadastro</span>
+                            <a class="btn-one" href="login.html">
+                                <i class="fas fa-home"></i>
+                                <span class="txt">Publicar Imóveis</span>
                             </a>
                         </div>
-                    </div> 
+
+                    </div>
+
+                        
                 </div>
             </div>
             
         </div>    
-    </div> 
+    </div>
+    
     <!--End header-->
 
     <!--Sticky Header-->
@@ -234,7 +353,7 @@
             <div class="clearfix">
                 <!--Logo-->
                 <div class="logo float-left">
-                    <a href="index.html" class="img-responsive"><img style="width: 100px;" src="{% static 'assets/images/logo.png' %}" alt="" title=""></a>
+                    <a href="index.html" class="img-responsive"><img style="width: 100px;" src="{% static 'assets/images/logo.png' %}" alt="Awesome Logo" title=""></a>
                 </div>
                 <!--Right Col-->
                 <div class="right-col float-right">
@@ -253,16 +372,16 @@
         <div class="menu-backdrop"></div>
         <div class="close-btn"><span class="icon fa fa-times-circle"></span></div>
         <nav class="menu-box">
-            <div class="nav-logo"><a href="index.html"> <img style="width: 100px;" src="{% static 'assets/images/logo.png' %}" alt="Awesome Logo" title=""></a></div>
+            <div class="nav-logo"><a href="index.html"><img style="width: 100px;" src="{% static 'assets/images/logo.png' %}" alt="Awesome Logo" title=""></a></div>
             <div class="menu-outer"><!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header--></div>
             <!--Social Links-->
             <div class="social-links">
                 <ul class="clearfix">
-                    <li><a href="index-3.html#"><span class="fab fa fa-facebook-square"></span></a></li>
-                    <li><a href="index-3.html#"><span class="fab fa fa-twitter-square"></span></a></li>
-                    <li><a href="index-3.html#"><span class="fab fa fa-pinterest-square"></span></a></li>
-                    <li><a href="index-3.html#"><span class="fab fa fa-google-plus-square"></span></a></li>
-                    <li><a href="index-3.html#"><span class="fab fa fa-youtube-square"></span></a></li>
+                    <li><a href="projects.html#"><span class="fab fa fa-facebook-square"></span></a></li>
+                    <li><a href="projects.html#"><span class="fab fa fa-twitter-square"></span></a></li>
+                    <li><a href="projects.html#"><span class="fab fa fa-pinterest-square"></span></a></li>
+                    <li><a href="projects.html#"><span class="fab fa fa-google-plus-square"></span></a></li>
+                    <li><a href="projects.html#"><span class="fab fa fa-youtube-square"></span></a></li>
                 </ul>
             </div>
         </nav>
@@ -343,12 +462,178 @@
                 </div>
             </div>
 
-           
-
         </div>
     </div>
 </section>
 <!-- End Main Slider -->
+
+<section id="projects" class="project-style2-area one-page-scrool rspdtop150">
+    <div class="container">
+        <div class="sec-title text-center">
+            <div class="sub-title">
+                <p>imoveis</p>
+            </div>
+            <h2 >Qualidade nos Imóveis.</h2>
+        </div>
+        <div class="row text-right-rtl">
+            <!--Início do Item de Projeto Único-->
+            <div class="col-xl-6 col-lg-6">
+                <div class="single-project-item">
+                    <div class="img-holder">
+                        <div class="inner">
+                            <img src="{% static 'assets/images/pexels-itsterrymag-2635038.jpg' %}" alt="Imagem Incrível">
+                            <div class="zoom-button">
+                                <a class="lightbox-image" data-fancybox="gallery" href="{% static 'assets/images/portfolio/project-v2-1.jpg' %}">
+                                    <i class="flaticon-plus"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="text-holder">
+                        <h4><a href="project-details.html">Características do Projeto Residencial</a></h4>
+                        <div class="category">
+                            <div class="border-box"></div>
+                            <p>Características</p>
+                        </div>
+                    </div>   
+                </div>
+            </div>
+            <!--Fim do Item de Projeto Único-->
+            <!--Início do Item de Projeto Único-->
+            <div class="col-xl-6 col-lg-6">
+                <div class="single-project-item">
+                    <div class="img-holder">
+                        <div class="inner">
+                            <img src="{% static 'assets/images/pexels-itsterrymag-2635038.jpg' %}" alt="Imagem Incrível">
+                            <div class="zoom-button">
+                                <a class="lightbox-image" data-fancybox="gallery" href="{% static 'assets/images/portfolio/project-v2-2.jpg' %}">
+                                    <i class="flaticon-plus"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="text-holder">
+                        <h4><a href="project-details.html">Apartamento Moderno e Ensolarado</a></h4>
+                        <div class="category">
+                            <div class="border-box"></div>
+                            <p>Características</p>
+                        </div>
+                    </div>   
+                </div>
+            </div>
+            <!--Fim do Item de Projeto Único-->
+            <!--Início do Item de Projeto Único-->
+            <div class="col-xl-6 col-lg-6">
+                <div class="single-project-item">
+                    <div class="img-holder">
+                        <div class="inner">
+                            <img src="{% static 'assets/images/pexels-pixabay-276724 (1).jpg' %}" alt="Imagem Incrível">
+                            <div class="zoom-button">
+                                <a class="lightbox-image" data-fancybox="gallery" href="{% static 'assets/images/portfolio/project-v2-3.jpg' %}">
+                                    <i class="flaticon-plus"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="text-holder">
+                        <h4><a href="project-details.html">Apartamento de Luxo no The Quay</a></h4>
+                        <div class="category">
+                            <div class="border-box"></div>
+                            <p>Características</p>
+                        </div>
+                    </div>   
+                </div>
+            </div>
+            <!--Fim do Item de Projeto Único-->
+            <!--Início do Item de Projeto Único-->
+            <div class="col-xl-6 col-lg-6">
+                <div class="single-project-item">
+                    <div class="img-holder">
+                        <div class="inner">
+                            <img src="{% static 'assets/images/pexels-pixabay-276724 (1).jpg' %}" alt="Imagem Incrível">
+                            <div class="zoom-button">
+                                <a class="lightbox-image" data-fancybox="gallery" href="{% static 'assets/images/portfolio/project-v2-4.jpg' %}">
+                                    <i class="flaticon-plus"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="text-holder">
+                        <h4><a href="project-details.html">Edifício de Tijolos Clássico</a></h4>
+                        <div class="category">
+                            <div class="border-box"></div>
+                            <p>Características</p>
+                        </div>
+                    </div>   
+                </div>
+            </div>
+            <!--Fim do Item de Projeto Único-->
+         
+        </div>
+    </div>
+</section>
+
+
+<section class="features-style1-area">
+    <div class="gradient-bg"></div>
+    <div class="shape1 wow slideInRight" data-wow-delay="400ms" data-wow-duration="6500ms">
+        <img src="{% static 'assets/images/shape/shape-round-2.png' %}" alt="">
+    </div>
+    <div class="container">
+        <div class="sec-title text-center">
+            <div class="sub-title">
+                <p>Serviços Exclusivos para Investidores</p>
+            </div>
+            <h2>Características da Corretora</h2>
+        </div>
+        <div class="row">
+            <!--Início de Recurso Único Estilo1-->
+            <div class="col-xl-4 col-lg-4 wow fadeInUp" data-wow-delay="10ms" data-wow-duration="1500ms">
+                <div class="single-features-style1 text-center">
+                    <div class="icon">
+                        <img src="{% static 'assets/images/icon/features/features-1.png' %}" alt="">
+                    </div>
+                    <div class="text">
+                        <h4><a href="index.html#">Consultoria Personalizada</a></h4>
+                        <p>Receba orientações especializadas para fazer investimentos inteligentes e seguros.</p>
+                    </div>
+                </div>
+            </div>
+            <!--Fim de Recurso Único Estilo1-->
+            <!--Início de Recurso Único Estilo1-->
+            <div class="col-xl-4 col-lg-4 wow fadeInUp" data-wow-delay="300ms" data-wow-duration="1500ms">
+                <div class="single-features-style1 text-center">
+                    <div class="icon">
+                        <img src="{% static 'assets/images/icon/features/features-2.png' %}" alt="">
+                    </div>
+                    <div class="text">
+                        <h4><a href="index.html#">Plataforma Segura</a></h4>
+                        <p>Acesso a uma plataforma digital segura e intuitiva para realizar suas transações financeiras.</p>
+                    </div>
+                </div>
+            </div>
+            <!--Fim de Recurso Único Estilo1-->
+            <!--Início de Recurso Único Estilo1-->
+            <div class="col-xl-4 col-lg-4 wow fadeInUp" data-wow-delay="500ms" data-wow-duration="1500ms">
+                <div class="single-features-style1 text-center">
+                    <div class="icon">
+                        <img src="{% static 'assets/images/icon/features/features-3.png' %}" alt="">
+                    </div>
+                    <div class="text">
+                        <h4><a href="index.html#">Suporte 24/7</a></h4>
+                        <p>Equipe de atendimento disponível 24 horas por dia para esclarecer suas dúvidas e oferecer suporte.</p>
+                    </div>
+                </div>
+            </div>
+            <!--Fim de Recurso Único Estilo1-->
+        </div>
+    </div>
+</section>
+
+
+
+
+
 
 <!--Start Service Style1 Area-->
 <section class="service-style1-area service-style1-area--style2 pdtop">
@@ -526,7 +811,7 @@
     <div class="auto-container">
         <div class="sec-title text-center">
             <div class="sub-title">
-                <p>Nossos Projetos</p>
+                <p>Nossas Categorias</p>
             </div>
             <h2>Imobiliária.</h2>
         </div>
@@ -833,13 +1118,13 @@
                 <div class="team-style1__top-title">
                     <div class="sec-title">
                         <div class="sub-title">
-                            <p>Membro da Equipe</p>
+                            <p>Corretores</p>
                         </div>
-                        <h2>Conheça Nossa Equipe<br> Experiente.</h2>
+                        <h2>Torna-te um corretor</h2>
                     </div>
                     <div class="btns-box">
-                        <a class="btn-one" href="team.html">
-                            <span class="txt">Ver Todos os Membros</span>
+                        <a class="btn-one" href="#">
+                            <span class="txt">Ver Todos os corretores</span>
                         </a>
                     </div>
                 </div>
@@ -847,95 +1132,42 @@
         </div>
         <div class="row">
             <!--Início do Membro da Equipe-->
-            <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4">
-                <div class="single-team-style1 wow fadeInLeft animated" data-wow-delay="100ms" data-wow-duration="1500ms">
-                    <div class="img-holder">
-                        <div class="inner">
-                            <img src="{% static 'assets/images/team/team-v1-1.jpg' %}" alt=""/>
-                            <div class="overlay-bg"></div>
+            {% for corretor in corretores %}
+                <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4">
+                    <div class="single-team-style1 wow fadeInRight animated" data-wow-delay="100ms" data-wow-duration="1500ms">
+                        <div class="img-holder">
+                            <div class="inner">
+                                {% if corretor.imagem %}
+                                    <img class="rotateScale" src="{{ corretor.imagem.url }}" alt=""/>
+                                {% else %}
+                                    <img class="rotateScale" src="caminho/para/imagem/placeholder.jpg" alt="Imagem não disponível"/>
+                                {% endif %}
+                                <div class="overlay-bg"></div>
+                            </div>
+                            
                         </div>
-                    </div>
-                    <div class="title-holder">
-                        <h3><a href="team-single.html">Christian Bale</a></h3>
-                        <p>CEO & Fundador</p>
-                        <div class="social-link-box">
-                            <ul class="team-social-link">
-                                <li>
-                                    <a href="index-3.html#"><i class="fa fa-twitter" aria-hidden="true"></i></a> 
-                                </li>
-                                <li>
-                                    <a href="index-3.html#"><i class="fa fa-facebook" aria-hidden="true"></i></a> 
-                                </li>
-                                <li>
-                                    <a href="index-3.html#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
-                                </li>
-                            </ul>
+                        <div class="title-holder">
+                            <h3 style="margin-top: 13px;" ><a href="team-single.html">{{corretor.nome}}</a></h3>
+                            <p>{{corretor.tipo_usuario}}</p>
+                            <div class="social-link-box">
+                                <ul class="team-social-link">
+                                    <li>
+                                        <a href="index-3.html#"><i class="fa fa-twitter" aria-hidden="true"></i></a> 
+                                    </li>
+                                    <li>
+                                        <a href="index-3.html#"><i class="fa fa-facebook" aria-hidden="true"></i></a> 
+                                    </li>
+                                    <li>
+                                        <a href="index-3.html#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <!--Fim do Membro da Equipe-->
-
-            <!--Início do Membro da Equipe-->
-            <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4">
-                <div class="single-team-style1 wow fadeInUp animated" data-wow-delay="300ms" data-wow-duration="1500ms">
-                    <div class="img-holder">
-                        <div class="inner">
-                            <img src="{% static 'assets/images/team/team-v1-2.jpg' %}" alt=""/>
-                            <div class="overlay-bg"></div>
-                        </div>
-                    </div>
-                    <div class="title-holder">
-                        <h3><a href="team-single.html">Garrett Barnie</a></h3>
-                        <p>Programador</p>
-                        <div class="social-link-box">
-                            <ul class="team-social-link">
-                                <li>
-                                    <a href="index-3.html#"><i class="fa fa-twitter" aria-hidden="true"></i></a> 
-                                </li>
-                                <li>
-                                    <a href="index-3.html#"><i class="fa fa-facebook" aria-hidden="true"></i></a> 
-                                </li>
-                                <li>
-                                    <a href="index-3.html#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
-                                </li>
-                            </ul>
-                        </div>
+                        
                     </div>
                 </div>
-            </div>
-            <!--Fim do Membro da Equipe-->
-
-            <!--Início do Membro da Equipe-->
-            <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4">
-                <div class="single-team-style1 wow fadeInRight animated" data-wow-delay="100ms" data-wow-duration="1500ms">
-                    <div class="img-holder">
-                        <div class="inner">
-                            <img class="rotateScale" src="{% static 'assets/images/team/team-v1-3.jpg' %}" alt=""/>
-                            <div class="overlay-bg"></div>
-                        </div>
-                    </div>
-                    <div class="title-holder">
-                        <h3><a href="team-single.html">Jessica Brown</a></h3>
-                        <p>Gerente de Suporte</p>
-                        <div class="social-link-box">
-                            <ul class="team-social-link">
-                                <li>
-                                    <a href="index-3.html#"><i class="fa fa-twitter" aria-hidden="true"></i></a> 
-                                </li>
-                                <li>
-                                    <a href="index-3.html#"><i class="fa fa-facebook" aria-hidden="true"></i></a> 
-                                </li>
-                                <li>
-                                    <a href="index-3.html#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--Fim do Membro da Equipe-->
-          
+            {% endfor %}
+            <!--Fim do Membro da Equipe-->    
         </div>
     </div>
 </section>
@@ -946,19 +1178,19 @@
 
 <!--Start Slogan Area-->
 <section class="slogan-area">
-    <div class="slogan-area__bg" style="background-image: url(static/assets/images/shape/slogan-area-bg.jpg);"></div>
+    <div class="slogan-area__bg" style="background-image: url('{% static 'assets/images/blog/pexels-christa-grover-977018-2121121.jpg' %}');"></div>
     <div class="shape wow slideInLeft" data-wow-delay="500ms" data-wow-duration="4500ms">
-        <img class="float-bob-x" src="{% static 'assets/images/shape/house-1.png' %}" alt="">
+        
     </div>
     <div class="shape2 wow slideInRight" data-wow-delay="100ms" data-wow-duration="3500ms">
-        <img class="float-bob-y" src="{% static 'assets/images/shape/shape-1.png' %}" alt="">
+       
     </div>
     <div class="container">
         <div class="row">
             <div class="col-xl-12 text-right-rtl">
                 <div class="slogan__content">
                     <h2 class="paroller">Encontre a casa dos seus sonhos.<br> Agende gratuitamente um<br> horário.</h2>
-                    <h4 class="paroller">Amet consectetur adipicing elit do.</h4>
+                    <h4 style="font-size: 19px;" class="paroller">Explore nossas opções de imóveis e descubra o lugar perfeito para chamar de lar. Oferecemos uma experiência única na busca pela sua casa dos sonhos."</h4>
                     <div class="btns-box paroller">
                         <a class="btn-one" href="{%  url 'house_buy' %}">
                             <span class="txt">Agendar um horário</span>
@@ -987,7 +1219,7 @@
                 <div class="single-blog-style1 wow fadeInUp" data-wow-delay="00ms" data-wow-duration="1500ms">
                     <div class="img-holder">
                         <div class="inner">
-                            <img src="{% static 'assets/images/blog/blog-v1-1.jpg' %}" alt="">
+                            <img src="{% static 'assets/images/blog/pexels-christa-grover-977018-2121121.jpg' %}" alt="">
                         </div>
                     </div>
                     <div class="text-holder">
@@ -1011,7 +1243,7 @@
                 <div class="single-blog-style1 wow fadeInUp" data-wow-delay="00ms" data-wow-duration="1500ms">
                     <div class="img-holder">
                         <div class="inner">
-                            <img src="{% static 'assets/images/blog/blog-v1-2.jpg' %}" alt="">
+                            <img src="{% static 'assets/images/blog/pexels-dropshado-2251247.jpg' %}" alt="">
                         </div>
                     </div>
                     <div class="text-holder">
@@ -1035,7 +1267,7 @@
                 <div class="single-blog-style1 wow fadeInUp" data-wow-delay="00ms" data-wow-duration="1500ms">
                     <div class="img-holder">
                         <div class="inner">
-                            <img src="{% static 'assets/images/blog/blog-v1-3.jpg' %}" alt="">
+                            <img src="{% static 'assets/images/blog/pexels-jovydas-2462015.jpg' %}" alt="">
                         </div>
                     </div>
                     <div class="text-holder">
@@ -1110,10 +1342,10 @@
                     <div class="single-footer-widget marbtm50">
                         <div class="our-company-info">
                             <div class="footer-logo">
-                                <a href="index.html"><img style="width: 100px;" src="{% static 'assets/images/logo.png' %}" alt=""/></a>
+                                <a href="{% url 'home' %}"><img style="width: 100px;" src="{% static 'assets/images/logo.png' %}" alt=""/></a>
                             </div>
                             <div class="text-box">
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempor incididunt ut labore et dolore magna aliqua.</p>
+                                <p>Transforme seus sonhos em realidade com o lar perfeito. Encontre a casa ideal para você e sua família.</p>
                             </div>
                             <div class="footer-social-link">
                                 <ul class="clearfix">
@@ -1159,7 +1391,7 @@
                                             <span class="flaticon-maps-and-flags"></span>
                                         </div>
                                         <div class="text">
-                                            <p>Apartamento 20, Reynolds Neck,<br> North Helenaville, FV77 8WS</p>
+                                            <p>Lunada, zango 8000</p>
                                         </div>
                                     </div>
                                 </li>
@@ -1169,7 +1401,7 @@
                                             <span class="flaticon-microphone-black-shape"></span>
                                         </div>
                                         <div class="text">
-                                            <p>Ligue para nós: <a href="tel:123456789">+2(305) 587-3407</a></p>
+                                            <p>Ligue: <a href="tel:123456789">+244 923908353</a></p>
                                         </div>
                                     </div>
                                 </li>
@@ -1179,7 +1411,7 @@
                                             <span class="flaticon-email"></span>
                                         </div>
                                         <div class="text">
-                                            <p><a href="mailto:yourmail@email.com">info@Hoppex.com</a></p>
+                                            <p><a href="mailto:yourmail@email.com">muquissicarlos@gmail.com</a></p>
                                         </div>
                                     </div>
                                 </li>
@@ -1197,7 +1429,7 @@
         <div class="container">
             <div class="bottom-inner">
                 <div class="copyright">
-                    <p>Copyright &copy;<a href="index.html"> 2022 Carhouse .</a> Todos os direitos reservados.</p>
+                    <p>Copyright &copy;<a href="index.html"> 2022 Carhousy.</a> Todos os direitos reservados.</p>
                 </div>
                 <div class="footer-menu">
                     <ul class="footer-nav">
