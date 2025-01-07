@@ -1,6 +1,10 @@
 from pathlib import Path
 import os
+import dj_database_url
+import os
+from dotenv import load_dotenv
 
+load_dotenv() 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -66,14 +70,10 @@ WSGI_APPLICATION = 'carhouse_projecto.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'bd_corretora',
-        'USER': 'muquissi',
-        'PASSWORD': 'Django1234',  # Substitua pela senha do usuário 'postgres'
-        'HOST': 'localhost',
-        'PORT': '5432',  # Porta padrão do PostgreSQL
-    }
+    'default': dj_database_url.config(
+        default=os.getenv('DATABASE_URL'),
+        conn_max_age=600
+    )
 }
 
 
