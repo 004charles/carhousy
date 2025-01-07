@@ -122,9 +122,12 @@
                     <div class="form-group">
                       <label class="col-form-label" style="color: #e60000;">Senha</label>
                       <div class="form-input position-relative">
-                        <input name="senha" class="form-control" type="password" name="login[password]" required="" placeholder="*********">
-                        <div class="show-hide"><span class="show"></span></div>
-                      </div>
+                        <input id="senha" name="senha" class="form-control" type="password" required placeholder="*********">
+                        <div class="show-hide">
+                            <button style="text-decoration: none; color: #252323;" type="button" class="btn btn-link show" onclick="togglePassword()">mostrar</button>
+                        </div>
+                    </div>
+                    
                     </div>
                     
                     <div class="form-group">
@@ -133,6 +136,7 @@
                           <option value="cliente">Cliente</option>
                           <option value="vendedor">Vendedor</option>
                           <option value="corretor">Corretor</option>
+                          <option value="empresa">Empresa</option>
                         </select>
                       </div>
           
@@ -173,6 +177,22 @@
       <!-- Theme js-->
       <script src="{% static 'assets1/js/script.js' %}"></script>
       <script src="{% static 'assets1/js/script1.js' %}"></script>
+
+      <script>
+        function togglePassword() {
+          var senhaField = document.getElementById('senha');
+          var showButton = document.querySelector('.show');
+
+          if (senhaField.type === 'password') {
+              senhaField.type = 'text';
+              showButton.textContent = 'Ocultar'; // Muda o texto do botão para "Ocultar"
+          } else {
+              senhaField.type = 'password';
+              showButton.textContent = 'Mostrar'; // Muda o texto do botão para "Mostrar"
+          }
+      }
+
+      </script>
     </div>
   </body>
 </html>

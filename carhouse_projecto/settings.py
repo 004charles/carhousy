@@ -12,9 +12,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-9fhkb!=(p5p)4@d&b6vn5o*&6hvxy@_zcqt6cu3y#vc-fr0n$p'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -67,8 +67,12 @@ WSGI_APPLICATION = 'carhouse_projecto.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'bd_corretora',
+        'USER': 'muquissi',
+        'PASSWORD': 'Django1234',  # Substitua pela senha do usuário 'postgres'
+        'HOST': 'localhost',
+        'PORT': '5432',  # Porta padrão do PostgreSQL
     }
 }
 

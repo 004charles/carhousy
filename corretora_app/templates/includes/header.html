@@ -1,0 +1,519 @@
+{% load static %}
+
+<div class="header-top text-right-rtl">
+    <div class="auto-container">
+        <div class="outer-box">
+            
+            <div class="header-top__left">
+                <div class="header-contact-info">
+                    <ul>
+                        <li>
+                            <div class="icon">
+                                <span class="flaticon-pin-1"></span>
+                            </div>
+                            <div class="text">
+                                <h6>Rua da Missão, Luanda, Angola</h6>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="icon">
+                                <span class="flaticon-clock"></span>
+                            </div>
+                            <div class="text">
+                                <h6>Seg - Sáb 9:00 - 18:00</h6>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="icon">
+                                <span class="flaticon-phone-call-2"></span>
+                            </div>
+                            <div class="text">
+                                <h6><a href="tel:123456789">+244 923908353</a></h6>
+                            </div>
+                        </li>
+                    </ul>
+                </div>    
+            </div>
+
+            <div class="header-top__right">
+                <div class="header-social-link">
+                    <div class="social-link">
+                        <ul class="clearfix">
+                            <li>
+                                <a href="projects.html#"><i class="fa fa-twitter" aria-hidden="true"></i></a> 
+                            </li>
+                            <li>
+                                <a href="projects.html#"><i class="fa fa-facebook" aria-hidden="true"></i></a> 
+                            </li>
+                            <li>
+                                <a href="projects.html#"><i class="fa fa-google-plus" aria-hidden="true"></i></a> 
+                            </li>
+                            <li>
+                                <a href="projects.html#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="thm-space-box"></div>
+
+                
+                <div  class="signin-box">
+                    {% if usuario_logado and usuario_logado.id %}
+                        <div style="position: relative; z-index: 1000;" class="dropdown">
+                                {% if usuario_logado.imagem %}
+                                    <p></p>
+                                {% else %}
+                                    <span class="flaticon-user-2"></span>
+                                {% endif %}
+                                <a href="#" style="color: black;"></a>
+                            </button>
+                        </div>
+                    {% else %}
+                        <a href="{% url 'sign_up' %}">
+                            <span class="flaticon-user-2"></span> Login | Cadastro
+                        </a>
+                    {% endif %}
+                </div>
+
+                
+                
+                
+                
+ 
+                <div class="thm-space-box"></div>
+                
+            </div>
+
+        </div>    
+    </div>
+</div>
+
+
+<!--End Header Top-->
+
+<!--Start Header--> 
+<div class="header header--style3">
+    <div class="auto-container">
+        <div class="outer-box">
+            <div class="header-left">
+                <div class="logo">
+                    <a href="{% url 'home' %}">
+                        <img style="width: 100px;" src="{% static 'assets/images/logo.png' %}" alt="Awesome Logo" title="">
+                    </a>
+                </div>
+            </div>
+        
+            <div class="header-middle">
+                <div class="nav-outer style1 clearfix">
+                    <!--Mobile Navigation Toggler-->
+                    <div class="mobile-nav-toggler">
+                        <div class="inner">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </div>
+                    </div>
+                    <!-- Main Menu -->
+                    <nav class="main-menu style1 navbar-expand-md navbar-light">
+                        <div class="collapse navbar-collapse show clearfix" id="navbarSupportedContent">
+                            <ul class="navigation clearfix">
+                                <li>
+                                    <a href="{% url 'home' %}">
+                                        <i class="fas fa-home"></i> Início
+                                    </a>
+                                </li>
+                                
+                                <li class="dropdown">
+                                    <a href="index-3.html#">
+                                        <i class="fas fa-project-diagram"></i> Projetos
+                                    </a>
+                                    <ul>
+                                        <li>
+                                            <a href="projects.html">
+                                                <i class="fas fa-eye"></i> Ver Todos os Projetos
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="index-3.html#">
+                                        <i class="fas fa-file-alt"></i> Páginas
+                                    </a>
+                                    <ul>
+                                        <li>
+                                            <a href="{% url 'Nossa_missao' %}">
+                                                <i class="fas fa-bullseye"></i> Nossa Missão
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="award-recognition.html">
+                                                <i class="fas fa-trophy"></i> Premiação & Reconhecimento
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="team.html">
+                                                <i class="fas fa-users"></i> Nossa Equipe
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="team-single.html">
+                                                <i class="fas fa-user"></i> Equipe Individual
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="testimonials.html">
+                                                <i class="fas fa-comment"></i> Depoimentos
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="faq.html">
+                                                <i class="fas fa-question-circle"></i> FAQ’s
+                                            </a>
+                                        </li>
+                                        
+                                    </ul>
+                                </li>
+                                <li class="dropdown"><a href="index.html">Zonas de Investimento</a>
+                                    <div class="megamenu">
+                                        <div class="row clearfix">
+                                            <div class="col-xl-6 column">
+                                                <ul>
+                                                    <li><a href="zona-centro.html"><i class="fas fa-city"></i> Centro da Cidade</a></li>
+                                                    <li><a href="zona-praia.html"><i class="fas fa-umbrella-beach"></i> Área de Praia</a></li>
+                                                    <li><a href="zona-residencial.html"><i class="fas fa-home"></i> Zona Residencial</a></li>
+                                                    <li><a href="zona-comercial.html"><i class="fas fa-store"></i> Zona Comercial</a></li>
+                                                    <li><a href="zona-industrial.html"><i class="fas fa-industry"></i> Zona Industrial</a></li>
+                                                    <li><a href="zona-campo.html"><i class="fas fa-tree"></i> Área Rural</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-xl-6 column">
+                                                <ul>
+                                                    <li><a href="loteamentos.html"><i class="fas fa-map"></i> Loteamentos Disponíveis</a></li>
+                                                    <li><a href="apartamentos.html"><i class="fas fa-building"></i> Apartamentos</a></li>
+                                                    <li><a href="casas.html"><i class="fas fa-house-user"></i> Casas</a></li>
+                                                    <li><a href="condominios.html"><i class="fas fa-door-open"></i> Condomínios Fechados</a></li>
+                                                    <li><a href="escritorios.html"><i class="fas fa-briefcase"></i> Escritórios</a></li>
+                                                    <li><a href="galpoes.html"><i class="fas fa-warehouse"></i> Galpões</a></li>
+                                                    <li><a href="terrenos.html"><i class="fas fa-map-marker-alt"></i> Terrenos à Venda</a></li>
+                                                    <li><a href="faq.html"><i class="fas fa-question-circle"></i> Dúvidas Frequentes</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                
+                                <li class="dropdown">
+                                    <a href="index.html">
+                                        <i class="fas fa-cogs"></i> Serviços
+                                    </a>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="index-3.html#">
+                                        <i class="fas fa-blog"></i> Blog
+                                    </a>
+                                    <ul>
+                                        <li>
+                                            <a href="blog.html">
+                                                <i class="fas fa-rss"></i> Estilo de Blog 01
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="blog-2.html">
+                                                <i class="fas fa-rss-square"></i> Estilo de Blog 02
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="blog-single.html">
+                                                <i class="fas fa-file-alt"></i> Detalhes do Blog
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="contact.html">
+                                        <i class="fas fa-envelope"></i> Contato
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div> 
+        
+            <div class="header-right">
+                <div style="margin-top: 12px;" class="serach-button-style1">
+                    <button type="button" class="search-toggler">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                <div class="thm-space-box-2"></div>
+                <div class="header-right_buttom">
+                    <div class="signin-box">
+                        {% if usuario_logado and usuario_logado.id %}
+                        <div class="dropdown user-dropdown" style="position: relative; z-index: 1000;">
+                            <button class="btn btn-light dropdown-toggle d-flex align-items-center" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                {% if usuario_logado.imagem %}
+                                    <img src="{{ usuario_logado.imagem.url }}" alt="Foto de perfil" class="rounded-circle me-2" width="40" height="40">
+                                {% else %}
+                                    <span class="flaticon-user-2 me-2"></span>
+                                {% endif %}
+                                <span class="user-name">
+                                    {% with usuario_logado.nome.split as nome_dividido %}
+                                        {{ nome_dividido.0|first }}{% if nome_dividido|length > 1 %}{{ nome_dividido.1|first }}{% endif %}
+                                    {% endwith %}
+                                </span>
+                            </button>
+                            <ul style="background-color: rgb(20, 20, 43);" class="dropdown-menu shadow border-0" aria-labelledby="dropdownMenuButton">
+                                <li>
+                                    <a class="dropdown-item d-flex align-items-center" href="#">
+                                        <i class="fas fa-user-circle me-2"></i> Meu Perfil
+                                    </a>
+                                </li>
+                                {% if usuario_logado.tipo_usuario == 'cliente' %}
+                                    <li>
+                                        <a class="dropdown-item d-flex align-items-center" href="#">
+                                            <i class="fas fa-heart me-2"></i> Favoritos
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item d-flex align-items-center" href="#">
+                                            <i class="fas fa-bell me-2"></i> Notificações
+                                        </a>
+                                    </li>
+                                {% elif usuario_logado.tipo_usuario == 'vendedor' %}
+                                    <li>
+                                        <a class="dropdown-item d-flex align-items-center" href="#">
+                                            <i class="fas fa-home me-2"></i> Publicar Imóveis
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item d-flex align-items-center" href="#">
+                                            <i class="fas fa-building me-2"></i> Imóveis Publicados
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item d-flex align-items-center" href="#">
+                                            <i class="fas fa-comments me-2"></i> Mensagens
+                                        </a>
+                                    </li>
+                                {% elif usuario_logado.tipo_usuario == 'corretor' %}
+                                    <li>
+                                        <a class="dropdown-item d-flex align-items-center" href="#">
+                                            <i class="fas fa-clock me-2"></i> Imóveis Pendentes
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item d-flex align-items-center" href="#">
+                                            <i class="fas fa-file-alt me-2"></i> Contratos
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item d-flex align-items-center" href="#">
+                                            <i class="fas fa-envelope me-2"></i> Mensagens
+                                        </a>
+                                    </li>
+                                  
+                                    {% elif usuario_logado.tipo_usuario == 'empresa' %}
+                                    <li>
+                                        <a class="dropdown-item d-flex align-items-center" href="#">
+                                            <i class="fas fa-building me-2"></i> Imóveis Cadastrados
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item d-flex align-items-center" href="#">
+                                            <i class="fas fa-users me-2"></i> Gerenciar Corretores
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item d-flex align-items-center" href="#">
+                                            <i class="fas fa-chart-line me-2"></i> Relatórios de Vendas
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item d-flex align-items-center" href="#">
+                                            <i class="fas fa-cogs me-2"></i> Configurações de Empresa
+                                        </a>
+                                    </li>
+                                {% endif %}
+                                  
+                                
+                                <li>
+                                    <a class="dropdown-item d-flex align-items-center" href="#">
+                                        <i class="fas fa-cog me-2"></i> Configurações
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item d-flex align-items-center text-danger" href="{% url 'logout' %}">
+                                        <i class="fas fa-sign-out-alt me-2"></i> Sair
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    {% else %}
+                        <p>.</p>
+                    {% endif %}
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>    
+</div>
+
+<!--End header-->
+
+<!--Sticky Header-->
+<div class="sticky-header">
+    <div class="container">
+        <div class="clearfix">
+            <!--Logo-->
+            <div class="logo float-left">
+                <a href="index.html" class="img-responsive"><img style="width: 100px;" src="{% static 'assets/images/logo.png' %}" alt="Awesome Logo" title=""></a>
+            </div>
+            <!--Right Col-->
+            <div class="right-col float-right">
+                <!-- Main Menu -->
+                <nav class="main-menu clearfix">
+                <!--Keep This Empty / Menu will come through Javascript-->
+                </nav>   
+            </div>
+        </div>
+    </div>
+</div>
+<!--End Sticky Header-->
+
+<!-- Mobile Menu  -->
+<div class="mobile-menu">
+    <div class="menu-backdrop"></div>
+    <div class="close-btn">
+        <span class="icon fa fa-times-circle"></span>
+    </div>
+    <nav class="menu-box">
+        <div class="nav-logo">
+            <a href="index.html">
+                <img style="width: 100px;" src="{% static 'assets/images/logo.png' %}" alt="Awesome Logo" title="Logo">
+            </a>
+        </div>
+
+        <div class="menu-outer">
+            <!-- Aqui o Menu será carregado via Javascript / Mesmo Menu do Header -->
+        </div>
+
+        {% if usuario_logado and usuario_logado.id %}
+        <div class="dropdown user-dropdown" style="position: relative; z-index: 1000;">
+            <button class="btn btn-outline-dark dropdown-toggle d-flex align-items-center" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                {% if usuario_logado.imagem %}
+                    <img src="{{ usuario_logado.imagem.url }}" alt="Foto de perfil" class="rounded-circle me-2" width="40" height="40">
+                {% else %}
+                    <span class="flaticon-user-2 me-2"></span>
+                {% endif %}
+                <span class="user-name text-nowrap">
+                    {% with usuario_logado.nome.split as nome_dividido %}
+                        {{ nome_dividido.0|first }}{% if nome_dividido|length > 1 %}{{ nome_dividido.1|first }}{% endif %}
+                    {% endwith %}
+                </span>
+            </button>
+            <ul class="dropdown-menu shadow-lg border-0" aria-labelledby="dropdownMenuButton" style="background-color: #ffffff; border-radius: 10px;">
+                <li>
+                    <a class="dropdown-item d-flex align-items-center" href="#">
+                        <i class="fas fa-user-circle me-2"></i> Meu Perfil
+                    </a>
+                </li>
+                {% if usuario_logado.tipo_usuario == 'cliente' %}
+                <li>
+                    <a class="dropdown-item d-flex align-items-center" href="#">
+                        <i class="fas fa-heart me-2"></i> Favoritos
+                    </a>
+                </li>
+                <li>
+                    <a class="dropdown-item d-flex align-items-center" href="#">
+                        <i class="fas fa-bell me-2"></i> Notificações
+                    </a>
+                </li>
+                {% elif usuario_logado.tipo_usuario == 'vendedor' %}
+                <li>
+                    <a class="dropdown-item d-flex align-items-center" href="#">
+                        <i class="fas fa-home me-2"></i> Publicar Imóveis
+                    </a>
+                </li>
+                <li>
+                    <a class="dropdown-item d-flex align-items-center" href="#">
+                        <i class="fas fa-building me-2"></i> Imóveis Publicados
+                    </a>
+                </li>
+                <li>
+                    <a class="dropdown-item d-flex align-items-center" href="#">
+                        <i class="fas fa-comments me-2"></i> Mensagens
+                    </a>
+                </li>
+                {% elif usuario_logado.tipo_usuario == 'corretor' %}
+                <li>
+                    <a class="dropdown-item d-flex align-items-center" href="#">
+                        <i class="fas fa-clock me-2"></i> Imóveis Pendentes
+                    </a>
+                </li>
+                <li>
+                    <a class="dropdown-item d-flex align-items-center" href="#">
+                        <i class="fas fa-file-alt me-2"></i> Contratos
+                    </a>
+                </li>
+                <li>
+                    <a class="dropdown-item d-flex align-items-center" href="#">
+                        <i class="fas fa-envelope me-2"></i> Mensagens
+                    </a>
+                </li>
+                {% elif usuario_logado.tipo_usuario == 'empresa' %}
+                <li>
+                    <a class="dropdown-item d-flex align-items-center" href="#">
+                        <i class="fas fa-building me-2"></i> Imóveis Cadastrados
+                    </a>
+                </li>
+                <li>
+                    <a class="dropdown-item d-flex align-items-center" href="#">
+                        <i class="fas fa-users me-2"></i> Gerenciar Corretores
+                    </a>
+                </li>
+                <li>
+                    <a class="dropdown-item d-flex align-items-center" href="#">
+                        <i class="fas fa-chart-line me-2"></i> Relatórios de Vendas
+                    </a>
+                </li>
+                <li>
+                    <a class="dropdown-item d-flex align-items-center" href="#">
+                        <i class="fas fa-cogs me-2"></i> Configurações de Empresa
+                    </a>
+                </li>
+                {% endif %}
+                <li>
+                    <a class="dropdown-item d-flex align-items-center" href="#">
+                        <i class="fas fa-cog me-2"></i> Configurações
+                    </a>
+                </li>
+                <li>
+                    <a class="dropdown-item d-flex align-items-center text-danger" href="{% url 'logout' %}">
+                        <i class="fas fa-sign-out-alt me-2"></i> Sair
+                    </a>
+                </li>
+            </ul>
+        </div>
+        {% else %}
+        <a href="{% url 'sign_up' %}" class="btn btn-outline-primary d-flex align-items-center">
+            <i class="fas fa-user-plus me-2"></i> Login | Cadastro
+        </a>
+        {% endif %}
+
+        <!-- Social Links -->
+        <div class="social-links mt-4">
+            <ul class="clearfix d-flex justify-content-center">
+                <li><a href="projects.html#"><span class="fab fa-facebook-square"></span></a></li>
+                <li><a href="projects.html#"><span class="fab fa-twitter-square"></span></a></li>
+                <li><a href="projects.html#"><span class="fab fa-pinterest-square"></span></a></li>
+                <li><a href="projects.html#"><span class="fab fa-google-plus-square"></span></a></li>
+                <li><a href="projects.html#"><span class="fab fa-youtube-square"></span></a></li>
+            </ul>
+        </div>
+    </nav>
+</div>

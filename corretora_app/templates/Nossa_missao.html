@@ -1,0 +1,371 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Carhousy | Nossa Missão</title>
+
+	<!-- responsive meta -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- For IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Google Fonts -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Google Fonts -->
+    {% include 'includes/link_header.html' %}
+    
+</head>
+
+<body>
+
+<div class="boxed_wrapper ltr">
+
+<!-- Preloader -->
+<div class="loader-wrap">
+    <div class="preloader"><div class="preloader-close">Cancelar</div></div>
+    <div class="layer layer-one"><span class="overlay"></span></div>
+    <div class="layer layer-two"><span class="overlay"></span></div>        
+    <div class="layer layer-three"><span class="overlay"></span></div>        
+</div>
+
+<!-- page-direction -->
+<div class="page_direction">
+    <div class="demo-rtl direction_switch"><button class="rtl">RTL</button></div>
+    <div class="demo-ltr direction_switch"><button class="ltr">LTR</button></div>
+</div>
+<!-- page-direction end -->
+
+<!-- switcher menu -->
+ 
+
+<!-- Main header-->
+<header class="main-header header-style-one">
+    <!--Start Header Top-->
+    {% include 'includes/header.html' %}
+
+    <!-- End Mobile Menu --> 
+</header>
+
+<!--Start breadcrumb area paroller-->     
+<section class="breadcrumb-area">
+    <div class="breadcrumb-area-bg" style="background-image: url('{% static 'assets/images/pexels-pixabay-280229 (1).jpg' %}');"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="inner-content">
+                    <div class="title">
+                       <h2>Nossa Missão</h2>
+                    </div>
+                    <div class="breadcrumb-menu">
+                        <ul>
+                            <li><a href="{% url 'home' %}">Home</a></li>
+                            <li><i class="fa fa-angle-right" aria-hidden="true"></i></li>
+                            <li class="active">Nossa Missão</li>
+                        </ul>    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--End breadcrumb area-->
+
+<!--Start Our Mission Area-->
+<section class="mission-area">
+    <div class="round-shape-box wow slideInLeft" data-wow-delay="100ms" data-wow-duration="5500ms">
+        <img src="{% static 'assets/images/shape/shape-round-7.png' %}" alt="">
+    </div>
+    <div class="container">
+        <div class="row text-right-rtl">
+            <div class="col-xl-6">
+                <div class="mission-content-box">
+                    <div class="sec-title">
+                        <div class="sub-title">
+                            <p>Nossa Missão</p>
+                        </div>
+                        <h2>Conectando Pessoas<br> aos Seus Sonhos<br> e Investimentos.</h2>
+                    </div>
+                    <div class="inner-content">
+                        <div class="text">
+                            <p>Nossa missão é oferecer soluções imobiliárias inovadoras e personalizadas, facilitando o acesso ao imóvel ideal para cada cliente. Buscamos transformar sonhos em realidade, promovendo segurança, transparência e excelência em cada negociação. Contribuímos para o crescimento de comunidades e o fortalecimento do mercado imobiliário.</p>
+                        </div>
+                        <ul>
+                            <li>
+                                <div class="icon">
+                                    <i class="fa fa-check-circle-o" aria-hidden="true"></i>
+                                </div>
+                                <p>Oferecer consultoria especializada e de confiança.</p>
+                            </li>
+                            <li>
+                                <div class="icon">
+                                    <i class="fa fa-check-circle-o" aria-hidden="true"></i>
+                                </div>
+                                <p>Garantir transparência e segurança em todas as transações.</p>
+                            </li>
+                            <li>
+                                <div class="icon">
+                                    <i class="fa fa-check-circle-o" aria-hidden="true"></i>
+                                </div>
+                                <p>Valorizar o desenvolvimento sustentável e a qualidade de vida.</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-6">
+                <div class="mission-image-box">
+                    <div class="main-image">
+                        <img src="{% static 'assets/images/resources/mission-1.jpg' %}" alt="">
+                    </div>
+                    <div class="bottom-image-box paroller-2">
+                        <img src="{% static 'assets/images/resources/mission-2.jpg' %}" alt="">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!--End Our Mission Area-->
+
+
+<!--Start goal Area-->
+<section class="goal-area">
+    <div class="container">
+        <div class="sec-title text-center">
+            <div class="sub-title">
+                <p>Nosso Objetivo</p>
+            </div>
+            <h2>Nosso Objetivo é Fornecer<br> Projetos de Qualidade</h2>
+        </div>
+        <div class="row">
+            <!--Início Bloco de Objetivo-->
+            <div class="col-xl-3 col-lg-6 wow fadeInUp" data-wow-delay="00ms" data-wow-duration="1500ms">
+                <div class="goal-block text-center">
+                    <div class="icon-holder">
+                        <img src="{% static 'assets/images/icon/goal/goal-1.png' %}" alt="">
+                    </div>
+                    <div class="title-holder">
+                        <h3><a href="https://mehedi.asiandevelopers.com/hoppex/services-details.html">Ótima Estratégia</a></h3>
+                        <div class="inner-text">
+                            <p>Nossa abordagem é baseada em planejamento e execução precisos para alcançar os melhores resultados.</p>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+            <!--Fim Bloco de Objetivo-->
+            <!--Início Bloco de Objetivo-->
+            <div class="col-xl-3 col-lg-6 wow fadeInUp" data-wow-delay="300ms" data-wow-duration="1500ms">
+                <div class="goal-block text-center">
+                    <div class="icon-holder">
+                        <img src="{% static 'assets/images/icon/goal/goal-2.png' %}" alt="">
+                    </div>
+                    <div class="title-holder">
+                        <h3><a href="https://mehedi.asiandevelopers.com/hoppex/services-details.html">Expertise</a></h3>
+                        <div class="inner-text">
+                            <p>Contamos com uma equipe de profissionais altamente qualificados e experientes no setor imobiliário.</p>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+            <!--Fim Bloco de Objetivo-->
+            <!--Início Bloco de Objetivo-->
+            <div class="col-xl-3 col-lg-6 wow fadeInUp" data-wow-delay="200ms" data-wow-duration="1500ms">
+                <div class="goal-block text-center">
+                    <div class="icon-holder">
+                        <img src="{% static 'assets/images/icon/goal/goal-3.png' %}" alt="">
+                    </div>
+                    <div class="title-holder">
+                        <h3><a href="https://mehedi.asiandevelopers.com/hoppex/services-details.html">Ideias de Qualidade</a></h3>
+                        <div class="inner-text">
+                            <p>Desenvolvemos soluções criativas e inovadoras para oferecer as melhores opções de imóveis.</p>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+            <!--Fim Bloco de Objetivo-->
+            <!--Início Bloco de Objetivo-->
+            <div class="col-xl-3 col-lg-6 wow fadeInUp" data-wow-delay="500ms" data-wow-duration="1500ms">
+                <div class="goal-block text-center">
+                    <div class="icon-holder">
+                        <img src="{% static 'assets/images/icon/goal/goal-4.png' %}" alt="">
+                    </div>
+                    <div class="title-holder">
+                        <h3><a href="https://mehedi.asiandevelopers.com/hoppex/services-details.html">Suporte Rápido</a></h3>
+                        <div class="inner-text">
+                            <p>Estamos sempre prontos para atender nossos clientes de forma ágil e eficiente.</p>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+            <!--Fim Bloco de Objetivo-->
+        </div>
+    </div>
+</section>
+
+<!--End goal Area-->
+
+<!--Start Choose Style2 Area-->
+<section class="choose-style2-area">
+    <div class="gradient-bg"></div>
+    <div class="shape1" data-aos="fade-right" data-aos-easing="linear" data-aos-duration="5000">
+        <img src="{% static 'assets/images/shape/shape-round-6.png' %}" alt="">    
+    </div>
+    <div class="container">
+        <div class="row text-right-rtl">
+            <div class="col-xl-6 col-lg-6">
+                <div class="choose-style1__title choose-style1__title--style2">
+                    <div class="sec-title">
+                        <div class="sub-title">
+                            <p>Por Que Escolher</p>
+                        </div>
+                        <h2>Por Que Nossos Clientes<br> Nos Escolhem?</h2>
+                    </div>
+                    <div class="inner-text">
+                        <div class="text">
+                            <p>Somos reconhecidos pela excelência em nossos serviços, comprometimento com a qualidade e foco nas necessidades dos clientes. Nossa equipe oferece soluções personalizadas que garantem resultados eficazes.</p>
+                            <p>Garantimos transparência, agilidade e suporte contínuo, proporcionando confiança e segurança em todas as etapas do projeto.</p>
+                        </div>
+                        <div class="btns-box">
+                            <a class="btn-one style2" href="contact.html">
+                                <span class="txt">Solicitar Orçamento</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-6 col-lg-6">
+                <div class="choose-style__content choose-style__content--style2">
+                    <ul>
+                        <li class="wow slideInRight" data-wow-delay="100ms" data-wow-duration="1500ms">
+                            <div class="inner">
+                                <div class="icon">
+                                    <img src="{% static 'assets/images/icon/choose/choose-1.png' %}" alt="">
+                                </div>
+                                <div class="text">
+                                    <h3>Produtos de Qualidade</h3>
+                                    <p>Trabalhamos com materiais e serviços que atendem aos mais altos padrões do mercado.</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="wow slideInRight" data-wow-delay="200ms" data-wow-duration="1500ms">
+                            <div class="inner">
+                                <div class="icon">
+                                    <img src="{% static 'assets/images/icon/choose/choose-2.png' %}" alt="">
+                                </div>
+                                <div class="text">
+                                    <h3>Serviços Profissionais</h3>
+                                    <p>Nossa equipe é composta por especialistas dedicados e experientes, prontos para atender às demandas mais complexas.</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="wow slideInRight" data-wow-delay="30ms" data-wow-duration="1500ms">
+                            <div class="inner">
+                                <div class="icon">
+                                    <img src="{% static 'assets/images/icon/choose/choose-3.png' %}" alt="">
+                                </div>
+                                <div class="text">
+                                    <h3>Segurança Absoluta</h3>
+                                    <p>Adotamos as melhores práticas de segurança para proteger os interesses de nossos clientes.</p>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!--End Choose Style2 Area-->
+
+<!--Start Testimonials Style2 area -->
+<section class="testimonials-style2-area pdtop0">
+    <div class="container">
+        <div class="sec-title text-center">
+            <div class="sub-title">
+                <p>Depoimentos</p>
+            </div>
+            <h2>O Que Nossos Clientes Estão Dizendo<br> Sobre a Carhouse </h2>
+        </div>
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="testimonials-style1__content wow fadeInUp" data-wow-delay="200ms" data-wow-duration="1500ms">
+                    <div class="theme_carousel testimonials-carousel_1 owl-dot-style1 owl-theme owl-carousel" data-options='{"loop": true, "margin": 30, "autoheight":true, "lazyload":true, "nav": false, "dots": true, "autoplay": true, "autoplayTimeout": 6000, "smartSpeed": 300, "responsive":{ "0" :{ "items": "1" }, "600" :{ "items" : "1" }, "768" :{ "items" : "1" } , "992":{ "items" : "2" }, "1200":{ "items" : "3" }}}'>
+
+                        <!--Início Depoimento Estilo1-->
+                        <div class="single-testimonials-style1">
+                            <div class="client-info">
+                                <div class="img-box">
+                                    <img src="{% static 'assets/images/testimonial/testimonial-v1-1.jpg' %}" alt=""/>
+                                </div>
+                                <div class="title-box">
+                                    <h3>Nicolas Lawson</h3>
+                                    <span>Designer</span>
+                                </div>
+                            </div>
+                            <div class="text">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                <div class="date-box"><p>Terça-feira, 29 de Junho, 2022</p></div>
+                            </div>
+                        </div>
+                        <!--Fim Depoimento Estilo1-->
+                        
+                        <!--Início Depoimento Estilo1-->
+                        <div class="single-testimonials-style1">
+                            <div class="client-info">
+                                <div class="img-box">
+                                    <img src="{% static 'assets/images/testimonial/testimonial-v1-2.jpg' %}" alt=""/>
+                                </div>
+                                <div class="title-box">
+                                    <h3>Nathan Felix</h3>
+                                    <span>Designer</span>
+                                </div>
+                            </div>
+                            <div class="text">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                <div class="date-box"><p>Terça-feira, 29 de Junho, 2022</p></div>
+                            </div>
+                        </div>
+                        <!--Fim Depoimento Estilo1-->
+                        
+                        <!--Início Depoimento Estilo1-->
+                        <div class="single-testimonials-style1">
+                            <div class="client-info">
+                                <div class="img-box">
+                                    <img src="{% static 'assets/images/testimonial/testimonial-v1-3.jpg' %}" alt=""/>
+                                </div>
+                                <div class="title-box">
+                                    <h3>John Smith</h3>
+                                    <span>Designer</span>
+                                </div>
+                            </div>
+                            <div class="text">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                <div class="date-box"><p>Terça-feira, 29 de Junho, 2022</p></div>
+                            </div>
+                        </div>
+                        <!--Fim Depoimento Estilo1-->
+                        
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!--End Testimonials Style2 area -->
+
+
+{% include 'includes/footer.html' %}
+
+
+
+
+
+</body>
+</html>

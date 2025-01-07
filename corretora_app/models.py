@@ -1,5 +1,6 @@
 from django.db import models
-
+from django.db import models
+from django.core.exceptions import ValidationError
 
 class Usuario(models.Model):
     nome = models.CharField(max_length=255)
@@ -16,6 +17,7 @@ class Usuario(models.Model):
         ('cliente', 'Cliente'),
         ('vendedor', 'Vendedor'),
         ('corretor', 'Corretor'),
+        ('empresa', 'Empresa'),
     ]
 
     tipo_usuario = models.CharField(max_length=10, choices=TIPO_USUARIO_CHOICES)
@@ -24,12 +26,22 @@ class Usuario(models.Model):
         return f"{self.nome} {self.sobrenome} ({self.tipo_usuario})"
 
 
+# Model para representar imagens adicionais (galeria)
+class ImagemAdicional(models.Model):
+    imagem = models.ImageField(upload_to='imoveis/galeria/', verbose_name="Imagem Adicional")
+    descricao = models.CharField(max_length=255, blank=True, null=True)
+    
+    def __str__(self):
+        return self.descricao if self.descricao else "Imagem Adicional"
+
+# Model para representar os imóveis
 class Imovel(models.Model):
     TIPO_IMOVEL = [
         ('casa', 'Casa'),
         ('apartamento', 'Apartamento'),
         ('terreno', 'Terreno'),
         ('comercial', 'Imóvel Comercial'),
+        ('escritorio', 'Escritório'),
     ]
     STATUS_IMOVEL = [
         ('venda', 'Venda'),
@@ -37,26 +49,82 @@ class Imovel(models.Model):
         ('vendido', 'Vendido'),
         ('indisponivel', 'Indisponível'),
     ]
-    titulo = models.CharField(max_length=255, verbose_name="Ex: vivenda T5", blank=True, null=True)
-    imagem = models.ImageField(upload_to='imoveis/', verbose_name="Imagem Corretor", blank=True, null=True)
+    
+    titulo = models.CharField(max_length=255, verbose_name="Título", blank=True, null=True)
+    imagem = models.ImageField(upload_to='imoveis/', verbose_name="Imagem Principal do Imóvel", blank=True, null=True)
     endereco = models.CharField(max_length=255)
     preco = models.DecimalField(max_digits=10, decimal_places=2)
     tipo = models.CharField(max_length=20, choices=TIPO_IMOVEL)
     descricao = models.TextField()
     area = models.DecimalField(max_digits=6, decimal_places=2, help_text="Área total do imóvel em metros quadrados")
-    quartos = models.IntegerField()
-    banheiros = models.IntegerField()
-    vagas_garagem = models.IntegerField()
+    
+    quartos = models.IntegerField(blank=True, null=True)
+    banheiros = models.IntegerField(blank=True, null=True)
+    vagas_garagem = models.IntegerField(blank=True, null=True)
+    
     data_publicacao = models.DateTimeField(auto_now_add=True)
     status = models.CharField(max_length=40, choices=STATUS_IMOVEL)
-    vendedor = models.ForeignKey('Usuario', on_delete=models.SET_NULL, null=True, blank=True, limit_choices_to={'tipo_usuario': 'vendedor'}, related_name='imoveis_vendidos')
-    corretor = models.ForeignKey('Usuario', on_delete=models.SET_NULL, null=True, blank=True, limit_choices_to={'tipo_usuario': 'corretor'}, related_name='imoveis_corretor')
+    
+    vendedor = models.ForeignKey(
+        'Usuario', 
+        on_delete=models.SET_NULL, 
+        null=True, 
+        blank=True,
+        limit_choices_to={'tipo_usuario': 'vendedor'},
+        related_name='imoveis_vendidos'
+    )
+    corretores = models.ManyToManyField(
+        'Usuario', 
+        limit_choices_to={'tipo_usuario': 'corretor'},
+        related_name='imoveis'
+    )
+    
+    video = models.URLField(max_length=500, blank=True, null=True, verbose_name="URL do vídeo")
+
+    imagens_adicionais = models.ManyToManyField(
+        'ImagemAdicional',
+        blank=True,
+        related_name='imoveis'
+    )
+    
+    def clean(self):
+        if self.tipo == 'escritorio':
+            if self.quartos is not None and self.quartos > 0:
+                raise ValidationError({'quartos': 'Escritórios não podem ter quartos.'})
+            if self.banheiros is not None and self.banheiros > 0:
+                raise ValidationError({'banheiros': 'Escritórios não podem ter banheiros.'})
+            if self.vagas_garagem is not None and self.vagas_garagem > 0:
+                raise ValidationError({'vagas_garagem': 'Escritórios não podem ter vagas de garagem.'})
 
     def __str__(self):
         return f"{self.tipo.title()} - {self.endereco} - {self.status.title()}"
 
+    def save(self, *args, **kwargs):
+        self.clean()
+        super().save(*args, **kwargs)
+
+
+
+# Model para galeria de imagens de imóveis
+class GaleriaImovel(models.Model):
+    imovel = models.ForeignKey(
+        Imovel,
+        on_delete=models.CASCADE,
+        related_name='galeria'
+    )
+    imagem = models.ImageField(upload_to='imoveis/galeria/', verbose_name="Imagem da Galeria")
+    descricao = models.CharField(max_length=255, blank=True, null=True)
+
+    def __str__(self):
+        return f"Galeria de {self.imovel.tipo.title()} - {self.imovel.endereco}"
+
+
 class DadosAdicionais(models.Model):
-    imovel = models.OneToOneField(Imovel, on_delete=models.CASCADE, related_name="dados_adicionais")
+    imovel = models.OneToOneField(
+        Imovel,
+        on_delete=models.CASCADE,
+        related_name="dados"  # Relacionamento reverso
+    )
     exterior_varanda = models.BooleanField(default=False)
     exterior_piscina_coletiva = models.BooleanField(default=False)
     exterior_estacionamento_privativo = models.BooleanField(default=False)
@@ -76,6 +144,7 @@ class DadosAdicionais(models.Model):
 
     def __str__(self):
         return f"Dados adicionais de {self.imovel.tipo.title()} - {self.imovel.endereco}"
+
 
 class GaleriaImovel(models.Model):
     imovel = models.ForeignKey('Imovel', on_delete=models.CASCADE, related_name='galeria')
@@ -106,12 +175,12 @@ class Contrato(models.Model):
 class Agendamento(models.Model):
     imovel = models.ForeignKey('Imovel', on_delete=models.CASCADE, related_name='agendamentos')
     cliente = models.ForeignKey('Usuario', on_delete=models.CASCADE, limit_choices_to={'tipo_usuario': 'cliente'}, related_name='agendamentos_cliente')
-    data_agendada = models.DateTimeField()
-    status = models.CharField(max_length=10, choices=[('agendado', 'Agendado'), ('realizado', 'Realizado'), ('cancelado', 'Cancelado')])
-    observacoes = models.TextField(null=True, blank=True)
+    data_hora_agendada = models.DateTimeField()  # Armazena data e hora juntos
+    status = models.CharField(max_length=10, choices=[('agendado', 'Agendado'), ('cancelado', 'Cancelado')])
+    mensagem = models.TextField()
 
     def __str__(self):
-        return f"Visita ao imóvel {self.imovel.endereco} - {self.cliente.nome}"
+        return f'Agendamento para {self.imovel} em {self.data_hora_agendada}'
 
 class Favorito(models.Model):
     cliente = models.ForeignKey('Usuario', on_delete=models.CASCADE, limit_choices_to={'tipo_usuario': 'cliente'}, related_name='favoritos_cliente')
@@ -121,8 +190,10 @@ class Favorito(models.Model):
     class Meta:
         unique_together = ('cliente', 'imovel')
 
+
     def __str__(self):
         return f"{self.cliente.nome} - {self.imovel.endereco}"
+
 
 class Avaliacao(models.Model):
     imovel = models.ForeignKey('Imovel', on_delete=models.CASCADE, null=True, blank=True, related_name='avaliacoes_imovel')
@@ -277,3 +348,21 @@ class Lance(models.Model):
     cliente = models.ForeignKey(Usuario, on_delete=models.CASCADE)
     valor = models.DecimalField(max_digits=10, decimal_places=2)
     data_lance = models.DateTimeField(auto_now_add=True)
+
+
+
+
+class Publicidade_home(models.Model):
+    titulo = models.CharField(max_length=255)  
+    descricao = models.TextField() 
+    video = models.FileField(upload_to='videos/publicidade_home/', null=True, blank=True) 
+
+    def __str__(self):
+        return self.titulo
+
+
+class HoraAgendamento(models.Model):
+    hora = models.TimeField()
+
+    def __str__(self):
+        return str(self.hora)

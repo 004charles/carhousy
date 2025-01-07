@@ -1,8 +1,9 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Hoppex  - Responsive HTML 5 Template</title>
+	<title>Carhousy | pagina de erro</title>
 
 	<!-- responsive meta -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,55 +11,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- Google Fonts -->
 
-    <link href="https://fonts.googleapis.com/css2?family=Laila:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam:ital,wght@0,100;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
-
-	<link rel="stylesheet" href="assets/css/animate.css">  
-	<link rel="stylesheet" href="assets/css/aos.css">  
-	<link rel="stylesheet" href="assets/css/bootstrap.min.css">	
-	<link rel="stylesheet" href="assets/css/bootstrap-select.min.css">
-	<link rel="stylesheet" href="assets/css/custom-animate.css">
-	<link rel="stylesheet" href="assets/css/fancybox.min.css">
-	<link rel="stylesheet" href="assets/css/flaticon.css">
-	<link rel="stylesheet" href="assets/css/font-awesome.min.css">
-	<link rel="stylesheet" href="assets/css/imp.css">
-	<link rel="stylesheet" href="assets/css/jquery-ui.css">
-	<link rel="stylesheet" href="assets/css/magnific-popup.css">
-	<link rel="stylesheet" href="assets/css/owl.css">
-    <link rel="stylesheet" href="assets/css/rtl.css">
-	<link rel="stylesheet" href="assets/css/scrollbar.css">
-	<link rel="stylesheet" href="assets/css/icomoon.css">
-	<link rel="stylesheet" href="assets/css/jquery.bootstrap-touchspin.css">
-	<link rel="stylesheet" href="assets/css/nice-select.css">
-
-    <!-- Module css -->
-    <link rel="stylesheet" href="assets/css/module-css/header-section.css">
-	<link rel="stylesheet" href="assets/css/module-css/banner-section.css">
-	<link rel="stylesheet" href="assets/css/module-css/about-section.css">
-	<link rel="stylesheet" href="assets/css/module-css/blog-section.css">
-	<link rel="stylesheet" href="assets/css/module-css/fact-counter-section.css">
-	<link rel="stylesheet" href="assets/css/module-css/faq-section.css">
-	<link rel="stylesheet" href="assets/css/module-css/contact-page.css">
-	<link rel="stylesheet" href="assets/css/module-css/breadcrumb-section.css">
-	<link rel="stylesheet" href="assets/css/module-css/team-section.css">
-	<link rel="stylesheet" href="assets/css/module-css/partner-section.css">
-	<link rel="stylesheet" href="assets/css/module-css/testimonial-section.css">
-	<link rel="stylesheet" href="assets/css/module-css/services-section.css">
-	<link rel="stylesheet" href="assets/css/module-css/footer-section.css">
- 
-    <link href="assets/css/color/theme-color.css" id="jssDefault" rel="stylesheet">          
-    <link rel="stylesheet" href="assets/css/style.css">
-	<link rel="stylesheet" href="assets/css/responsive.css">
-    <!-- Favicon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" href="assets/images/favicon/favicon-32x32.png" sizes="32x32">
-    <link rel="icon" type="image/png" href="assets/images/favicon/favicon-16x16.png" sizes="16x16">
-
-    <!-- Fixing Internet Explorer-->
-    <!--[if lt IE 9]>
-        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-        <script src="assets/js/html5shiv.js"></script>
-    <![endif]-->
+    {% include 'includes/link_header.html' %}
     
 </head>
 
@@ -68,7 +21,7 @@
 
 <!-- Preloader -->
 <div class="loader-wrap">
-    <div class="preloader"><div class="preloader-close">Preloader Close</div></div>
+    <div class="preloader"><div class="preloader-close">Cancelar</div></div>
     <div class="layer layer-one"><span class="overlay"></span></div>
     <div class="layer layer-two"><span class="overlay"></span></div>        
     <div class="layer layer-three"><span class="overlay"></span></div>        
@@ -82,59 +35,29 @@
 <!-- page-direction end -->
 
 
-<!-- switcher menu -->
-<div class="switcher">
-    <div class="switch_btn">
-        <button><img src="assets/images/icon/color-palette.png" alt="Color Palette"> </button>
-    </div>
-    <div class="switch_menu">
-        <!-- color changer -->
-        <div class="switcher_container">
-            <ul id="styleOptions" title="switch styling">
-                <li>
-                    <a href="javascript: void(0)" data-theme="blue" class="blue-color"></a>
-                </li>
-                <li>
-                    <a href="javascript: void(0)" data-theme="pink" class="pink-color"></a>
-                </li>
-                <li>
-                    <a href="javascript: void(0)" data-theme="violet" class="violet-color"></a>
-                </li>
-                <li>
-                    <a href="javascript: void(0)" data-theme="crimson" class="crimson-color"></a>
-                </li>
-                <li>
-                    <a href="javascript: void(0)" data-theme="orange" class="orange-color"></a>
-                </li>
-                <li>
-                    <a href="javascript: void(0)" data-theme="green" class="green-color"></a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</div>
-<!-- end switcher menu --> 
-
+<
 
 <!--Start Error Page Area-->
 <section class="error-page-area full-height">
-    <div class="error-page-area-bg" style="background-image: url(assets/images/parallax-background/error-page-area-bg.jpg);"></div>
+    <div class="error-page-area-bg" style="background-image: url('{% static 'assets/images/parallax-background/error-page-area-bg.jpg' %}');"></div>
+
     <div class="container">
         <div class="row">
             <div class="col-xl-12">
                 <div class="error-content text-center">
-                    <div class="title wow slideInDown" data-wow-delay="200ms" data-wow-duration="1500ms">Page not found</div>
+                    <div class="title wow slideInDown" data-wow-delay="200ms" data-wow-duration="1500ms">Página não encontrada</div>
                     <div class="big-title wow slideInRight" data-wow-delay="100ms" data-wow-duration="1500ms">404</div>
-                    <p class="wow slideInLeft" data-wow-delay="400ms" data-wow-duration="1500ms">Sorry we’re unable to find the page you are looking for, please<br> check the url and try again.</p>
+                    <p class="wow slideInLeft" data-wow-delay="400ms" data-wow-duration="1500ms">Desculpe, não conseguimos encontrar a página que você está procurando. Por favor,<br> verifique a URL e tente novamente.</p>
                     <div class="btns-box wow slideInUp" data-wow-delay="700ms" data-wow-duration="1500ms">
-                        <a class="btn-one" href="index.html">
-                            <span class="txt">Back to Home</span>
+                        <a class="btn-one" href="{% url 'home' %}">
+                            <span class="txt">Voltar para a Página Inicial</span>
                         </a>
                     </div>
                 </div>    
             </div>
         </div>       
     </div>
+    
 </section>   
 <!--End Error Page Area-->   
 
@@ -146,6 +69,7 @@
 
 
 <!-- search-popup -->
+<!-- search-popup -->
 <div id="search-popup" class="search-popup">
     <div class="close-search"><i class="icon-close"></i></div>
     <div class="popup-inner">
@@ -154,24 +78,33 @@
             <form method="post" action="index.html">
                 <div class="form-group">
                     <fieldset>
-                        <input type="search" class="form-control" name="search-input" value="" placeholder="Search Here" required >
-                        <input type="submit" value="Search Now!" class="theme-btn style-four">
+                        <input type="search" class="form-control" name="search-input" value="" placeholder="Pesquise Aqui" required>
+                        <input type="submit" value="Pesquisar!" class="theme-btn style-four">
                     </fieldset>
                 </div>
             </form>
-            <h3>Recent Search Keywords</h3>
+            <h3>Palavras-chave de Pesquisa Recentes</h3>
             <ul class="recent-searches">
-                <li><a href="index.html">Water Quality</a></li>
-                <li><a href="index.html">Mineral</a></li>
-                <li><a href="index.html">Bottle</a></li>
-                <li><a href="index.html">Safety</a></li>
-                <li><a href="index.html">Plan</a></li>
+                <li><a href="index.html">Apartamentos para Venda</a></li>
+                <li><a href="index.html">Casas para Aluguel</a></li>
+                <li><a href="index.html">Imóveis Comerciais</a></li>
+                <li><a href="index.html">Lançamentos Imobiliários</a></li>
+                <li><a href="index.html">Imóveis de Luxo</a></li>
+                <li><a href="index.html">Imóveis em Luanda</a></li>
+                <li><a href="index.html">Apartamento no Centro</a></li>
+                <li><a href="index.html">Condomínios Fechados</a></li>
+                <li><a href="index.html">Imóveis com Piscina</a></li>
+                <li><a href="index.html">Terrenos para Construção</a></li>
+                <li><a href="index.html">Imóveis para Investimento</a></li>
+                <li><a href="index.html">Financiamento Imobiliário</a></li>
+                <li><a href="index.html">Aluguel Temporário</a></li>
+                <li><a href="index.html">Imóveis de Alto Padrão</a></li>
+                <li><a href="index.html">Imóveis em Praia</a></li>
             </ul>
         </div>
     </div>
 </div>
-<!-- search-popup end -->
-
+</div> 
 
 </div> 
 
@@ -180,37 +113,38 @@
 
 
 
-<script src="assets/js/jquery.js"></script>
-<script src="assets/js/aos.js"></script>
-<script src="assets/js/appear.js"></script>
-<script src="assets/js/bootstrap.bundle.min.js"></script>
-<script src="assets/js/bootstrap-select.min.js"></script>
-<script src="assets/js/isotope.js"></script>
-<script src="assets/js/jquery.countTo.js"></script>
-<script src="assets/js/jquery.easing.min.js"></script>
-<script src="assets/js/jquery.enllax.min.js"></script>
-<script src="assets/js/jquery.fancybox.js"></script>
-<script src="assets/js/jquery.magnific-popup.min.js"></script>
-<script src="assets/js/jquery.paroller.min.js"></script>
-<script src="assets/js/jquery-ui.js"></script>
-<script src="assets/js/knob.js"></script>
-<script src="assets/js/map-script.js"></script>
-<script src="assets/js/owl.js"></script>
-<script src="assets/js/pagenav.js"></script>
-<script src="assets/js/parallax.min.js"></script>
-<script src="assets/js/scrollbar.js"></script>
-<script src="assets/js/TweenMax.min.js"></script>
-<script src="assets/js/validation.js"></script>
-<script src="assets/js/wow.js"></script>
-<script src="assets/js/color-switcher.min.js"></script>
+<script src="{% static 'assets/js/jquery.js' %}"></script>
+<script src="{% static 'assets/js/aos.js' %}"></script>
+<script src="{% static 'assets/js/appear.js' %}"></script>
+<script src="{% static 'assets/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'assets/js/bootstrap-select.min.js' %}"></script>
+<script src="{% static 'assets/js/isotope.js' %}"></script>
+<script src="{% static 'assets/js/jquery.countTo.js' %}"></script>
+<script src="{% static 'assets/js/jquery.easing.min.js' %}"></script>
+<script src="{% static 'assets/js/jquery.enllax.min.js' %}"></script>
+<script src="{% static 'assets/js/jquery.fancybox.js' %}"></script>
+<script src="{% static 'assets/js/jquery.magnific-popup.min.js' %}"></script>
+<script src="{% static 'assets/js/jquery.paroller.min.js' %}"></script>
+<script src="{% static 'assets/js/jquery-ui.js' %}"></script>
+<script src="{% static 'assets/js/knob.js' %}"></script>
+<script src="{% static 'assets/js/map-script.js' %}"></script>
+<script src="{% static 'assets/js/owl.js' %}"></script>
+<script src="{% static 'assets/js/pagenav.js' %}"></script>
+<script src="{% static 'assets/js/parallax.min.js' %}"></script>
+<script src="{% static 'assets/js/scrollbar.js' %}"></script>
+<script src="{% static 'assets/js/TweenMax.min.js' %}"></script>
+<script src="{% static 'assets/js/validation.js' %}"></script>
+<script src="{% static 'assets/js/wow.js' %}"></script>
+<script src="{% static 'assets/js/color-switcher.min.js' %}"></script>
 
-<script src="assets/js/jquery.bootstrap-touchspin.js"></script>
-<script src="assets/js/jquery.nice-select.min.js"></script>
-<script src="assets/js/tilt.jquery.js"></script>
+<script src="{% static 'assets/js/jquery.bootstrap-touchspin.js' %}"></script>
+<script src="{% static 'assets/js/jquery.nice-select.min.js' %}"></script>
+<script src="{% static 'assets/js/tilt.jquery.js' %}"></script>
+
 
 
 <!-- thm custom script -->
-<script src="assets/js/custom.js"></script>
+<script src="{% static 'assets/js/custom.js' %}"></script>
 
 
 
