@@ -1,7 +1,7 @@
 from django.contrib import admin
 from .models import (
     Usuario, Imovel, DadosAdicionais, GaleriaImovel, Contrato, Agendamento, Favorito, Avaliacao,
-    Localizacao, DocumentoImovel, Comissao, RelatorioVendas, FeedbackCliente, Proposta, Visita, Pagamento, Publicidade_home, GaleriaImovel, HoraAgendamento
+    Localizacao, DocumentoImovel, Comissao, RelatorioVendas, FeedbackCliente, Proposta, Visita, Pagamento, Publicidade_home, GaleriaImovel, HoraAgendamento, Depoimentos
 )
 
 # Registrando os modelos no admin com ícones
@@ -21,6 +21,7 @@ admin.site.register(FeedbackCliente, icon='fas fa-comment-dots')
 admin.site.register(Proposta, icon='fas fa-handshake')
 admin.site.register(Visita, icon='fas fa-search-location')
 admin.site.register(Pagamento, icon='fas fa-credit-card')
+admin.site.register(Depoimentos, icon='fas fa-comment-dots')
 
 
 class PublicidadeHomeAdmin(admin.ModelAdmin):

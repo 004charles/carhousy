@@ -3,57 +3,14 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Carhousy | Casas a venda</title>
+	<title>Carhousy | Imoveis disponíveis</title>
 
 	<!-- responsive meta -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- For IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'assets/css/animate.css' %}">  
-	<link rel="stylesheet" href="{% static 'assets/css/aos.css' %}">  
-	<link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">	
-	<link rel="stylesheet" href="{% static 'assets/css/bootstrap-select.min.css' %}">
-	<link rel="stylesheet" href="{% static 'assets/css/custom-animate.css' %}">
-	<link rel="stylesheet" href="{% static 'assets/css/fancybox.min.css' %}">
-	<link rel="stylesheet" href="{% static 'assets/css/flaticon.css' %}">
-	<link rel="stylesheet" href="{% static 'assets/css/font-awesome.min.css' %}">
-	<link rel="stylesheet" href="{% static 'assets/css/imp.css' %}">
-	<link rel="stylesheet" href="{% static 'assets/css/jquery-ui.css' %}">
-	<link rel="stylesheet" href="{% static 'assets/css/magnific-popup.css' %}">
-	<link rel="stylesheet" href="{% static 'assets/css/owl.css' %}">
-    <link rel="stylesheet" href="{% static 'assets/css/rtl.css' %}">
-	<link rel="stylesheet" href="{% static 'assets/css/scrollbar.css' %}">
-	<link rel="stylesheet" href="{% static 'assets/css/icomoon.css' %}">
-	<link rel="stylesheet" href="{% static 'assets/css/jquery.bootstrap-touchspin.css' %}">
-	<link rel="stylesheet" href="{% static 'assets/css/nice-select.css' %}">
-
-    <!-- Module css -->
-    <link rel="stylesheet" href="{% static 'assets/css/module-css/header-section.css' %}">
-	<link rel="stylesheet" href="{% static 'assets/css/module-css/banner-section.css' %}">
-	<link rel="stylesheet" href="{% static 'assets/css/module-css/about-section.css' %}">
-	<link rel="stylesheet" href="{% static 'assets/css/module-css/blog-section.css' %}">
-	<link rel="stylesheet" href="{% static 'assets/css/module-css/fact-counter-section.css' %}">
-	<link rel="stylesheet" href="{% static 'assets/css/module-css/faq-section.css' %}">
-	<link rel="stylesheet" href="{% static 'assets/css/module-css/contact-page.css' %}">
-	<link rel="stylesheet" href="{% static 'assets/css/module-css/breadcrumb-section.css' %}">
-	<link rel="stylesheet" href="{% static 'assets/css/module-css/team-section.css' %}">
-	<link rel="stylesheet" href="{% static 'assets/css/module-css/partner-section.css' %}">
-	<link rel="stylesheet" href="{% static 'assets/css/module-css/testimonial-section.css' %}">
-	<link rel="stylesheet" href="{% static 'assets/css/module-css/services-section.css' %}">
-	<link rel="stylesheet" href="{% static 'assets/css/module-css/footer-section.css' %}">
-  
-    <link href="{% static 'assets/css/color/theme-color.css' %}" id="jssDefault" rel="stylesheet">        
-    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
-	<link rel="stylesheet" href="{% static 'assets/css/responsive.css' %}">
-    <!-- Favicon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'assets/images/logo.png' %}">
-    <link rel="icon" type="image/png" href="{% static 'assets/images/logo.png' %}" sizes="32x32">
-    <link rel="icon" type="image/png" href="{% static 'assets/images/logo.png' %}" sizes="16x16">
+    {% include 'includes/link_header.html' %}
 
     <!-- Fixing Internet Explorer-->
     <!--[if lt IE 9]>
@@ -102,13 +59,13 @@
             <div class="col-xl-12">
                 <div class="inner-content">
                     <div class="title">
-                       <h2>Imoveis a venda</h2>
+                       <h2>imovies disponíveis</h2>
                     </div>
                     <div class="breadcrumb-menu">
                         <ul>
                             <li><a href="index.html">Home</a></li>
                             <li><i class="fa fa-angle-right" aria-hidden="true"></i></li>
-                            <li class="active">imovies a venda</li>
+                            <li class="active">imovies disponíveis</li>
                         </ul>    
                     </div>
                 </div>
@@ -133,9 +90,13 @@
 
                         <div class="single-box">
                             <div class="inner clearfix">
-                                <h5>Status do Projeto</h5>
-                                <div class="input-box"> 
-                                    <input type="text" name="project_status" value="" placeholder="Ex: A venda, Alguel" required="">
+                                <h5>Status do imovel</h5>
+                                <div class="select-box">
+                                    <select name="status_imovel" class="wide">
+                                       <option value="aluguel">aluguel</option>
+                                       <option value="Venda">Venda</option>
+                                       <option value="todos">Todos</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -143,11 +104,11 @@
                             <div class="inner clearfix">
                                 <h5>Tipo de imovel</h5>
                                 <div class="select-box">
-                                    <select class="wide">
-                                       <option data-display="Tipo de Projeto 01">Tipo</option>
+                                    <select name="tipo_imovel" class="wide">
                                        <option value="apartamento">apartamento</option>
                                        <option value="casa">casa</option>
                                        <option value="terreno">terreno</option>
+                                       <option value="escritorio">Escritório</option>
                                        <option value="comercial">comercial</option>
                                     </select>
                                 </div>
@@ -157,12 +118,7 @@
                             <div class="inner clearfix">
                                 <h5>Orçamento</h5>
                                 <div class="select-box">
-                                    <select class="wide">
-                                       <option data-display="Orçamento">Orçamento</option>
-                                       <option value="1">15000kz</option>
-                                       <option value="2">200000kz</option>
-                                       <option value="3">500000kz</option>
-                                    </select>
+                                    <input type="text" name="orcamento_imovel" placeholder="10000">
                                 </div>
                             </div>
                         </div>
@@ -170,12 +126,7 @@
                             <div class="inner clearfix">
                                 <h5>Localização</h5>
                                 <div class="select-box">
-                                    <select class="wide">
-                                       <option data-display="Localização">Localização</option>
-                                       <option value="1">zango1</option>
-                                       <option value="2">zango2</option>
-                                       <option value="3">zango3</option>
-                                    </select>
+                                    <input type="text" name="localizacao_imovel" placeholder="Benfica">
                                 </div>
                             </div>
                         </div>
@@ -209,7 +160,7 @@
                     <div class="project-block">
                         <div class="img-holder">
                             <div class="inner">
-                                <img src="{{ casa_venda.imagem.url }}" alt="">
+                                <img src="{% if casa_venda.imagem %}{{ casa_venda.imagem.url }}{% else %}{% static 'assets/images/default/default.jpg' %}{% endif %}" alt="Imagem do imóvel">
                             </div>
                         </div>
                         <div class="text-holder">

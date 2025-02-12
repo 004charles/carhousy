@@ -88,214 +88,162 @@
                     </div>
                     <div class="project-details-text1 container-fluid">
                         <p>{{ imovel_venda.descricao|linebreaksbr }}</p>
-                        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+                       
                     </div>
                     
         
 
                     <div class="project-details-main-image">
-                        <img src="{{ imovel_venda.imagem.url }}" alt="">
+                        <img src="{% if imovel_venda.imagem %}{{ imovel_venda.imagem.url }}{% else %}{% static 'assets/images/default/default.jpg' %}{% endif %}" alt="Imagem do imóvel">
+           
                     </div>
                     
 
 
+                    <style>
+                        .project-features-box {
+                            width: auto;
+                            background: #f8f9fa;
+                            padding: 20px;
+                            border-radius: 10px;
+                            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                        }
+                        .project-features-box .title h2 {
+                            text-align: center;
+                            font-size: 24px;
+                            margin-bottom: 20px;
+                        }
+                        .project-features-box ul {
+                            list-style: none;
+                            padding: 0;
+                        }
+                        .project-features-box li {
+                            display: flex;
+                            align-items: center;
+                            margin-bottom: 10px;
+                            font-size: 16px;
+                            white-space: nowrap;
+                        }
+                        .project-features-box .icon {
+                            font-size: 20px;
+                            margin-right: 10px;
+                            color: #007bff;
+                        }
+                        strong {
+                            margin-right: 3px;
+                        }
+                    </style>
+                    
                     <div class="project-features-box">
                         <div class="title">
                             <h2>Mais detalhes</h2>
                         </div>
                         <div class="row">
-                            <!-- Exibindo os campos do imóvel em diferentes colunas -->
                             <div class="col-xl-4">
                                 <ul>
-                                    <li>
-                                        <div class="icon">
-                                            <span class="flaticon-air-conditioner"></span>
-                                        </div>
-                                        <div class="inner-title">
-                                            <h5>Tipo de Imóvel: {{ imovel_venda.tipo|title }}</h5>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="icon">
-                                            <span class="flaticon-swimming-pool"></span>
-                                        </div>
-                                        <div class="inner-title">
-                                            <h5>Preço: kz {{ imovel_venda.preco }}</h5>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="icon">
-                                            <span class="flaticon-security-camera"></span>
-                                        </div>
-                                        <div class="inner-title">
-                                            <h5>Quartos: {{ imovel_venda.quartos }}</h5>
-                                        </div>
-                                    </li>
+                                    <li><span class="flaticon-home icon"></span><strong>Tipo de Imóvel:</strong>{{ imovel_venda.tipo|title }}</li>
+                                    <li><span class="flaticon-price-tag icon"></span><strong>Preço:</strong>kz {{ imovel_venda.preco }}</li>
+                                    <li><span class="flaticon-bed icon"></span><strong>Quartos:</strong>{{ imovel_venda.quartos }}</li>
+                                    <li><span class="flaticon-bath icon"></span><strong>Banheiros:</strong>{{ imovel_venda.banheiros }}</li>
                                 </ul>
                             </div>
-                    
                             <div class="col-xl-4">
                                 <ul>
-                                    <li>
-                                        <div class="icon">
-                                            <span class="flaticon-fire-extinguisher"></span>
-                                        </div>
-                                        <div class="inner-title">
-                                            <h5>Banheiros: {{ imovel_venda.banheiros }}</h5>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="icon">
-                                            <span class="flaticon-muscle"></span>
-                                        </div>
-                                        <div class="inner-title">
-                                            <h5>Vagas na garagem: {{ imovel_venda.vagas_garagem }}</h5>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="icon">
-                                            <span class="flaticon-policeman"></span>
-                                        </div>
-                                        <div class="inner-title">
-                                            <h5>Status: {{ imovel_venda.status|title }}</h5>
-                                        </div>
-                                    </li>
+                                    <li><span class="flaticon-garage icon"></span><strong>Vagas na garagem:</strong>{{ imovel_venda.vagas_garagem|yesno:"Sim,Não" }}</li>
+                                    <li><span class="flaticon-status icon"></span><strong>Status:</strong>{{ imovel_venda.status|title }}</li>
+                                    <li><span class="flaticon-area icon"></span><strong>Área:</strong>{{ imovel_venda.area }} m²</li>
+                                    <li><span class="flaticon-map icon"></span><strong>Endereço:</strong>{{ imovel_venda.endereco }}</li>
                                 </ul>
                             </div>
-                    
                             <div class="col-xl-4">
                                 <ul>
-                                    <li>
-                                        <div class="icon">
-                                            <span class="flaticon-field"></span>
-                                        </div>
-                                        <div class="inner-title">
-                                            <h5>Área: {{ imovel_venda.area }} m²</h5>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="icon">
-                                            <span class="flaticon-city-hall"></span>
-                                        </div>
-                                        <div class="inner-title">
-                                            <h5>Endereço: {{ imovel_venda.endereco }}</h5>
-                                        </div>
-                                    </li>
+                                    <li><span class="flaticon-balcony icon"></span><strong>Varanda:</strong>{{ imovel_venda.dados.exterior_varanda|yesno:"Sim,Não" }}</li>
+                                    <li><span class="flaticon-pool icon"></span><strong>Piscina Coletiva:</strong>{{ imovel_venda.dados.exterior_piscina_coletiva|yesno:"Sim,Não" }}</li>
+                                    <li><span class="flaticon-parking icon"></span><strong>Estacionamento:</strong>{{ imovel_venda.dados.exterior_estacionamento_privativo|yesno:"Sim,Não" }}</li>
+                                    <li><span class="flaticon-bbq icon"></span><strong>Churrasqueira:</strong>{{ imovel_venda.dados.exterior_churrasqueira|yesno:"Sim,Não" }}</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-4">
+                                <ul>
+                                    <li><span class="flaticon-security icon"></span><strong>Segurança 24h:</strong>{{ imovel_venda.dados.seguranca_24h|yesno:"Sim,Não" }}</li>
+                                    <li><span class="flaticon-wifi icon"></span><strong>Internet:</strong>{{ imovel_venda.dados.interior_internet|yesno:"Sim,Não" }}</li>
+                                    <li><span class="flaticon-gym icon"></span><strong>Ginásio:</strong>{{ imovel_venda.dados.ginasio|yesno:"Sim,Não" }}</li>
+                                    <li><span class="flaticon-generator icon"></span><strong>Gerador:</strong>{{ imovel_venda.dados.gerador|yesno:"Sim,Não" }}</li>
+                                </ul>
+                            </div>
+                            <div class="col-xl-4">
+                                <ul>
+                                    <li><span class="flaticon-service icon"></span><strong>Área de Serviço:</strong>{{ imovel_venda.dados.area_servico|yesno:"Sim,Não" }}</li>
+                                    <li><span class="flaticon-furniture icon"></span><strong>Mobiliado:</strong>{{ imovel_venda.dados.mobilado|yesno:"Sim,Não" }}</li>
+                                    <li><span class="flaticon-water icon"></span><strong>Reserva de Água:</strong>{{ imovel_venda.dados.reservatorio_agua|yesno:"Sim,Não" }}</li>
+                                    <li><span class="flaticon-air-conditioner icon"></span><strong>Ar Condicionado:</strong>{{ imovel_venda.dados.interior_ar_condicionado|yesno:"Sim,Não" }}</li>
                                 </ul>
                             </div>
                         </div>
                     </div>
-                    
-
        
-                    <div class="project-details-plans-box tabs-box">
-                        <div class="title">
-                            <h2>Planos</h2>
-                        </div>
-                        <ul class="tab-btns tab-buttons clearfix">
-                            <li data-tab="#master-plan" class="tab-btn active-btn"><span>Plano Mestre</span></li>
-                            <li data-tab="#basic-plan" class="tab-btn"><span>Plano Básico</span></li>
-                        </ul>
-                        <div class="tabs-content">
-                            <div class="tab active-tab" id="master-plan">
-                                <div class="plan-box-content">
-                                    <img src="{% static 'assets/images/resources/plan-1.png' %}" alt="">    
-                                </div> 
-                            </div>
-                            <div class="tab" id="basic-plan">
-                                <div class="plan-box-content">
-                                    <img src="{% static 'assets/images/resources/plan-2.png' %}" alt="">    
-                                </div>  
-                            </div>
-                        </div>      
-                    </div>
+                    <style>
+                        .project-features-box {
+                            background: #f8f9fa;
+                            padding: 20px;
+                            border-radius: 10px;
+                            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                        }
+                        .project-features-box .title h2 {
+                            text-align: center;
+                            font-size: 24px;
+                            margin-bottom: 20px;
+                        }
+                        .project-features-box ul {
+                            list-style: none;
+                            padding: 0;
+                        }
+                        .project-features-box li {
+                            display: flex;
+                            align-items: center;
+                            margin-bottom: 10px;
+                            font-size: 16px;
+                            white-space: nowrap;
+                        }
+                        .project-features-box .icon {
+                            font-size: 20px;
+                            margin-right: 10px;
+                            color: #007bff;
+                        }
+                        strong {
+                            margin-right: 3px;
+                        }
+                    </style>
                     
-
+                    
                     <div class="gallerly-box-content">
                         <div class="title">
                             <h2>Galeria</h2>
                         </div>
                         <div class="row">
-                            <!--Início Caixa Única da Galeria-->
-                            <div class="col-xl-4 col-lg-6 col-md-4">
-                                <div class="single-gallery-box">
-                                    <img src="{% static 'assets/images/portfolio/gallery-1.jpg' %}" alt="">
-                                    <div class="zoom-button">
-                                        <a class="lightbox-image" data-fancybox="gallery" href="{% static 'assets/images/portfolio/gallery-1.jpg' %}">
-                                            <i class="flaticon-plus"></i>
-                                        </a>
+                            {% if imovel_venda.galeria.all %}
+                                {% for imagem in imovel_venda.galeria.all %}
+                                <div class="col-xl-4 col-lg-6 col-md-4">
+                                    <div class="single-gallery-box">
+                                        <img src="{{ imagem.imagem.url }}" alt="{{ imagem.descricao }}">
+                                        <div class="zoom-button">
+                                            <a class="lightbox-image" data-fancybox="gallery" href="{{ imagem.imagem.url }}">
+                                                <i class="flaticon-plus"></i>
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <!--Fim Caixa Única da Galeria-->
-                            
-                            <!--Início Caixa Única da Galeria-->
-                            <div class="col-xl-4 col-lg-6 col-md-4">
-                                <div class="single-gallery-box">
-                                    <img src="{% static 'assets/images/portfolio/gallery-2.jpg' %}" alt="">
-                                    <div class="zoom-button">
-                                        <a class="lightbox-image" data-fancybox="gallery" href="{% static 'assets/images/portfolio/gallery-2.jpg' %}">
-                                            <i class="flaticon-plus"></i>
-                                        </a>
-                                    </div>
+                                {% endfor %}
+                            {% else %}
+                                <div class="col-xl-12 text-center">
+                                    <p>Sem imagens disponíveis</p>
                                 </div>
-                            </div>
-                            <!--Fim Caixa Única da Galeria-->
-                    
-                            <!--Início Caixa Única da Galeria-->
-                            <div class="col-xl-4 col-lg-6 col-md-4">
-                                <div class="single-gallery-box">
-                                    <img src="{% static 'assets/images/portfolio/gallery-3.jpg' %}" alt="">
-                                    <div class="zoom-button">
-                                        <a class="lightbox-image" data-fancybox="gallery" href="{% static 'assets/images/portfolio/gallery-3.jpg' %}">
-                                            <i class="flaticon-plus"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--Fim Caixa Única da Galeria-->
-                    
-                            <!--Início Caixa Única da Galeria-->
-                            <div class="col-xl-4 col-lg-6 col-md-4">
-                                <div class="single-gallery-box">
-                                    <img src="{% static 'assets/images/portfolio/gallery-4.jpg' %}" alt="">
-                                    <div class="zoom-button">
-                                        <a class="lightbox-image" data-fancybox="gallery" href="{% static 'assets/images/portfolio/gallery-4.jpg' %}">
-                                            <i class="flaticon-plus"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--Fim Caixa Única da Galeria-->
-                    
-                            <!--Início Caixa Única da Galeria-->
-                            <div class="col-xl-4 col-lg-6 col-md-4">
-                                <div class="single-gallery-box">
-                                    <img src="{% static 'assets/images/portfolio/gallery-5.jpg' %}" alt="">
-                                    <div class="zoom-button">
-                                        <a class="lightbox-image" data-fancybox="gallery" href="{% static 'assets/images/portfolio/gallery-5.jpg' %}">
-                                            <i class="flaticon-plus"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--Fim Caixa Única da Galeria-->
-                    
-                            <!--Início Caixa Única da Galeria-->
-                            <div class="col-xl-4 col-lg-6 col-md-4">
-                                <div class="single-gallery-box">
-                                    <img src="{% static 'assets/images/portfolio/gallery-6.jpg' %}" alt="">
-                                    <div class="zoom-button">
-                                        <a class="lightbox-image" data-fancybox="gallery" href="{% static 'assets/images/portfolio/gallery-6.jpg' %}">
-                                            <i class="flaticon-plus"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--Fim Caixa Única da Galeria-->
-                    
+                            {% endif %}
                         </div>
                     </div>
+                    
                     
 
                     <div class="project-details-location-box">
@@ -329,176 +277,97 @@
                             <h3>Informações</h3>
                         </div>
                         <ul>
-                            <li><span>Tipo:</span>{{imovel_venda.tipo}}</li>
+                            <li><span>Tipo:</span> {{imovel_venda.tipo}}</li>
                             <li><span>Status:</span> {{imovel_venda.status}}</li>
                             <li><span>Área:</span> {{imovel_venda.area}} m²</li>
-                            <li><span>Endereço:</span>{{imovel_venda.endereco}}</li>
-                            <li><span>Preço:</span>{{imovel_venda.preco}} / mês</li>
-                            <li><span>Corretor:</span>{{imovel_venda.corretor}}</li>
+                            <li><span>Endereço:</span> {{imovel_venda.endereco}}</li>
+                            <li><span>Preço:</span> {{imovel_venda.preco}}</li>
+                            <li><span>Corretor(es):</span> 
+                                {% for corretor in imovel_venda.corretores.all %}
+                                    {{ corretor.nome }}{% if not forloop.last %}, {% endif %}
+                                {% empty %}
+                                    Nenhum corretor atribuído.
+                                {% endfor %}
+                            </li>                            
+                            <li><span>Número(s):</span> 
+                                {% for corretor in imovel_venda.corretores.all %}
+                                    <a href="tel:{{ corretor.telefone }}">{{ corretor.telefone }}</a>{% if not forloop.last %}, {% endif %}
+                                {% empty %}
+                                    Nenhum número disponível.
+                                {% endfor %}
+                            </li>
+                            
+                            <li><span>Email:</span> <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#contactModal">Enviar Mensagem</button></li>
                         </ul>
                     </div>
-                
-                    {% if usuario_logado %}
-                    <div class="project-details-form">
-                        <div class="title">
-                            <h3>Agendar visita</h3>
-                        </div>
-                        <form id="project-details-form" name="project-details_form" class="default-form2" action="{% url 'agendamento' id=imovel_venda.id %}" method="POST">
-                            {% csrf_token %}
-                            <div class="row">
-                                <div class="col-xl-12">
-                                    <div class="input-box"> 
-                                        <input type="text" name="nome" value="{{ usuario_logado.nome }}" placeholder="Nome" required readonly>
-                                    </div>
-                                </div>
-                                <div class="col-xl-12">
-                                    <div class="input-box"> 
-                                        <input type="text" name="sobrenome" value="{{ usuario_logado.sobrenome }}" placeholder="Sobrenome" required readonly>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-xl-12">
-                                    <div class="input-box"> 
-                                        <input type="email" name="email" value="{{ usuario_logado.email }}" placeholder="Email" required readonly>
-                                    </div>  
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-xl-12">
-                                    <div class="input-box">
-                                        <input type="text" name="telefone" value="{{ usuario_logado.telefone }}" placeholder="Telefone" readonly>
-                                    </div>  
-                                </div>
-                            </div>
-                        
-                            <div class="row">
-                                <div class="col-xl-12">
-                                    <div class="input-box"> 
-                                        <label for="data_visita">Escolha o dia</label>
-                                        <input type="date" name="data_visita" id="data_visita" required>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-xl-12">
-                                    <div class="input-box">
-                                        <select name="hora_visita" id="hora_visita" required>
-                                            <option value="">Selecione um horário</option>
-                                            {% for hora in horarios %}
-                                            <option value="{{ hora.id }}">{{ hora.hora }}</option>
-                                            {% endfor %}
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-xl-12">
-                                    <div class="input-box">
-                                        <textarea style="margin-top: 12px;" name="mensagem" placeholder="Digite sua mensagem..." required=""></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                        
-                            <div class="row">
-                                <div class="col-xl-12">
-                                    <div class="button-box">
-                                        <button style="margin-top: 12px;" class="btn-one" type="submit">
-                                            <span class="txt">Agendar</span>
-                                        </button> 
-                                    </div> 
-                                </div>
-                            </div>
-                        </form>
-                        
-                    </div> 
-                {% else %}
-                
-                 <div class="project-details-form">
-                        <div class="title">
-                            <h3>Agendar visita</h3>
-                        </div>
-                        <form id="project-details-form" name="project-details_form" class="default-form2" action="{% url 'agendamento' id=imovel_venda.id %}" method="POST">
-                            {% csrf_token %}
-                            <div class="row">
-                                <div class="col-xl-12">
-                                    <div class="input-box"> 
-                                        <input type="text" name="nome" placeholder="Nome" required>
-                                    </div>
-                                </div>
-                                <div class="col-xl-12">
-                                    <div class="input-box"> 
-                                        <input type="text" name="sobrenome" placeholder="Sobrenome" required>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-xl-12">
-                                    <div class="input-box"> 
-                                        <input type="email" name="email" placeholder="Email" required>
-                                    </div>  
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-xl-12">
-                                    <div class="input-box">
-                                        <input type="text" name="telefone" placeholder="Telefone">
-                                    </div>  
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-xl-12">
-                                    <div class="input-box"> 
-                                        <label for="data_visita">Escolha o dia</label>
-                                        <input type="date" name="data_visita" id="data_visita" required>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-xl-12">
-                                    <div class="input-box">
-                                        <select name="hora_visita" id="hora_visita" required>
-                                            
-                                            {% for hora in horarios %}
-                                            <option value="{{ hora.id }}">{{ hora.hora|time:"H:i" }}</option>
-
-                                            {% endfor %}
-                                        </select>
-                                        
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-xl-12">
-                                    <div class="input-box">
-                                        <textarea style="margin-top: 12px;" name="mensagem" placeholder="Digite sua mensagem..." required=""></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="row">
-                                <div class="col-xl-12">
-                                    <div class="button-box">
-                                        <button style="margin-top: 12px;" class="btn-one" type="submit">
-                                            <span class="txt">Enviar Agora</span>
-                                        </button> 
-                                    </div> 
-                                </div>
-                            </div>
-                        </form>
-                    </div> 
-                {% endif %}
-
-                </div>
-                
                 </div>
             </div>
+            
+            <!-- Modal de Contato -->
+            <div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="contactModalLabel">Escreva a sua mensagem</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        {% if usuario_logado and usuario_logado.id %}
+                        <div class="modal-body">
+                            <form method="POST" action="/enviar-mensagem/">
+                                {% csrf_token %}
+                                <div class="mb-3">
+                                    <label class="form-label">O teu Nome*</label>
+                                    <input readonly type="text" class="form-control" name="nome" required value="{{ usuario_logado.nome }}">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">O teu Número de Telemóvel*</label>
+                                    <input readonly type="tel" class="form-control" name="telefone" required value="{{ usuario_logado.telefone }}">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">O teu Email*</label>
+                                    <input readonly type="email" class="form-control" name="email" required value="{{ usuario_logado.email }}">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Mensagem*</label>
+                                    <textarea class="form-control" name="mensagem" rows="4" required>Estou interessado/a em obter mais informações sobre o anúncio "{{ imovel_venda.tipo }} em {{ imovel_venda.endereco }}". Por favor, entre em contacto.</textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Enviar</button>
+                            </form>
+                        </div>
+                        {% else %}
+                        <div class="modal-body">
+                            <form method="POST" action="/enviar-mensagem/">
+                                {% csrf_token %}
+                                <div class="mb-3">
+                                    <label class="form-label">O teu Nome*</label>
+                                    <input type="text" class="form-control" name="nome" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">O teu Número de Telemóvel*</label>
+                                    <input type="tel" class="form-control" name="telefone" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">O teu Email*</label>
+                                    <input type="email" class="form-control" name="email" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Mensagem*</label>
+                                    <textarea class="form-control" name="mensagem" rows="4" required>Estou interessado/a em obter mais informações sobre o anúncio "{{ imovel_venda.tipo }} em {{ imovel_venda.endereco }}". Por favor, entre em contacto.</textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Enviar</button>
+                            </form>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            
             
 
         </div>
     </div>
 </section>
+
 <!--End Project Details Area-->
 
 

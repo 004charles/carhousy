@@ -1,0 +1,204 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Carhousy | Publicados</title>
+
+	<!-- responsive meta -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- For IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Google Fonts -->
+    {% include 'includes/link_header.html' %}
+
+    <!-- Fixing Internet Explorer-->
+    <!--[if lt IE 9]>
+        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <script src="assets/js/html5shiv.js"></script>
+    <![endif]-->
+    
+</head>
+
+<body>
+
+<div class="boxed_wrapper ltr">
+
+<!-- Preloader -->
+<div class="loader-wrap">
+    <div class="preloader"><div class="preloader-close">cancelar</div></div>
+    <div class="layer layer-one"><span class="overlay"></span></div>
+    <div class="layer layer-two"><span class="overlay"></span></div>        
+    <div class="layer layer-three"><span class="overlay"></span></div>        
+</div>
+
+<!-- page-direction -->
+<div class="page_direction">
+    <div class="demo-rtl direction_switch"><button class="rtl">RTL</button></div>
+    <div class="demo-ltr direction_switch"><button class="ltr">LTR</button></div>
+</div>
+<!-- page-direction end -->
+
+<!-- switcher menu -->
+
+<!-- end switcher menu --> 
+
+
+<!-- Main header-->
+<header class="main-header header-style-one">
+    {% include 'includes/header.html' %}
+</header>
+
+
+<!--Start breadcrumb area paroller-->     
+<section class="breadcrumb-area">
+    <div class="breadcrumb-area-bg" style="background-image: url('{% static 'assets/images/pexels-pixabay-280229 (1).jpg' %}');"></div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="inner-content">
+                    <div class="title">
+                       <h2>imovies Publicados</h2>
+                    </div>
+                    <div class="breadcrumb-menu">
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li><i class="fa fa-angle-right" aria-hidden="true"></i></li>
+                            <li class="active">imovies Publicados</li>
+                        </ul>    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--End breadcrumb area-->
+
+
+<!--Start Project Form Area-->
+<section class="project-form-area">
+    <div class="shape1" data-aos="fade-right" data-aos-easing="linear" data-aos-duration="5000">
+        <img class="float-bob" src="assets/images/shape/key-2.png" alt="">
+    </div>
+    <div class="container">
+        <div class="row text-right-rtl">
+            <div class="col-xl-12">
+                <div class="project-form-box clearfix">
+
+                    <form id="project-form" name="project_form" class="default-form1 clearfix" action="projects.html#" method="post">
+
+                        <div class="single-box">
+                            <div class="inner clearfix">
+                                <h5>Status do imovel</h5>
+                                <div class="select-box">
+                                    <select name="status_imovel" class="wide">
+                                       <option value="aluguel">aluguel</option>
+                                       <option value="Venda">Venda</option>
+                                       <option value="todos">Todos</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="single-box">
+                            <div class="inner clearfix">
+                                <h5>Tipo de imovel</h5>
+                                <div class="select-box">
+                                    <select name="tipo_imovel" class="wide">
+                                       <option value="apartamento">apartamento</option>
+                                       <option value="casa">casa</option>
+                                       <option value="terreno">terreno</option>
+                                       <option value="escritorio">Escritório</option>
+                                       <option value="comercial">comercial</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="single-box">
+                            <div class="inner clearfix">
+                                <h5>Orçamento</h5>
+                                <div class="select-box">
+                                    <input type="text" name="orcamento_imovel" placeholder="10000">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="single-box">
+                            <div class="inner clearfix">
+                                <h5>Localização</h5>
+                                <div class="select-box">
+                                    <input type="text" name="localizacao_imovel" placeholder="Benfica">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="single-box button-box">
+                            <div class="inner clearfix">
+                                <button class="btn-one" type="submit" data-loading-text="Aguarde...">
+                                    <span class="txt">Pesquisar</span>
+                                </button>     
+                            </div>
+                        </div> 
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--End Project Form Area-->
+
+
+<!--Start Project Page One-->
+<section class="project-page-one">
+    <div class="shape1 wow slideInRight" data-wow-delay="400ms" data-wow-duration="6500ms">
+        <img src="assets/images/shape/shape-round-5.png" alt="">
+    </div>
+    <div class="container">
+        <div class="row text-right-rtl">
+            {% for imoveis_publicado in  imoveis_publicados %}
+            <div class="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="00ms" data-wow-duration="1500ms">
+                    <div class="project-block">
+                        <div class="img-holder">
+                            <div class="inner">
+                                <img src="{% if casa_venda.imagem %}{{ casa_venda.imagem.url }}{% else %}{% static 'assets/images/default/default.jpg' %}{% endif %}" alt="Imagem do imóvel">
+                            </div>
+                        </div>
+                        <div class="text-holder">
+                            <h3><a href="{% url 'detalhe_projecto' id=imoveis_publicado.id %}">{{imoveis_publicado.titulo}}</a></h3>
+                            <p>{{imoveis_publicado.endereco}}</p>
+                            <ul>
+                                <li><span>Tipo:</span>{{imoveis_publicado.tipo}}</li>
+                                <li><span>Status:</span>{{imoveis_publicado.status}}</li>
+                                <li><span>Area:</span>{{imoveis_publicado.area}}m²</li>
+                            </ul>
+                        </div>
+                    </div>
+            </div>
+            {% endfor %}
+
+            <!--End project block-->
+            <!--Start project block-->
+            
+            <!--End project block-->
+        </div>
+
+        <div class="row">
+            <div class="col-xl-12">
+                <ul class="styled-pagination clearfix">
+                    <li class="arrow prev"><a href="projects.html#"><span class="icon-right-arrow-1 left"></span></a></li>
+                    <li class="active"><a href="projects.html#">1</a></li>
+                    <li><a href="projects.html#">2</a></li>
+                    <li class="arrow next"><a href="projects.html#"><span class="icon-right-arrow-1 right"></span></a></li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</section>
+<!--End Project Page One-->
+
+{% include 'includes/footer.html' %}
+
+
+</body>
+</html>

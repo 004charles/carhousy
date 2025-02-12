@@ -1,6 +1,6 @@
 from django.db import models
-from django.db import models
 from django.core.exceptions import ValidationError
+
 
 class Usuario(models.Model):
     nome = models.CharField(max_length=255)
@@ -36,6 +36,8 @@ class ImagemAdicional(models.Model):
 
 # Model para representar os imóveis
 class Imovel(models.Model):
+    def default_image_path():
+        return 'assets/images/default/default.jpg'
     TIPO_IMOVEL = [
         ('casa', 'Casa'),
         ('apartamento', 'Apartamento'),
@@ -50,17 +52,20 @@ class Imovel(models.Model):
         ('indisponivel', 'Indisponível'),
     ]
     
-    titulo = models.CharField(max_length=255, verbose_name="Título", blank=True, null=True)
+    titulo = models.CharField(max_length=255, verbose_name="Título", blank=True, null=True, default=default_image_path)
     imagem = models.ImageField(upload_to='imoveis/', verbose_name="Imagem Principal do Imóvel", blank=True, null=True)
     endereco = models.CharField(max_length=255)
-    preco = models.DecimalField(max_digits=10, decimal_places=2)
+    preco = models.DecimalField(max_digits=255, decimal_places=2)
     tipo = models.CharField(max_length=20, choices=TIPO_IMOVEL)
     descricao = models.TextField()
-    area = models.DecimalField(max_digits=6, decimal_places=2, help_text="Área total do imóvel em metros quadrados")
+    area = models.DecimalField(max_digits=255, decimal_places=2, help_text="Área total do imóvel em metros quadrados", default=0)
+    apresentar = models.BooleanField(default=False, verbose_name="Apresentar na Home")
+    destaque = models.BooleanField(default=False, verbose_name="Destacar Imóvel")
+
     
-    quartos = models.IntegerField(blank=True, null=True)
-    banheiros = models.IntegerField(blank=True, null=True)
-    vagas_garagem = models.IntegerField(blank=True, null=True)
+    quartos = models.IntegerField(blank=True, null=True, default=0)
+    banheiros = models.IntegerField(blank=True, null=True, default=0)
+    vagas_garagem = models.IntegerField(blank=True, null=True, default=0)
     
     data_publicacao = models.DateTimeField(auto_now_add=True)
     status = models.CharField(max_length=40, choices=STATUS_IMOVEL)
@@ -76,7 +81,8 @@ class Imovel(models.Model):
     corretores = models.ManyToManyField(
         'Usuario', 
         limit_choices_to={'tipo_usuario': 'corretor'},
-        related_name='imoveis'
+        related_name='imoveis', null=True, 
+        blank=True,
     )
     
     video = models.URLField(max_length=500, blank=True, null=True, verbose_name="URL do vídeo")
@@ -86,8 +92,22 @@ class Imovel(models.Model):
         blank=True,
         related_name='imoveis'
     )
+
+    # Adicionando os dados do anunciante diretamente na model
+    nome_anunciante = models.CharField(max_length=255, blank=False, null=False, verbose_name="Nome do Anunciante")
+    email_anunciante = models.EmailField( blank=False, null=False, verbose_name="E-mail do Anunciante")
+    telefone_anunciante = models.CharField(max_length=20,  blank=False, null=False, verbose_name="Telefone do Anunciante")
     
     def clean(self):
+        # Se os campos estiverem vazios, trate como None
+        if self.quartos == '':
+            self.quartos = None
+        if self.banheiros == '':
+            self.banheiros = None
+        if self.vagas_garagem == '':
+            self.vagas_garagem = None
+
+        # Lógica de validação para Escritórios
         if self.tipo == 'escritorio':
             if self.quartos is not None and self.quartos > 0:
                 raise ValidationError({'quartos': 'Escritórios não podem ter quartos.'})
@@ -102,8 +122,6 @@ class Imovel(models.Model):
     def save(self, *args, **kwargs):
         self.clean()
         super().save(*args, **kwargs)
-
-
 
 # Model para galeria de imagens de imóveis
 class GaleriaImovel(models.Model):
@@ -123,33 +141,36 @@ class DadosAdicionais(models.Model):
     imovel = models.OneToOneField(
         Imovel,
         on_delete=models.CASCADE,
-        related_name="dados"  # Relacionamento reverso
+        related_name="dados"
     )
+    
+    # Campos já existentes
     exterior_varanda = models.BooleanField(default=False)
     exterior_piscina_coletiva = models.BooleanField(default=False)
     exterior_estacionamento_privativo = models.BooleanField(default=False)
     exterior_churrasqueira = models.BooleanField(default=False)
     exterior_campos_polidesportivos = models.BooleanField(default=False)
 
-    interior_suites = models.IntegerField(default=0)  # Número de suítes
+    interior_suites = models.IntegerField(default=0)
     interior_roupeiros_embutidos = models.BooleanField(default=False)
     interior_cozinha_equipada = models.BooleanField(default=False)
     interior_ar_condicionado = models.BooleanField(default=False)
 
-    segurança_24h = models.BooleanField(default=False)
+    seguranca_24h = models.BooleanField(default=False)  # Corrigido para evitar erro
     reservatorio_agua = models.BooleanField(default=False)
-    ginásio = models.BooleanField(default=False)
+    ginasio = models.BooleanField(default=False)  # Corrigido para evitar erro
     gerador = models.BooleanField(default=False)
-    area_servico = models.BooleanField(default=False)  # Área de serviço/lavandaria
+    area_servico = models.BooleanField(default=False)
+
+    # Campos que estavam faltando
+    mobilado = models.CharField(max_length=10, choices=[('sim', 'Sim'), ('nao', 'Não')], default='nao')
+    interior_internet = models.BooleanField(default=False)
+    interior_jacuzzi = models.BooleanField(default=False)
+    interior_maquina_roupa = models.BooleanField(default=False)
+    interior_maquina_louca = models.BooleanField(default=False)
 
     def __str__(self):
         return f"Dados adicionais de {self.imovel.tipo.title()} - {self.imovel.endereco}"
-
-
-class GaleriaImovel(models.Model):
-    imovel = models.ForeignKey('Imovel', on_delete=models.CASCADE, related_name='galeria')
-    imagem = models.ImageField(upload_to='imoveis/galeria/')
-    descricao = models.CharField(max_length=255, blank=True, null=True)
 
 
 
@@ -366,3 +387,13 @@ class HoraAgendamento(models.Model):
 
     def __str__(self):
         return str(self.hora)
+    
+class Depoimentos(models.Model):
+    nome = models.CharField(max_length=255, verbose_name="Nome", blank=True, null=True)
+    descricao = models.TextField()
+    apresentar = models.BooleanField(default=False, verbose_name="Apresentar na Home")
+    data_cadastro = models.DateTimeField(auto_now_add=True)
+    imagem = models.ImageField(upload_to='depoimentos/', verbose_name="Imagem", blank=True, null=True)
+    
+    def __str__(self):
+        return f"{self.nome} {self.data_cadastro}"

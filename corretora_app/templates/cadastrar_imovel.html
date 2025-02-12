@@ -1,0 +1,392 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro de Imóvel</title>
+
+    <!-- responsive meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    {% include 'includes/link_header.html' %}
+    
+    <style>
+        .form-container {
+            margin-top: 50px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .form-container h2 {
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .form-group input[type="file"] {
+            padding: 0;
+        }
+        .form-group .form-check {
+            margin-top: 10px;
+        }
+        .btn-submit {
+            position: relative;
+            z-index: 1;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .btn-submit:hover {
+            background-color: #45a049;
+        }
+
+        /* Custom styles for the alert message */
+        .alert-message {
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .alert-success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .alert-error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        /* Hide fields by default */
+        .hidden {
+            display: none;
+        }
+
+        .dropdown-container ,input, select, textarea {
+    position: relative;
+    z-index: 1;
+}
+
+    </style>
+</head>
+
+<body>
+    
+
+<div class="boxed_wrapper ltr">
+
+    <header class="main-header header-style-one">
+        {% include 'includes/header.html' %}
+    </header>
+
+    <section class="breadcrumb-area">
+        <div class="breadcrumb-area-bg" style="background-image: url('{% static 'assets/images/pexels-pixabay-280229 (1).jpg' %}');"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="inner-content">
+                        <div class="title">
+                            <h2>Cadastro de Imóvel</h2>
+                        </div>
+                        <div class="breadcrumb-menu">
+                            <ul>
+                                <li><a href="{% url 'home' %}">Home</a></li>
+                                <li><i class="fa fa-angle-right" aria-hidden="true"></i></li>
+                                <li class="active">Cadastro de Imóvel</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="form-section">
+        <div class="container">
+            <div class="form-container">
+                <!-- Exibir mensagens de sucesso ou erro -->
+                {% if messages %}
+                    <div class="alert-message">
+                        {% for message in messages %}
+                            <div class="alert-{{ message.tags }}">
+                                <p>{{ message }}</p>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+                <h2>Cadastro de Imóvel</h2>
+
+                <form action="{% url 'cadastro_imovel' %}" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    
+                    <div style="display: flex;" class="form-group">
+                        <div style="width: 50%; margin: 10px;">
+                            <label for="titulo">Título</label>
+                            <input type="text" id="titulo" name="titulo" required>
+                        </div>
+                        <div style="width: 50%; margin: 10px;">
+                            <label for="endereco">Endereço</label>
+                            <input type="text" id="endereco" name="endereco" required>
+                        </div>
+                    </div>
+                
+                    <div style="display: flex;" class="form-group">
+                        <div style="display: flex; width: 50%;">
+                            <div style="margin-right: 20px;">
+                                <label for="tipo_imovel">Tipo de Imóvel</label>
+                                <select class="wide" id="tipo_imovel" name="tipo" required onchange="toggleFields()">
+                                    <option value="casa">Casa</option>
+                                    <option value="apartamento">Apartamento</option>
+                                    <option value="terreno">Terreno</option>
+                                    <option value="comercial">Comercial</option>
+                                    <option value="escritorio">Escritório</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="tipo_operacao">Tipo de Operação</label>
+                                <select id="tipo_operacao" name="status" class="wide" required>
+                                    <option value="aluguel">Aluguel</option>
+                                    <option value="venda">Venda</option>>
+                                 </select>
+                            </div>
+                        </div>
+                        <div style="width: 50%; margin: 10px;">
+                            <label for="preco">Preço</label>
+                            <input type="number" id="preco" name="preco" step="0.01" required>
+                        </div>
+                    </div>
+                
+                    <div class="form-group">
+                        <label for="descricao">Descrição</label>
+                        <textarea id="descricao" name="descricao" rows="4" required></textarea>
+                    </div>
+                
+                    <div style="display: flex;" class="form-group">
+                        <div style="margin: 10px;">
+                            <label  for="area">Área (m²)</label>
+                            <input type="number" id="area" name="area">
+                        </div>
+                        <div style="margin: 10px;">
+                            <label for="quartos">Quartos</label>
+                            <input type="number" id="quartos" name="quartos">
+                        </div>
+                        <div style="margin: 10px;">
+                            <label for="banheiros">Banheiros</label>
+                            <input type="number" id="banheiros" name="banheiros">
+                        </div>
+                        <div style="margin: 10px;">
+                            <label for="vagas_garagem">Vagas de Garagem</label>
+                            <input type="number" id="vagas_garagem" name="vagas_garagem">
+                        </div>
+                    </div>
+                
+                    <div class="form-group">
+                        <button style="color: inherit;" class="dropdown-container" type="button" onclick="openImageModal()"><strong>Carregar Fotos</strong></button>
+                
+                        <!-- Modal de Upload de Imagens -->
+                        <div id="imageModal" class="modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5);">
+                            <div class="modal-content" style="background: white; padding: 20px; max-width: 600px; margin: 50px auto; position: relative;">
+                                <span class="close" onclick="closeImageModal()" style="position: absolute; top: 10px; right: 15px; cursor: pointer;">&times;</span>
+                                <h2>Introduza aqui as fotos do seu imóvel</h2>
+                                <p>Para melhores resultados, envie fotos de alta resolução. Sugerimos até 6 fotos.</p>
+                                <p>Nota: O tamanho ideal para as fotos é de 900x675 píxeis.</p>
+                                
+                                <label for="imagem_principal">Imagem Principal</label>
+                                <input type="file" id="imagem_principal" name="imagem_principal" accept="image/*" required>
+                                
+                                <label for="imagens_secundarias">Imagens Secundárias (máx: 6)</label>
+                                <input type="file" id="imagens_secundarias" name="imagens_secundarias" accept="image/*" multiple>
+                                
+                                <button type="button" onclick="closeImageModal()">Concluir</button>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="form-group">
+                        <label for="url_video">URL do Vídeo</label>
+                        <input type="url" id="url_video" name="url_video">
+                    </div>
+                
+                    <div id="mobiliado" class="dropdown-container">
+                        <button type="button" onclick="toggleDropdown('mobiladoSection')">Mobiliado?</button>
+                        <fieldset id="mobiladoSection" style="display: none;">
+                            <legend>Mobiliado?</legend>
+                            <label><input type="radio" name="mobilado" value="nao"> Não</label>
+                            <label><input type="radio" name="mobilado" value="parcialmente"> Parcialmente</label>
+                            <label><input type="radio" name="mobilado" value="sim"> Sim</label>
+                        </fieldset>
+                    </div>
+                
+                    <div id="interior" class="dropdown-container">
+                        <button type="button" onclick="toggleDropdown('comodidades_interior')">Interior</button>
+                        <fieldset id="comodidades_interior" style="display: none;">
+                            <legend>Interior</legend>
+                            <label><input type="checkbox" name="ar_condicionado"> Ar condicionado</label>
+                            <label><input type="checkbox" name="cozinha_equipada"> Cozinha equipada</label>
+                            <label><input type="checkbox" name="internet"> Internet</label>
+                            <label><input type="checkbox" name="jacuzzi"> Jacuzzi</label>
+                            <label><input type="checkbox" name="maquina_roupa"> Máquina de lavar roupa</label>
+                            <label><input type="checkbox" name="maquina_louca"> Máquina de lavar louça</label>
+                            <label><input type="checkbox" name="roupeiros_embutidos"> Roupeiros embutidos</label>
+                        </fieldset>
+                    </div>
+                
+                    <div id="exterior" class="dropdown-container">
+                        <button type="button" onclick="toggleDropdown('comodidades_exterior')">Exterior</button>
+                        <fieldset id="comodidades_exterior" style="display: none;">
+                            <legend>Exterior</legend>
+                            <label><input type="checkbox" name="varanda"> Varanda</label>
+                            <label><input type="checkbox" name="piscina_coletiva"> Piscina coletiva</label>
+                            <label><input type="checkbox" name="estacionamento_privativo"> Estacionamento privativo</label>
+                            <label><input type="checkbox" name="churrasqueira"> Churrasqueira</label>
+                            <label><input type="checkbox" name="campos_polidesportivos"> Campos polidesportivos</label>
+                        </fieldset>
+                    </div>
+                
+                    <br>
+                    <div class="form-group">
+                        {% if usuario_logado and usuario_logado.id %}
+                        <h5 style="color: inherit; display: none;">Dados do Anunciante</h5>
+                        <div style="display: none;">
+                            <div style="margin: 10px;">
+                                <label for="nome_anunciante">Nome</label>
+                                <input readonly type="text" id="nome_anunciante" name="nome_anunciante" value="{{ usuario_logado.nome }}">
+                            </div>
+                            <div style="margin: 10px;">
+                                <label for="email_anunciante">Email</label>
+                                <input readonly type="email" id="email_anunciante" name="email_anunciante" value="{{ usuario_logado.email }}">
+                            </div>
+                            <div style="margin: 10px;">
+                                <label for="telefone_anunciante">Telefone</label>
+                                <input readonly type="tel" id="telefone_anunciante" name="telefone_anunciante" value="{{ usuario_logado.telefone }}">
+                            </div>
+                        </div>
+                        {% else %}
+                        <h5 style="color: inherit;">Dados do Anunciante</h5>
+                        <div style="display: flex;">
+                            <div style="margin: 10px;">
+                                <label for="nome_anunciante">Nome</label>
+                                <input type="text" id="nome_anunciante" name="nome_anunciante" placeholder="Seu Nome" required>
+                            </div>
+                            <div style="margin: 10px;">
+                                <label for="email_anunciante">Email</label>
+                                <input type="email" id="email_anunciante" name="email_anunciante" placeholder="seuemail@email.com" required>
+                            </div>
+                            <div style="margin: 10px;">
+                                <label for="telefone_anunciante">Telefone</label>
+                                <input type="tel" id="telefone_anunciante" name="telefone_anunciante" placeholder="(xx) xxxxx-xxxx" required>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                
+                    <button type="submit" class="btn-submit">Cadastrar Imóvel</button>
+                </form>
+                
+                <script>
+                    function toggleDropdown(sectionId) {
+                        var section = document.getElementById(sectionId);
+                        if (section.style.display === "none") {
+                            section.style.display = "block";
+                        } else {
+                            section.style.display = "none";
+                        }
+                    }
+                </script>
+                
+            </div>
+        </div>
+    </section>
+
+</div>
+
+{% include 'includes/footer.html' %}
+
+<script>
+function toggleFields() {
+    const tipoImovel = document.getElementById('tipo_imovel').value;
+    
+    // Seleciona os elementos `div` que contêm os campos
+    const areaField = document.getElementById('area').closest('div');
+    const quartosField = document.getElementById('quartos').closest('div');
+    const banheirosField = document.getElementById('banheiros').closest('div');
+    const vagasGaragemField = document.getElementById('vagas_garagem').closest('div'); 
+
+    const mobiladoField = document.getElementById('mobiladoSection').closest('div');
+    const interiorField = document.getElementById('comodidades_interior').closest('div');
+    const exteriorField = document.getElementById('comodidades_exterior').closest('div');
+
+    if (tipoImovel === 'escritorio') {
+        // Escritório: esconde quartos, banheiros e garagem
+        quartosField.classList.add('hidden');
+
+        mobiladoField.classList.remove('hidden');
+        interiorField.classList.remove('hidden');
+        exteriorField.classList.remove('hidden');
+ 
+    } else if (tipoImovel === 'terreno') {
+        // Terreno: esconde banheiros, garagem e quartos
+        quartosField.classList.add('hidden');
+        banheirosField.classList.add('hidden');
+        vagasGaragemField.classList.add('hidden');
+        areaField.classList.remove('hidden');
+
+        mobiladoField.classList.add('hidden');
+        interiorField.classList.add('hidden');
+        exteriorField.classList.add('hidden');
+    } else {
+        // Para os outros tipos, exibe todos os campos
+        quartosField.classList.remove('hidden');
+        banheirosField.classList.remove('hidden');
+        vagasGaragemField.classList.remove('hidden');
+        areaField.classList.remove('hidden');
+
+        mobiladoField.classList.remove('hidden');
+        interiorField.classList.remove('hidden');
+        exteriorField.classList.remove('hidden');
+    }
+}
+
+// Executa ao carregar a página
+window.onload = toggleFields;
+
+</script>
+
+
+<script>
+    function openImageModal() {
+        document.getElementById("imageModal").style.display = "block";
+    }
+    
+    function closeImageModal() {
+        document.getElementById("imageModal").style.display = "none";
+    }
+    
+    function organizarFotos() {
+        let galeria = document.getElementById("galeria");
+        galeria.innerHTML = "<p>Organize as fotos com as setas para cima / para baixo.</p>";
+        // Lógica para organização das imagens
+    }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,133 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Carhousy | Servicos</title>
+    
+        <!-- responsive meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- For IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    {% include 'includes/link_header.html' %}
+        
+</head>
+
+<body>
+
+<div class="boxed_wrapper ltr">
+
+<!-- Preloader -->
+<div class="loader-wrap">
+    <div class="preloader"><div class="preloader-close">Cancelar</div></div>
+    <div class="layer layer-one"><span class="overlay"></span></div>
+    <div class="layer layer-two"><span class="overlay"></span></div>        
+    <div class="layer layer-three"><span class="overlay"></span></div>        
+</div>
+
+<!-- page-direction -->
+<div class="page_direction">
+    <div class="demo-rtl direction_switch"><button class="rtl">RTL</button></div>
+    <div class="demo-ltr direction_switch"><button class="ltr">LTR</button></div>
+</div>
+<!-- page-direction end -->
+
+
+<header class="main-header header-style-one">
+    {% include 'includes/header.html' %}
+</header>
+
+
+
+<!--Start breadcrumb area paroller-->     
+<section class="breadcrumb-area">
+    <div class="breadcrumb-area-bg" style="background-image: url('{% static 'assets/images/pexels-pixabay-280229 (1).jpg' %}');"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="inner-content">
+                    <div class="title">
+                       <h2>Elements</h2>
+                    </div>
+                    <div class="breadcrumb-menu">
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li><i class="fa fa-angle-right" aria-hidden="true"></i></li>
+                            <li class="active">Service Block 01</li>
+                        </ul>    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--End breadcrumb area-->
+
+<!--Start Service Style1 Area-->
+<section class="service-style1-area">
+    <div class="round-shape wow slideInLeft" data-wow-delay="100ms" data-wow-duration="5500ms">
+        <img class="zoom-fade" src="{% static 'assets/images/shape/shape-round.png' %}" alt="">
+    </div>
+    <div class="container">
+        <div class="row">
+            <!--Start Single Service Style1-->
+            <div class="col-6 col-md-6 col-xl-3 wow fadeInUp" data-wow-delay="00ms" data-wow-duration="1500ms">
+                <div class="single-service-style1 single-service-style1--instyle2 text-center">
+                    <div class="icon-holder">
+                        <img src="{% static 'assets/images/icon/services/service-v1-1.png' %}" alt="">
+                    </div>
+                    <div class="title-holder">
+                        <h3><a href="{% url 'house_buy' %}">À venda</a></h3>
+                        
+                    </div>
+                </div>
+            </div> 
+            <!--End Single Service Style1-->
+            <!--Start Single Service Style1-->
+            <div class="col-6 col-md-6 col-xl-3 wow fadeInUp" data-wow-delay="200ms" data-wow-duration="1500ms">
+                <div class="single-service-style1 active single-service-style1--instyle2 text-center">
+                    <div class="icon-holder">
+                        <img src="{% static 'assets/images/icon/services/service-v1-2.png' %}" alt="">
+                    </div>
+                    <div class="title-holder">
+                        <h3><a href="{% url 'house_buy' %}">Terrenos</a></h3>
+                        
+                    </div>
+                </div>
+            </div> 
+            <!--End Single Service Style1-->
+            <!--Start Single Service Style1-->
+            <div class="col-6 col-md-6 col-xl-3 wow fadeInUp" data-wow-delay="00ms" data-wow-duration="1500ms">
+                <div class="single-service-style1 single-service-style1--instyle2 text-center">
+                    <div class="icon-holder">
+                        <img src="{% static 'assets/images/icon/services/service-v1-3.png' %}" alt="">
+                    </div>
+                    <div class="title-holder">
+                        <h3><a href="{% url 'house_buy' %}">Comercial</a></h3>
+                        
+                    </div>
+                </div>
+            </div> 
+            <!--End Single Service Style1-->
+            <!--Start Single Service Style1-->
+            <div class="col-6 col-md-6 col-xl-3 wow fadeInUp" data-wow-delay="300ms" data-wow-duration="1500ms">
+                <div class="single-service-style1 single-service-style1--instyle2 text-center">
+                    <div class="icon-holder">
+                        <img src="{% static 'assets/images/icon/services/service-v1-4.png' %}" alt="">
+                    </div>
+                    <div class="title-holder">
+                        <h3><a href="{% url 'house_buy' %}">Para alugar</a></h3>
+                        
+                    </div>
+                </div>
+            </div> 
+            <!--End Single Service Style1-->
+        </div>
+    </div>
+</section>
+<!--End Service Style1 Area-->
+ 
+{% include 'includes/footer.html' %} 
+
+</body>
+</html>

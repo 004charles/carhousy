@@ -103,7 +103,7 @@
                             <p>Seu lar, nossa prioridade.</p>
                         </div>
                         <div class="btns-box">
-                            <a class="btn-one" href="contact.html">
+                            <a class="btn-one" href="#contacto">
                                 <span class="txt">Contate-nos</span>
                             </a>
                         </div>
@@ -122,111 +122,46 @@
 </section>
 <!-- End Main Slider -->
 
+{% if imoveis_detaque %}
 <section id="projects" class="project-style2-area one-page-scrool rspdtop150">
     <div class="container">
         <div class="sec-title text-center">
             <div class="sub-title">
-                <p>imoveis</p>
+                <p>Imóveis</p>
             </div>
-            <h2 >Imóveis em Destaque </h2>
+            <h2>Imóveis em Destaque</h2>
         </div>
         <div class="row text-right-rtl">
-            <!--Início do Item de Projeto Único-->
+            {% for imovel in imoveis_detaque %}
             <div class="col-xl-6 col-lg-6">
                 <div class="single-project-item">
                     <div class="img-holder">
                         <div class="inner">
-                            <img src="{% static 'assets/images/pexels-itsterrymag-2635038.jpg' %}" alt="Imagem Incrível">
+                            <img src="{% if imovel.imagem %}{{ imovel.imagem.url }}{% else %}{% static 'assets/images/default/default.jpg' %}{% endif %}" alt="{{ imovel.titulo }}">
                             <div class="zoom-button">
-                                <a class="lightbox-image" data-fancybox="gallery" href="{% static 'assets/images/portfolio/project-v2-1.jpg' %}">
+                                <a class="lightbox-image" data-fancybox="gallery" href="{% if imovel.imagem %}{{ imovel.imagem.url }}{% else %}{% static 'assets/images/default/default.jpg' %}{% endif %}">
                                     <i class="flaticon-plus"></i>
                                 </a>
                             </div>
                         </div>
-                    </div> 
+                    </div>
                     <div class="text-holder">
-                        <h4><a href="project-details.html">Características do Projeto Residencial</a></h4>
+                        <h4><a href="{% url 'detalhe_projecto' id=imovel.id %}">{{ imovel.titulo }}</a></h4>
                         <div class="category">
                             <div class="border-box"></div>
-                            <p>Destaque</p>
+                            <p>{{ imovel.tipo|title }} - Destaque</p>
                         </div>
-                    </div>   
+                    </div>
                 </div>
             </div>
-            <!--Fim do Item de Projeto Único-->
-            <!--Início do Item de Projeto Único-->
-            <div class="col-xl-6 col-lg-6">
-                <div class="single-project-item">
-                    <div class="img-holder">
-                        <div class="inner">
-                            <img src="{% static 'assets/images/pexels-itsterrymag-2635038.jpg' %}" alt="Imagem Incrível">
-                            <div class="zoom-button">
-                                <a class="lightbox-image" data-fancybox="gallery" href="{% static 'assets/images/portfolio/project-v2-2.jpg' %}">
-                                    <i class="flaticon-plus"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div> 
-                    <div class="text-holder">
-                        <h4><a href="project-details.html">Apartamento Moderno e Ensolarado</a></h4>
-                        <div class="category">
-                            <div class="border-box"></div>
-                            <p>Destaque</p>
-                        </div>
-                    </div>   
-                </div>
-            </div>
-            <!--Fim do Item de Projeto Único-->
-            <!--Início do Item de Projeto Único-->
-            <div class="col-xl-6 col-lg-6">
-                <div class="single-project-item">
-                    <div class="img-holder">
-                        <div class="inner">
-                            <img src="{% static 'assets/images/pexels-pixabay-276724 (1).jpg' %}" alt="Imagem Incrível">
-                            <div class="zoom-button">
-                                <a class="lightbox-image" data-fancybox="gallery" href="{% static 'assets/images/portfolio/project-v2-3.jpg' %}">
-                                    <i class="flaticon-plus"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div> 
-                    <div class="text-holder">
-                        <h4><a href="project-details.html">Apartamento de Luxo no The Quay</a></h4>
-                        <div class="category">
-                            <div class="border-box"></div>
-                            <p>Destaque</p>
-                        </div>
-                    </div>   
-                </div>
-            </div>
-            <!--Fim do Item de Projeto Único-->
-            <!--Início do Item de Projeto Único-->
-            <div class="col-xl-6 col-lg-6">
-                <div class="single-project-item">
-                    <div class="img-holder">
-                        <div class="inner">
-                            <img src="{% static 'assets/images/pexels-pixabay-276724 (1).jpg' %}" alt="Imagem Incrível">
-                            <div class="zoom-button">
-                                <a class="lightbox-image" data-fancybox="gallery" href="{% static 'assets/images/portfolio/project-v2-4.jpg' %}">
-                                    <i class="flaticon-plus"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div> 
-                    <div class="text-holder">
-                        <h4><a href="project-details.html">Edifício de Tijolos Clássico</a></h4>
-                        <div class="category">
-                            <div class="border-box"></div>
-                            <p>Destaque</p>
-                        </div>
-                    </div>   
-                </div>
-            </div>
-            <!--Fim do Item de Projeto Único-->
-         
+            {% endfor %}
         </div>
     </div>
 </section>
+{% else %}
+        <p style="text-align: center; margin-bottom: 60px;">Nenhum imovel em destaque</p>
+{% endif %}
+
 
 {% if video_home %}
     <section class="video-gallery-style1">
@@ -235,7 +170,7 @@
                 <div class="video-gallery-img">
                     <video class="background-video" muted loop autoplay preload="auto">
                         <source src="{{ video_home.video.url }}" type="video/mp4">
-                        Seu navegador não suporta vídeos em HTML5.
+                        Seu navegador não suporta vídeos.
                     </video>
                     <div class="video-text-overlay">
                         <h1>{{ video_home.titulo }}</h1>
@@ -252,7 +187,7 @@
             <div class="video-gallery-img">
                 <video class="background-video" muted loop autoplay preload="auto">
                     <source src="{% static 'assets/images/video.mp4' %}" type="video/mp4">
-                    Seu navegador não suporta vídeos em HTML5.
+                    Seu navegador não suporta vídeos.
                 </video>
                 <div class="video-text-overlay">
                     <h1>🏡 Encontre o imóvel dos seus sonhos!</h1>
@@ -305,7 +240,7 @@
 </style>
 
 
-<section class="features-style1-area">
+<section id="servico" class="features-style1-area">
     <div class="gradient-bg"></div>
     <div class="shape1 wow slideInRight" data-wow-delay="400ms" data-wow-duration="6500ms">
         <img src="{% static 'assets/images/shape/shape-round-2.png' %}" alt="">
@@ -315,7 +250,7 @@
             <div class="sub-title">
                 <p>Serviços Exclusivos para Investidores</p>
             </div>
-            <h2>Características da Corretora</h2>
+            <h2>Características da Carhousy</h2>
         </div>
         <div class="row">
             <!--Início de Recurso Único Estilo1-->
@@ -325,7 +260,7 @@
                         <img src="{% static 'assets/images/icon/features/features-1.png' %}" alt="">
                     </div>
                     <div class="text">
-                        <h4><a href="index.html#">Consultoria Personalizada</a></h4>
+                        <h4>Consultoria Personalizada</h4>
                         <p>Receba orientações especializadas para fazer investimentos inteligentes e seguros.</p>
                     </div>
                 </div>
@@ -338,7 +273,7 @@
                         <img src="{% static 'assets/images/icon/features/features-2.png' %}" alt="">
                     </div>
                     <div class="text">
-                        <h4><a href="index.html#">Plataforma Segura</a></h4>
+                        <h4>Plataforma Segura</h4>
                         <p>Acesso a uma plataforma digital segura e intuitiva para realizar suas transações financeiras.</p>
                     </div>
                 </div>
@@ -351,7 +286,7 @@
                         <img src="{% static 'assets/images/icon/features/features-3.png' %}" alt="">
                     </div>
                     <div class="text">
-                        <h4><a href="index.html#">Suporte 24/7</a></h4>
+                        <h4>Suporte 24/7</h4>
                         <p>Equipe de atendimento disponível 24 horas por dia para esclarecer suas dúvidas e oferecer suporte.</p>
                     </div>
                 </div>
@@ -390,7 +325,7 @@
                         <img src="{% static 'assets/images/icon/services/service-v1-2.png' %}" alt="">
                     </div>
                     <div class="title-holder">
-                        <h3><a href="https://mehedi.asiandevelopers.com/hoppex/services-details.html">Terrenos</a></h3>
+                        <h3><a href="{% url 'house_buy' %}">Terrenos</a></h3>
                         
                     </div>
                 </div>
@@ -403,7 +338,7 @@
                         <img src="{% static 'assets/images/icon/services/service-v1-3.png' %}" alt="">
                     </div>
                     <div class="title-holder">
-                        <h3><a href="https://mehedi.asiandevelopers.com/hoppex/services-details.html">Comercial</a></h3>
+                        <h3><a href="{% url 'house_buy' %}">Comercial</a></h3>
                         
                     </div>
                 </div>
@@ -416,7 +351,7 @@
                         <img src="{% static 'assets/images/icon/services/service-v1-4.png' %}" alt="">
                     </div>
                     <div class="title-holder">
-                        <h3><a href="https://mehedi.asiandevelopers.com/hoppex/services-details.html">Para alugar</a></h3>
+                        <h3><a href="{% url 'house_buy' %}">Para alugar</a></h3>
                         
                     </div>
                 </div>
@@ -428,7 +363,7 @@
 
 <!--End Service Style1 Area-->
 
-
+{% if imovel_venda %}
 <section class="project-page-one">
     <div class="shape1 wow slideInRight" data-wow-delay="400ms" data-wow-duration="6500ms">
         <img src="assets/images/shape/shape-round-5.png" alt="">
@@ -446,7 +381,7 @@
                     <div class="project-block">
                         <div class="img-holder">
                             <div class="inner">
-                                <img src="{{ casa_venda.imagem.url }}" alt="">
+                                <img src="{% if casa_venda.imagem %}{{ casa_venda.imagem.url }}{% else %}{% static 'assets/images/default/default.jpg' %}{% endif %}" alt="Imagem do imóvel">
                             </div>
                         </div>
                         <div class="text-holder">
@@ -477,6 +412,7 @@
 
     </div>
 </section>
+{% endif %}
 
 
 <!--Start About Style2 Area-->
@@ -514,7 +450,7 @@
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit ux sed eiusmod tempor incididunt ut labore et dolore magna aliqua.enim admix minim veniam quis nostrud.</p>
                         <div class="bottom-box">
                             <div class="btns-box">
-                                <a class="btn-one" href="about.html">
+                                <a class="btn-one" href="{% url 'sobre' %}">
                                     <span class="txt">Ver Mais</span>
                                 </a>
                             </div>    
@@ -527,6 +463,62 @@
     </div>
 </section>
 <!--End About Style2 Area-->
+
+<!------------Terrenos------------->
+
+{% if terrenos %}
+
+<section class="project-page-one">
+    <div class="shape1 wow slideInRight" data-wow-delay="400ms" data-wow-duration="6500ms">
+        <img src="assets/images/shape/shape-round-5.png" alt="">
+    </div>
+    <div class="container">
+        <div class="sec-title text-center">
+            <div class="sub-title">
+                <p>Nossas Terras</p>
+            </div>
+            <h2 style="font-size: 25px;">Faca projectos em terras de Qualidade e Confiaveis.</h2>
+        </div>
+        <div class="row text-right-rtl">
+            {% for terreno in  terrenos %}
+            <div class="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="00ms" data-wow-duration="1500ms">
+                    <div class="project-block">
+                        <div class="img-holder">
+                            <div class="inner">
+                                <img src="{% if terreno.imagem %}{{ terreno.imagem.url }}{% else %}{% static 'assets/images/default/default.jpg' %}{% endif %}" alt="Imagem do imóvel">
+                            </div>
+                        </div>
+                        <div class="text-holder">
+                            <h3><a href="{% url 'detalhe_projecto' id=terreno.id %}">{{terreno.titulo}}</a></h3>
+                            <p>{{terreno.endereco}}</p>
+                            <ul>
+                                <li><span>Tipo:</span>{{terreno.tipo}}</li>
+                                <li><span>Status:</span>{{terreno.status}}</li>
+                                <li><span>Area:</span>{{terreno.area}}m²</li>
+                            </ul>
+                        </div>
+                    </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+
+        <div class="row">
+            <div class="col-xl-12">
+                <ul class="styled-pagination clearfix">
+                    <li class="arrow prev"><a href="projects.html#"><span class="icon-right-arrow-1 left"></span></a></li>
+                    <li class="active"><a href="projects.html#">1</a></li>
+                    <li><a href="projects.html#">2</a></li>
+                    <li class="arrow next"><a href="projects.html#"><span class="icon-right-arrow-1 right"></span></a></li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+{% endif %}
+<!------------Fim terrenos-->
 
 
 <!--Start Project Style3 Area-->
@@ -548,7 +540,7 @@
                         </div>
                         <div class="overlay-content d-flex justify-content-center align-items-center text-center">
                             <div class="text-holder">
-                                <h4 style="font-size: 17px;"><a href="project-details.html">Residenciais</a></h4>
+                                <h4 style="font-size: 17px;">Residenciais</h4>
                                 <div class="category">
                                     <div class="border-box"></div>
                                     <p>Residencial</p>
@@ -569,7 +561,7 @@
                         </div>
                         <div class="overlay-content d-flex justify-content-center align-items-center text-center">
                             <div class="text-holder">
-                                <h4 style="font-size: 17px;"><a href="project-details.html">Residenciais</a></h4>
+                                <h4 style="font-size: 17px;">Residenciais</h4>
                                 <div class="category">
                                     <div class="border-box"></div>
                                     <p>Apartamento</p>
@@ -590,7 +582,7 @@
                         </div>
                         <div class="overlay-content d-flex justify-content-center align-items-center text-center">
                             <div class="text-holder">
-                                <h4 style="font-size: 17px;"><a href="project-details.html">Empresariais</a></h4>
+                                <h4 style="font-size: 17px;">Empresariais</h4>
                                 <div class="category">
                                     <div class="border-box"></div>
                                     <p>Escritório</p>
@@ -646,6 +638,8 @@
     </div>
 </section>
 
+
+{% if office %}
 <section class="project-page-one">
     <div class="shape1 wow slideInRight" data-wow-delay="400ms" data-wow-duration="6500ms">
         <img src="assets/images/shape/shape-round-5.png" alt="">
@@ -657,13 +651,13 @@
             </div>
             <h2 style="font-size: 25px;">Escritórios de Qualidade e Confiáveis.</h2>
         </div>
-        <div class="row text-right-rtl">
+        <div style="z-index: 2;" class="row text-right-rtl">
             {% for casa_venda in office %}
             <div class=" col-md-6 col-xl-4 wow fadeInUp" data-wow-delay="00ms" data-wow-duration="1500ms">
                 <div class="project-block">
                     <div class="img-holder">
                         <div class="inner">
-                            <img src="{{ casa_venda.imagem.url }}" alt="">
+                            <img src="{% if casa_venda.imagem %}{{ casa_venda.imagem.url }}{% else %}{% static 'assets/images/default/default.jpg' %}{% endif %}" alt="Imagem do imóvel">
                         </div>
                     </div>
                     <div class="text-holder">
@@ -694,6 +688,8 @@
     </div>
 </section>
 
+{% endif %}
+
 <style>
     .like-button .like-icon {
     color: red;
@@ -710,7 +706,7 @@
 <!--End Project Style1 Area-->
 
 <!--Start Fact Counter Area-->
-<section class="fact-counter-area">
+<section id="recognition" class="fact-counter-area">
     <div class="shape1 wow slideInRight" data-wow-delay="400ms" data-wow-duration="6500ms">
         <img src="{% static 'assets/images/shape/shape-round-10.png' %}" alt="">
     </div>
@@ -813,14 +809,15 @@
    
 <!--End Fact Counter Area-->
 
+{% if depoimentos %}
 <!--Start Testimonials Style2 area -->
-<section class="testimonials-style2-area pdtop0">
+<section id="depoimento" class="testimonials-style2-area pdtop0">
     <div class="container">
         <div class="sec-title text-center">
             <div class="sub-title">
                 <p>Depoimentos</p>
             </div>
-            <h2>O Que Nossos Clientes Estão Dizendo<br> Sobre a Carhouse </h2>
+            <h2>O Que Nossos Clientes Estão Dizendo<br> Sobre a Carhousy </h2>
         </div>
         <div class="row">
             <div class="col-xl-12">
@@ -828,59 +825,24 @@
                     <div class="theme_carousel testimonials-carousel_1 owl-dot-style1 owl-theme owl-carousel" data-options='{"loop": true, "margin": 30, "autoheight":true, "lazyload":true, "nav": false, "dots": true, "autoplay": true, "autoplayTimeout": 6000, "smartSpeed": 300, "responsive":{ "0" :{ "items": "1" }, "600" :{ "items" : "1" }, "768" :{ "items" : "1" } , "992":{ "items" : "2" }, "1200":{ "items" : "3" }}}'>
 
                         <!--Início Depoimento Estilo1-->
+                        {% for depoimento in depoimentos %}
                         <div class="single-testimonials-style1">
                             <div class="client-info">
                                 <div class="img-box">
-                                    <img src="{% static 'assets/images/testimonial/testimonial-v1-1.jpg' %}" alt=""/>
+                                    <img src="{% if depoimento.imagem %}{{ depoimento.imagem.url }}{% else %}{% static 'assets/images/default/logo.png' %}{% endif %}" alt="{{ imovel.titulo }}">
                                 </div>
                                 <div class="title-box">
-                                    <h3>Nicolas Lawson</h3>
-                                    <span>Designer</span>
+                                    <h3>{{depoimento.nome}}</h3>
+                                    <span>Usuario</span>
                                 </div>
                             </div>
                             <div class="text">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                <div class="date-box"><p>Terça-feira, 29 de Junho, 2022</p></div>
+                                <p>{{depoimento.descricao}}</p>
+                                <div class="date-box"><p>{{depoimento.data_cadastro}}</p></div>
                             </div>
                         </div>
+                        {% endfor %}
                         <!--Fim Depoimento Estilo1-->
-                        
-                        <!--Início Depoimento Estilo1-->
-                        <div class="single-testimonials-style1">
-                            <div class="client-info">
-                                <div class="img-box">
-                                    <img src="{% static 'assets/images/testimonial/testimonial-v1-2.jpg' %}" alt=""/>
-                                </div>
-                                <div class="title-box">
-                                    <h3>Nathan Felix</h3>
-                                    <span>Designer</span>
-                                </div>
-                            </div>
-                            <div class="text">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                <div class="date-box"><p>Terça-feira, 29 de Junho, 2022</p></div>
-                            </div>
-                        </div>
-                        <!--Fim Depoimento Estilo1-->
-                        
-                        <!--Início Depoimento Estilo1-->
-                        <div class="single-testimonials-style1">
-                            <div class="client-info">
-                                <div class="img-box">
-                                    <img src="{% static 'assets/images/testimonial/testimonial-v1-3.jpg' %}" alt=""/>
-                                </div>
-                                <div class="title-box">
-                                    <h3>John Smith</h3>
-                                    <span>Designer</span>
-                                </div>
-                            </div>
-                            <div class="text">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                <div class="date-box"><p>Terça-feira, 29 de Junho, 2022</p></div>
-                            </div>
-                        </div>
-                        <!--Fim Depoimento Estilo1-->
-                        
                     </div>
                 </div>
             </div>
@@ -888,11 +850,16 @@
         </div>
     </div>
 </section>
+{% else %}
+    <p style="text-align: center; margin-bottom: 60px;">Nenhum depoimento disponivel</p>
+{% endif %}
+
 
 <!--End Testimonials Style2 area -->
 
 <!--Start Team Style1 Area-->
-<section class="team-style1-area">
+{% if corretores %}
+<section id="team" class="team-style1-area">
     <div class="round-shape wow slideInLeft" data-wow-delay="100ms" data-wow-duration="3500ms">
         <img src="{% static 'assets/images/shape/shape-round.png' %}" alt="">
     </div>
@@ -907,7 +874,7 @@
                         <h2>Torna-te um corretor</h2>
                     </div>
                     <div class="btns-box">
-                        <a class="btn-one" href="#">
+                        <a class="btn-one" href="{% url 'sobre' %}">
                             <span class="txt">Ver Todos os corretores</span>
                         </a>
                     </div>
@@ -954,6 +921,9 @@
         </div>
     </div>
 </section>
+{% else %}
+    <p style="text-align: center; margin-bottom: 60px;">Nenhum corretor disponivel</p>
+{% endif %}
 
 
 <!--End Team Style1 Area-->
@@ -962,12 +932,7 @@
 <!--Start Slogan Area-->
 <section class="slogan-area">
     <div class="slogan-area__bg" style="background-image: url('{% static 'assets/images/blog/pexels-christa-grover-977018-2121121.jpg' %}');"></div>
-    <div class="shape wow slideInLeft" data-wow-delay="500ms" data-wow-duration="4500ms">
-        
-    </div>
-    <div class="shape2 wow slideInRight" data-wow-delay="100ms" data-wow-duration="3500ms">
-       
-    </div>
+
     <div class="container">
         <div class="row">
             <div class="col-xl-12 text-right-rtl">
@@ -994,7 +959,7 @@
             <div class="sub-title">
                 <p>Notícias & Atualizações</p>
             </div>
-            <h2>Fique Atualizado com os Artigos da Carhouse</h2>
+            <h2>Fique Atualizado com os Artigos da Carhousy</h2>
         </div>
         <div class="row text-right-rtl">
             <!--Início de um único blog Style1-->
@@ -1109,10 +1074,6 @@
 <!--End Blog Style1 Area-->
 
 {% include 'includes/footer.html' %} 
-
-
-
-
 
 </body>
 </html>

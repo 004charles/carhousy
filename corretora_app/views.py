@@ -5,7 +5,7 @@ from django.http import HttpResponse
 from django.core.exceptions import ValidationError
 from django.core.validators import validate_email
 from django.shortcuts import render, get_object_or_404
-from .models import Usuario, Imovel,GaleriaImovel, Publicidade_home, Agendamento, HoraAgendamento
+from .models import Usuario, Imovel,GaleriaImovel, Publicidade_home, Agendamento, HoraAgendamento, DadosAdicionais, Depoimentos
 from django.contrib.auth.hashers import make_password
 import random
 import string
@@ -148,12 +148,16 @@ def home(request):
             usuario_logado = Usuario.objects.get(id=request.session['usuario'])
         except Usuario.DoesNotExist:
             pass
-    imovel_venda = Imovel.objects.filter(tipo='casa')
+    imovel_venda = Imovel.objects.filter(apresentar=True,tipo='casa' or'apartamento' or 'comercial')
     corretores = Usuario.objects.filter(tipo_usuario='corretor')
     video_home = Publicidade_home.objects.filter(video__isnull=False).first()
-    office = Imovel.objects.filter(tipo='escritorio')
-
-    return render(request, 'home.html',{'usuario_logado':usuario_logado, 'imovel_venda':imovel_venda, 'office':office,'video_home':video_home, 'corretores':corretores})
+    office = Imovel.objects.filter(tipo='escritorio', apresentar=True)
+    terrenos = Imovel.objects.filter(tipo='terreno', apresentar=True)
+    imoveis_detaque = Imovel.objects.filter(destaque=True).order_by('data_publicacao')
+    imoveis_detaque = Imovel.objects.filter(destaque=True).order_by('data_publicacao')
+    depoimentos = Depoimentos.objects.filter(apresentar=True,).order_by('data_cadastro')
+    
+    return render(request, 'home.html',{'usuario_logado':usuario_logado, 'imovel_venda':imovel_venda, 'office':office,'video_home':video_home, 'corretores':corretores, 'terrenos': terrenos, 'imoveis_detaque':imoveis_detaque, 'depoimentos': depoimentos})
 
 def sign_up(request):
     status = request.GET.get('status')
@@ -163,9 +167,21 @@ def register(request):
     status = request.GET.get('status')
     return render(request, 'register.html',{'status':status})
 
+
+def perfil_usuario(request):
+    usuario_logado = None
+    if 'usuario' in request.session:
+        try:
+            usuario_logado = Usuario.objects.get(id=request.session['usuario'])
+        except Usuario.DoesNotExist:
+            return redirect('home')
+        return render(request, 'perfil_usuario.html',{'usuario_logado':usuario_logado})
+    else:
+        return redirect('home')
+        
+    
 def logout(request):
     request.session.flush()
-    
     return redirect('home') 
 
 
@@ -179,7 +195,7 @@ def house_buy(request):
         except Usuario.DoesNotExist:
             pass
     imovel_venda = Imovel.objects.all()
-    return render(request, 'casa_vender.html', {'imovel_venda':imovel_venda})
+    return render(request, 'casa_vender.html', {'imovel_venda':imovel_venda, 'usuario_logado':usuario_logado})
 
 def detalhe_projecto(request, id):
     usuario_logado = None
@@ -200,7 +216,9 @@ def Nossa_missao(request):
             usuario_logado = Usuario.objects.get(id=request.session['usuario'])
         except Usuario.DoesNotExist:
             pass
-    return render(request, 'Nossa_missao.html', {'usuario_logado':usuario_logado})
+    corretores = Usuario.objects.filter(tipo_usuario='corretor')
+    depoimentos = Depoimentos.objects.filter(apresentar=True,).order_by('data_cadastro')
+    return render(request, 'Nossa_missao.html', {'depoimentos':depoimentos,'usuario_logado':usuario_logado})
 
 def sobre(request):
     usuario_logado = None
@@ -209,7 +227,59 @@ def sobre(request):
             usuario_logado = Usuario.objects.get(id=request.session['usuario'])
         except Usuario.DoesNotExist:
             pass
-    return render(request, 'sobre.html', {'usuario_logado':usuario_logado})
+    depoimentos = Depoimentos.objects.filter(apresentar=True,).order_by('data_cadastro')
+    corretores = Usuario.objects.filter(tipo_usuario='corretor')
+    return render(request, 'sobre.html', {'usuario_logado':usuario_logado, 'depoimentos':depoimentos, 'corretores':corretores})
+
+def faq(request):
+    usuario_logado = None
+    if 'usuario' in request.session:
+        try:
+            usuario_logado = Usuario.objects.get(id=request.session['usuario'])
+        except Usuario.DoesNotExist:
+            pass
+ 
+    return render(request, 'faq.html', {'usuario_logado':usuario_logado})
+
+def servico(request):
+    usuario_logado = None
+    if 'usuario' in request.session:
+        try:
+            usuario_logado = Usuario.objects.get(id=request.session['usuario'])
+        except Usuario.DoesNotExist:
+            pass
+ 
+    return render(request, 'servico.html', {'usuario_logado':usuario_logado})
+
+def blog(request):
+    usuario_logado = None
+    if 'usuario' in request.session:
+        try:
+            usuario_logado = Usuario.objects.get(id=request.session['usuario'])
+        except Usuario.DoesNotExist:
+            pass
+ 
+    return render(request, 'blog.html', {'usuario_logado':usuario_logado})
+
+def contacto(request):
+    usuario_logado = None
+    if 'usuario' in request.session:
+        try:
+            usuario_logado = Usuario.objects.get(id=request.session['usuario'])
+        except Usuario.DoesNotExist:
+            pass
+ 
+    return render(request, 'contact.html', {'usuario_logado':usuario_logado})
+
+def equipe(request):
+    usuario_logado = None
+    if 'usuario' in request.session:
+        try:
+            usuario_logado = Usuario.objects.get(id=request.session['usuario'])
+        except Usuario.DoesNotExist:
+            pass
+    corretores = Usuario.objects.filter(tipo_usuario='corretor')
+    return render(request, 'team.html', {'usuario_logado':usuario_logado, 'corretores':corretores})
 
 def pagina_error(request):
     usuario_logado = None
@@ -352,3 +422,128 @@ def agendamento(request, id):
 
 def Erro(request, exception):
     return render(request, 'error.html', status=404)
+
+def nova_casa(request):
+    usuario_logado = None
+    if 'usuario' in request.session:
+        try:
+            usuario_logado = Usuario.objects.get(id=request.session['usuario'])
+        except Usuario.DoesNotExist:
+            pass
+    status = request.GET.get('status')
+    return render(request, 'cadastrar_imovel.html', {'usuario_logado': usuario_logado})
+
+def cadastro_imovel(request):
+    usuario_logado = None
+    if 'usuario' in request.session:
+        try:
+            usuario_logado = Usuario.objects.get(id=request.session['usuario'])
+        except Usuario.DoesNotExist:
+            pass
+    if request.method == 'POST':
+        try:
+            # Captura os dados do anunciante
+            nome_anunciante = request.POST.get('nome_anunciante', '').strip()
+            email_anunciante = request.POST.get('email_anunciante', '').strip()
+            telefone_anunciante = request.POST.get('telefone_anunciante', '').strip()
+
+            # Captura os dados do imóvel
+            titulo = request.POST.get('titulo', '').strip()
+            endereco = request.POST.get('endereco', '').strip()
+            preco = request.POST.get('preco', '0').strip()
+            tipo = request.POST.get('tipo', '').strip()
+            status = request.POST.get('status', '').strip()
+            descricao = request.POST.get('descricao', '').strip()
+            area = request.POST.get('area', '0').strip()
+            quartos = request.POST.get('quartos', '0').strip()
+            banheiros = request.POST.get('banheiros', '0').strip()
+            vagas_garagem = request.POST.get('vagas_garagem', '0').strip()
+            video_url = request.POST.get('video', '').strip()
+
+            # Captura das imagens
+            imagem_principal = request.FILES.get('imagem_principal')
+            imagens_secundarias = request.FILES.getlist('imagens_secundarias')
+
+            # Conversão segura de valores numéricos
+            area = float(area) if area.replace('.', '', 1).isdigit() else 0.0
+            quartos = int(quartos) if quartos.isdigit() else 0
+            banheiros = int(banheiros) if banheiros.isdigit() else 0
+            vagas_garagem = int(vagas_garagem) if vagas_garagem.isdigit() else 0
+            preco = float(preco) if preco.replace('.', '', 1).isdigit() else 0.0
+
+            # Criando o imóvel
+            imovel = Imovel.objects.create(
+                nome_anunciante=nome_anunciante,
+                email_anunciante=email_anunciante,
+                telefone_anunciante=telefone_anunciante,
+                titulo=titulo,
+                endereco=endereco,
+                preco=preco,
+                tipo=tipo,
+                status=status,
+                descricao=descricao,
+                area=area,
+                quartos=quartos,
+                banheiros=banheiros,
+                vagas_garagem=vagas_garagem,
+                imagem=imagem_principal,
+                video=video_url
+            )
+
+            dados_adicionais = DadosAdicionais.objects.create(
+                imovel=imovel,
+                interior_ar_condicionado=request.POST.get('interior_ar_condicionado') == 'on',
+                interior_cozinha_equipada=request.POST.get('interior_cozinha_equipada') == 'on',
+                interior_roupeiros_embutidos=request.POST.get('interior_roupeiros_embutidos') == 'on',
+                exterior_varanda=request.POST.get('exterior_varanda') == 'on',
+                exterior_piscina_coletiva=request.POST.get('exterior_piscina_coletiva') == 'on',
+                exterior_estacionamento_privativo=request.POST.get('exterior_estacionamento_privativo') == 'on',
+                exterior_churrasqueira=request.POST.get('exterior_churrasqueira') == 'on',
+                exterior_campos_polidesportivos=request.POST.get('exterior_campos_polidesportivos') == 'on',
+                seguranca_24h=request.POST.get('seguranca_24h') == 'on',
+                reservatorio_agua=request.POST.get('reservatorio_agua') == 'on',
+                ginasio=request.POST.get('ginasio') == 'on',
+                gerador=request.POST.get('gerador') == 'on',
+                area_servico=request.POST.get('area_servico') == 'on'
+            )
+
+
+            # Cadastro das imagens secundárias
+            indexImagem = 0
+            for imagem in imagens_secundarias:
+                GaleriaImovel.objects.create(imovel=imovel, imagem=imagem)
+ 
+            
+
+            mensagem = f'Olá {nome_anunciante}!\n\nObrigado por publicar o seu imovel na Carhousy. Estamos felizes em tê-lo conosco!\n\nEstamos aqui para ajudar você a encontrar o melhor para o seu imovel.\n\nAtenciosamente,\nEquipe Carhousy'
+            
+            # Envio do e-mail
+            send_mail(
+                'Bem-vindo à Carhousy',  # Assunto
+                mensagem,  # Corpo do e-mail com a mensagem personalizada
+                settings.EMAIL_HOST_USER,  # Remetente
+                [email_anunciante],  # Destinatário
+                fail_silently=False,  # Caso ocorra algum erro, não falhar silenciosamente
+            )
+            
+            messages.success(request, 'Imóvel cadastrado com sucesso!')
+            return redirect('cadastro_imovel')
+
+        except Exception as e:
+            messages.error(request, f'Nao foi possivel publicar o imovel: {e}')
+
+    return render(request, 'cadastrar_imovel.html', {'usuario_logado': usuario_logado})
+
+def imoveis_publicados(request):
+    if 'usuario' in request.session:
+        try:
+            usuario_logado = Usuario.objects.get(id=request.session['usuario'])
+        except Usuario.DoesNotExist:
+            pass
+        imoveis_publicados = Imovel.objects.filter(email_anunciante=usuario_logado.email,nome_anunciante=usuario_logado.nome,telefone_anunciante=usuario_logado.telefone).order_by('data_publicacao')
+        return render(request, 'imoveis_publicados.html', {'usuario_logado': usuario_logado,'imoveis_publicados':imoveis_publicados})
+    else:
+        return redirect('home')
+        
+
+

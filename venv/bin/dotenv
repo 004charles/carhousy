@@ -1,6 +1,4 @@
-#!/bin/sh
-'''exec' "/home/muquissi/Desktop/Carhouse corretora/venv/bin/python3" "$0" "$@"
-' '''
+#!/home/muquissi/Documentos/carhousy/venv/bin/python3
 # -*- coding: utf-8 -*-
 import re
 import sys
