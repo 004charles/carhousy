@@ -339,54 +339,6 @@
         </div>
     </div>
 </div>
-
-<!--End Choose Style2 Area-->
-
-{% if depoimentos %}
-<!--Start Testimonials Style2 area -->
-<section style="margin-top: 40px;" id="depoimento" class="testimonials-style2-area pdtop0">
-    <div class="container">
-        <div class="sec-title text-center">
-            <div class="sub-title">
-                <p>Depoimentos</p>
-            </div>
-            <h2>O Que Nossos Clientes Estão Dizendo<br> Sobre a Carhousy </h2>
-        </div>
-        <div class="row">
-            <div class="col-xl-12">
-                <div class="testimonials-style1__content wow fadeInUp" data-wow-delay="200ms" data-wow-duration="1500ms">
-                    <div class="theme_carousel testimonials-carousel_1 owl-dot-style1 owl-theme owl-carousel" data-options='{"loop": true, "margin": 30, "autoheight":true, "lazyload":true, "nav": false, "dots": true, "autoplay": true, "autoplayTimeout": 6000, "smartSpeed": 300, "responsive":{ "0" :{ "items": "1" }, "600" :{ "items" : "1" }, "768" :{ "items" : "1" } , "992":{ "items" : "2" }, "1200":{ "items" : "3" }}}'>
-
-                        <!--Início Depoimento Estilo1-->
-                        {% for depoimento in depoimentos %}
-                        <div class="single-testimonials-style1">
-                            <div class="client-info">
-                                <div class="img-box">
-                                    <img src="{% if depoimento.imagem %}{{ depoimento.imagem.url }}{% else %}{% static 'assets/images/default/logo.png' %}{% endif %}" alt="{{ imovel.titulo }}">
-                                </div>
-                                <div class="title-box">
-                                    <h3>{{depoimento.nome}}</h3>
-                                    <span>Usuario</span>
-                                </div>
-                            </div>
-                            <div class="text">
-                                <p>{{depoimento.descricao}}</p>
-                                <div class="date-box"><p>{{depoimento.data_cadastro}}</p></div>
-                            </div>
-                        </div>
-                        {% endfor %}
-                        <!--Fim Depoimento Estilo1-->
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</section>
-{% else %}
-    <p style="text-align: center; margin-bottom: 60px;">Nenhum depoimento disponivel</p>
-{% endif %}
-<!--End Testimonials Style1 area -->
  
 {% include 'includes/footer.html' %}
  

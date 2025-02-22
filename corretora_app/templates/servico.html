@@ -47,13 +47,13 @@
             <div class="col-xl-12">
                 <div class="inner-content">
                     <div class="title">
-                       <h2>Elements</h2>
+                       <h2>Nossos Serviços</h2>
                     </div>
                     <div class="breadcrumb-menu">
                         <ul>
-                            <li><a href="index.html">Home</a></li>
+                            <li><a href="{% url 'home' %}">Home</a></li>
                             <li><i class="fa fa-angle-right" aria-hidden="true"></i></li>
-                            <li class="active">Service Block 01</li>
+                            <li class="active">Nossos Serviços</li>
                         </ul>    
                     </div>
                 </div>
@@ -63,11 +63,70 @@
 </section>
 <!--End breadcrumb area-->
 
-<!--Start Service Style1 Area-->
-<section class="service-style1-area">
-    <div class="round-shape wow slideInLeft" data-wow-delay="100ms" data-wow-duration="5500ms">
-        <img class="zoom-fade" src="{% static 'assets/images/shape/shape-round.png' %}" alt="">
+
+<section id="servico" class="features-style1-area">
+    <div class="gradient-bg"></div>
+    <div class="shape1 wow slideInRight" data-wow-delay="400ms" data-wow-duration="6500ms">
+        <img src="{% static 'assets/images/shape/shape-round-2.png' %}" alt="">
     </div>
+    <div class="container">
+        <div class="sec-title text-center">
+            <div class="sub-title">
+                <p>Serviços Exclusivos para Investidores</p>
+            </div>
+            <h2>Características da Carhousy</h2>
+        </div>
+        <div class="row">
+            <!--Início de Recurso Único Estilo1-->
+            <div class="col-xl-4 col-lg-4 wow fadeInUp" data-wow-delay="10ms" data-wow-duration="1500ms">
+                <div class="single-features-style1 text-center">
+                    <div class="icon">
+                        <img src="{% static 'assets/images/icon/features/features-1.png' %}" alt="">
+                    </div>
+                    <div class="text">
+                        <h4>Consultoria Personalizada</h4>
+                        <p>Receba orientações especializadas para fazer investimentos inteligentes e seguros.</p>
+                    </div>
+                </div>
+            </div>
+            <!--Fim de Recurso Único Estilo1-->
+            <!--Início de Recurso Único Estilo1-->
+            <div class="col-xl-4 col-lg-4 wow fadeInUp" data-wow-delay="300ms" data-wow-duration="1500ms">
+                <div class="single-features-style1 text-center">
+                    <div class="icon">
+                        <img src="{% static 'assets/images/icon/features/features-2.png' %}" alt="">
+                    </div>
+                    <div class="text">
+                        <h4>Plataforma Segura</h4>
+                        <p>Acesso a uma plataforma digital segura e intuitiva para realizar suas transações financeiras.</p>
+                    </div>
+                </div>
+            </div>
+            <!--Fim de Recurso Único Estilo1-->
+            <!--Início de Recurso Único Estilo1-->
+            <div class="col-xl-4 col-lg-4 wow fadeInUp" data-wow-delay="500ms" data-wow-duration="1500ms">
+                <div class="single-features-style1 text-center">
+                    <div class="icon">
+                        <img src="{% static 'assets/images/icon/features/features-3.png' %}" alt="">
+                    </div>
+                    <div class="text">
+                        <h4>Suporte 24/7</h4>
+                        <p>Equipe de atendimento disponível 24 horas por dia para esclarecer suas dúvidas e oferecer suporte.</p>
+                    </div>
+                </div>
+            </div>
+            <!--Fim de Recurso Único Estilo1-->
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+<!--Start Service Style1 Area-->
+<section class="service-style1-area service-style1-area--style2 pdtop">
     <div class="container">
         <div class="row">
             <!--Start Single Service Style1-->

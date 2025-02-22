@@ -123,28 +123,33 @@
                                     </a>
                                     <ul>
                                         <li>
+                                            <a href="{% url 'house_buy' %}">
+                                                <i class="fas fa-home"></i> Imóveis
+                                            </a>
+                                        </li>
+                                        <li>
                                             <a href="{% url 'Nossa_missao' %}">
                                                 <i class="fas fa-bullseye"></i> Nossa Missão
                                             </a>
                                         </li>
                                         <li>
                                             <a href="{% url 'sobre' %}">
-                                                <i class="fas fa-eye"></i> Sobre
+                                                <i class="fas fa-info-circle"></i> Sobre
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="{% url 'sobre' %}">
-                                                <i class="fas fa-trophy"></i>Premiação & Reconhecimento
+                                            <a href="{% url 'sobre' %}#recognition">
+                                                <i class="fas fa-award"></i> Premiação & Reconhecimento
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="{% url 'equipe' %}"">
+                                            <a href="{% url 'equipe' %}">
                                                 <i class="fas fa-users"></i> Nossa Equipe
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="{% url 'sobre' %}">
-                                                <i class="fas fa-comment"></i> Depoimentos
+                                            <a href="{% url 'home' %}#depoimento">
+                                                <i class="fas fa-comments"></i> Depoimentos
                                             </a>
                                         </li>
                                         <li>
@@ -152,7 +157,6 @@
                                                 <i class="fas fa-question-circle"></i> FAQ’s
                                             </a>
                                         </li>
-                                        
                                     </ul>
                                 </li>
                                 <li>
@@ -226,11 +230,6 @@
                                             <i class="fas fa-building me-2"></i> Imóveis Publicados
                                         </a>
                                     </li>
-                                    <li>
-                                        <a class="dropdown-item d-flex align-items-center" href="#">
-                                            <i class="fas fa-bell me-2"></i> Notificações
-                                        </a>
-                                    </li>
                                 {% elif usuario_logado.tipo_usuario == 'corretor' %}
                                     <li>
                                         <a class="dropdown-item d-flex align-items-center" href="#">
@@ -245,11 +244,6 @@
                                     <li> 
                                         <a class="dropdown-item d-flex align-items-center" href="{% url 'imoveis_publicados' %}">
                                             <i class="fas fa-building me-2"></i> Imóveis Publicados
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item d-flex align-items-center" href="#">
-                                            <i class="fas fa-file-alt me-2"></i> Contratos
                                         </a>
                                     </li>
                                     <li>

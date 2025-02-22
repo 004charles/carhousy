@@ -1,0 +1,356 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<title>Carhousy | Nossa Equipe</title>
+
+	<!-- responsive meta -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- For IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Google Fonts -->
+     {% include 'includes/link_header.html' %}
+    
+    
+</head>
+
+<body>
+
+<div class="boxed_wrapper ltr">
+
+<!-- Preloader -->
+<div class="loader-wrap">
+    <div class="preloader"><div class="preloader-close">Cancelar</div></div>
+    <div class="layer layer-one"><span class="overlay"></span></div>
+    <div class="layer layer-two"><span class="overlay"></span></div>        
+    <div class="layer layer-three"><span class="overlay"></span></div>        
+</div>
+
+<!-- page-direction -->
+<div class="page_direction">
+    <div class="demo-rtl direction_switch"><button class="rtl">RTL</button></div>
+    <div class="demo-ltr direction_switch"><button class="ltr">LTR</button></div>
+</div>
+<!-- page-direction end -->
+
+<!-- Main header-->
+<header class="main-header header-style-one">
+    {% include 'includes/header.html' %}
+</header>
+
+
+<!--Start breadcrumb area paroller-->     
+<section class="breadcrumb-area">
+    <div class="breadcrumb-area-bg" style="background-image: url('{% static 'assets/images/pexels-pixabay-280229 (1).jpg' %}');"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="inner-content">
+                    <div class="title">
+                       <h2>Nossa Equipe</h2>
+                    </div>
+                    <div class="breadcrumb-menu">
+                        <ul>
+                            <li><a href="{% url 'home' %}">Home</a></li>
+                            <li><i class="fa fa-angle-right" aria-hidden="true"></i></li>
+                            <li class="active">Nossa Equipe</li>
+                        </ul>    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--End breadcrumb area-->
+
+<!--Start Team Style2 Area-->
+<section class="team-style2-area">
+    <div class="container">
+        <div class="sec-title text-center">
+            <div class="sub-title">
+                <p>Membros da Equipe</p>
+            </div>
+            <h2>Conheca a nossa Equipe</h2>
+        </div>
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="theme_carousel team-carousel_1 owl-dot-style1 owl-theme owl-carousel" data-options='{"loop": true, "margin": 30, "autoheight":true, "lazyload":true, "nav": false, "dots": true, "autoplay": true, "autoplayTimeout": 6000, "smartSpeed": 300, "responsive":{ "0" :{ "items": "1" }, "600" :{ "items" : "1" }, "768" :{ "items" : "1" } , "992":{ "items" : "2" }, "1200":{ "items" : "2" }}}'>
+                    <!--Start Single Team Style2-->
+                    <div class="single-team-style2">
+                        <div class="inner">
+                            <div class="img-box">
+                                <img src="{% static 'assets/images/team/team-v2-1.jpg' %}" alt="">
+                            </div>
+                            <div class="text-box">
+                                <div class="top">
+                                    <h3>Christian Bale</h3>
+                                    <span>Chairman</span>
+                                </div>
+                                <div class="text">
+                                    <p>Lorem ipsum dolor amet consetur adipicing elit sed do umod tempor incididunt enim ad.</p>
+                                    <p>quis nostrud exer citation laboris nisi aliquip commodo.</p>
+                                </div>
+                                <div class="social-link-box">
+                                    <ul class="team-social-link">
+                                        <li>
+                                            <a href="team.html#"><i class="fa fa-twitter" aria-hidden="true"></i></a> 
+                                        </li>
+                                        <li>
+                                            <a href="team.html#"><i class="fa fa-facebook" aria-hidden="true"></i></a> 
+                                        </li>
+                                        <li>
+                                            <a href="team.html#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!--End Single Team Style2-->
+                    <!--Start Single Team Style2-->
+                    <div class="single-team-style2">
+                        <div class="inner">
+                            <div class="img-box">
+                                <img src="{% static 'assets/images/team/team-v2-2.jpg' %}" alt="">
+                            </div>
+                            <div class="text-box">
+                                <div class="top">
+                                    <h3>John Smith</h3>
+                                    <span>Vice Chairman</span>
+                                </div>
+                                <div class="text">
+                                    <p>Lorem ipsum dolor amet consetur adipicing elit sed do umod tempor incididunt enim ad.</p>
+                                    <p>quis nostrud exer citation laboris nisi aliquip commodo.</p>
+                                </div>
+                                <div class="social-link-box">
+                                    <ul class="team-social-link">
+                                        <li>
+                                            <a href="team.html#"><i class="fa fa-twitter" aria-hidden="true"></i></a> 
+                                        </li>
+                                        <li>
+                                            <a href="team.html#"><i class="fa fa-facebook" aria-hidden="true"></i></a> 
+                                        </li>
+                                        <li>
+                                            <a href="team.html#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!--End Single Team Style2-->
+
+                    <!--Start Single Team Style2-->
+                    <div class="single-team-style2">
+                        <div class="inner">
+                            <div class="img-box">
+                                <img src="{% static 'assets/images/team/team-v2-1.jpg' %}" alt="">
+                            </div>
+                            <div class="text-box">
+                                <div class="top">
+                                    <h3>Christian Bale</h3>
+                                    <span>Chairman</span>
+                                </div>
+                                <div class="text">
+                                    <p>Lorem ipsum dolor amet consetur adipicing elit sed do umod tempor incididunt enim ad.</p>
+                                    <p>quis nostrud exer citation laboris nisi aliquip commodo.</p>
+                                </div>
+                                <div class="social-link-box">
+                                    <ul class="team-social-link">
+                                        <li>
+                                            <a href="team.html#"><i class="fa fa-twitter" aria-hidden="true"></i></a> 
+                                        </li>
+                                        <li>
+                                            <a href="team.html#"><i class="fa fa-facebook" aria-hidden="true"></i></a> 
+                                        </li>
+                                        <li>
+                                            <a href="team.html#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!--End Single Team Style2-->
+                    <!--Start Single Team Style2-->
+                    <div class="single-team-style2">
+                        <div class="inner">
+                            <div class="img-box">
+                                <img src="{% static 'assets/images/team/team-v2-2.jpg' %}" alt="">
+                            </div>
+                            <div class="text-box">
+                                <div class="top">
+                                    <h3>John Smith</h3>
+                                    <span>Vice Chairman</span>
+                                </div>
+                                <div class="text">
+                                    <p>Lorem ipsum dolor amet consetur adipicing elit sed do umod tempor incididunt enim ad.</p>
+                                    <p>quis nostrud exer citation laboris nisi aliquip commodo.</p>
+                                </div>
+                                <div class="social-link-box">
+                                    <ul class="team-social-link">
+                                        <li>
+                                            <a href="team.html#"><i class="fa fa-twitter" aria-hidden="true"></i></a> 
+                                        </li>
+                                        <li>
+                                            <a href="team.html#"><i class="fa fa-facebook" aria-hidden="true"></i></a> 
+                                        </li>
+                                        <li>
+                                            <a href="team.html#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!--End Single Team Style2-->
+
+                    <!--Start Single Team Style2-->
+                    <div class="single-team-style2">
+                        <div class="inner">
+                            <div class="img-box">
+                                <img src="{% static 'assets/images/team/team-v2-1.jpg' %}" alt="">
+                            </div>
+                            <div class="text-box">
+                                <div class="top">
+                                    <h3>Christian Bale</h3>
+                                    <span>Chairman</span>
+                                </div>
+                                <div class="text">
+                                    <p>Lorem ipsum dolor amet consetur adipicing elit sed do umod tempor incididunt enim ad.</p>
+                                    <p>quis nostrud exer citation laboris nisi aliquip commodo.</p>
+                                </div>
+                                <div class="social-link-box">
+                                    <ul class="team-social-link">
+                                        <li>
+                                            <a href="team.html#"><i class="fa fa-twitter" aria-hidden="true"></i></a> 
+                                        </li>
+                                        <li>
+                                            <a href="team.html#"><i class="fa fa-facebook" aria-hidden="true"></i></a> 
+                                        </li>
+                                        <li>
+                                            <a href="team.html#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!--End Single Team Style2-->
+                    <!--Start Single Team Style2-->
+                    <div class="single-team-style2">
+                        <div class="inner">
+                            <div class="img-box">
+                                <img src="{% static 'assets/images/team/team-v2-2.jpg' %}" alt="">
+                            </div>
+                            <div class="text-box">
+                                <div class="top">
+                                    <h3>John Smith</h3>
+                                    <span>Vice Chairman</span>
+                                </div>
+                                <div class="text">
+                                    <p>Lorem ipsum dolor amet consetur adipicing elit sed do umod tempor incididunt enim ad.</p>
+                                    <p>quis nostrud exer citation laboris nisi aliquip commodo.</p>
+                                </div>
+                                <div class="social-link-box">
+                                    <ul class="team-social-link">
+                                        <li>
+                                            <a href="team.html#"><i class="fa fa-twitter" aria-hidden="true"></i></a> 
+                                        </li>
+                                        <li>
+                                            <a href="team.html#"><i class="fa fa-facebook" aria-hidden="true"></i></a> 
+                                        </li>
+                                        <li>
+                                            <a href="team.html#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!--End Single Team Style2-->
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+<!--End Team Style2 Area-->
+
+
+<!--Start Team Style1 Area-->
+{% if corretores %}
+<section id="team" class="team-style1-area">
+    <div class="round-shape wow slideInLeft" data-wow-delay="100ms" data-wow-duration="3500ms">
+        <img src="{% static 'assets/images/shape/shape-round.png' %}" alt="">
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12 text-right-rtl">
+                <div class="team-style1__top-title">
+                    <div class="sec-title">
+                        <div class="sub-title">
+                            <p>Corretores</p>
+                        </div>
+                        <h2>Torna-te um corretor</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <!--Início do Membro da Equipe-->
+            {% for corretor in corretores %}
+                <div class=" col-sm-6 col-md-4 col-lg-4 col-xl-4">
+                    <div class="single-team-style1 wow fadeInRight animated " data-wow-delay="100ms" data-wow-duration="1500ms">
+                        <div class="img-holder">
+                            <div class="inner">
+                                {% if corretor.imagem %}
+                                    <img class="rotateScale" src="{{ corretor.imagem.url }}" alt=""/>
+                                {% else %}
+                                    <img class="rotateScale" src="caminho/para/imagem/placeholder.jpg" alt="Imagem não disponível"/>
+                                {% endif %}
+                                <div class="overlay-bg"></div>
+                            </div>
+                            
+                        </div>
+                        <div class="title-holder">
+                            <h3 style="margin-top: 13px;" ><a href="team-single.html">{{corretor.nome}}</a></h3>
+                            <p>{{corretor.tipo_usuario}}</p>
+                            <div class="social-link-box">
+                                <ul class="team-social-link">
+                                    <li>
+                                        <a href="index-3.html#"><i class="fa fa-twitter" aria-hidden="true"></i></a> 
+                                    </li>
+                                    <li>
+                                        <a href="index-3.html#"><i class="fa fa-facebook" aria-hidden="true"></i></a> 
+                                    </li>
+                                    <li>
+                                        <a href="index-3.html#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% else %}
+    <p style="text-align: center; margin-bottom: 60px;">Nenhum corretor disponivel</p>
+{% endif %}
+ 
+<!--Start footer area -->  
+
+{% include 'includes/footer.html' %} 
+</body>
+</html>

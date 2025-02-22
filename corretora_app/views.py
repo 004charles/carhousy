@@ -148,12 +148,11 @@ def home(request):
             usuario_logado = Usuario.objects.get(id=request.session['usuario'])
         except Usuario.DoesNotExist:
             pass
-    imovel_venda = Imovel.objects.filter(apresentar=True,tipo='casa' or'apartamento' or 'comercial')
+    imovel_venda = Imovel.objects.filter(apresentar=True,destaque=False,tipo='casa' or'apartamento' or 'comercial')
     corretores = Usuario.objects.filter(tipo_usuario='corretor')
     video_home = Publicidade_home.objects.filter(video__isnull=False).first()
     office = Imovel.objects.filter(tipo='escritorio', apresentar=True)
     terrenos = Imovel.objects.filter(tipo='terreno', apresentar=True)
-    imoveis_detaque = Imovel.objects.filter(destaque=True).order_by('data_publicacao')
     imoveis_detaque = Imovel.objects.filter(destaque=True).order_by('data_publicacao')
     depoimentos = Depoimentos.objects.filter(apresentar=True,).order_by('data_cadastro')
     
@@ -166,6 +165,20 @@ def sign_up(request):
 def register(request):
     status = request.GET.get('status')
     return render(request, 'register.html',{'status':status})
+
+def dashboard_usuario(request):
+    usuario_logado = None
+    if 'usuario' in request.session:
+        try:
+            usuario_logado = Usuario.objects.get(id=request.session['usuario'])
+        except Usuario.DoesNotExist:
+            return redirect('home')
+        imoveis_publicados = Imovel.objects.filter(email_anunciante=usuario_logado.email,nome_anunciante=usuario_logado.nome,telefone_anunciante=usuario_logado.telefone).order_by('data_publicacao')
+        return render(request, 'usuario_dashboard.html', {'usuario_logado': usuario_logado,'imoveis_publicados':imoveis_publicados})
+
+    else:
+        imoveis_publicados = Imovel.objects.filter(email_anunciante=usuario_logado.email,nome_anunciante=usuario_logado.nome,telefone_anunciante=usuario_logado.telefone).order_by('data_publicacao')
+        return render(request, 'usuario_dashboard.html', {'usuario_logado': usuario_logado,'imoveis_publicados':imoveis_publicados})
 
 
 def perfil_usuario(request):
@@ -194,8 +207,34 @@ def house_buy(request):
             usuario_logado = Usuario.objects.get(id=request.session['usuario'])
         except Usuario.DoesNotExist:
             pass
-    imovel_venda = Imovel.objects.all()
-    return render(request, 'casa_vender.html', {'imovel_venda':imovel_venda, 'usuario_logado':usuario_logado})
+    
+    # Obtendo os parâmetros do formulário
+    status_imovel = request.GET.get('status_imovel', '')
+    tipo_imovel = request.GET.get('tipo_imovel', '')
+    orcamento_imovel = request.GET.get('orcamento_imovel', '')
+    localizacao_imovel = request.GET.get('localizacao_imovel', '')
+    
+    # Filtrando os imóveis
+    imovel_venda = Imovel.objects.filter(apresentar=True)
+    
+    if status_imovel and status_imovel != "todos":
+        imovel_venda = imovel_venda.filter(status=status_imovel)
+    
+    if tipo_imovel and tipo_imovel != "todos":
+        imovel_venda = imovel_venda.filter(tipo=tipo_imovel)
+    
+    if orcamento_imovel:
+        try:
+            orcamento_valor = int(orcamento_imovel)
+            imovel_venda = imovel_venda.filter(preco__lte=orcamento_valor)
+        except ValueError:
+            pass  # Caso o orçamento não seja um número válido, não aplicamos o filtro
+    
+    if localizacao_imovel:
+        imovel_venda = imovel_venda.filter(endereco__icontains=localizacao_imovel)
+    
+    return render(request, 'casa_vender.html', {'imovel_venda': imovel_venda, 'usuario_logado': usuario_logado})
+
 
 def detalhe_projecto(request, id):
     usuario_logado = None
@@ -205,6 +244,7 @@ def detalhe_projecto(request, id):
         except Usuario.DoesNotExist:
             pass
     imovel_venda = get_object_or_404(Imovel, id=id)
+    
     horarios = HoraAgendamento.objects.all()
     return render(request, 'detalhe_projecto.html', {'imovel_venda':imovel_venda, 'usuario_logado':usuario_logado, 'horarios':horarios})
 
@@ -279,7 +319,7 @@ def equipe(request):
         except Usuario.DoesNotExist:
             pass
     corretores = Usuario.objects.filter(tipo_usuario='corretor')
-    return render(request, 'team.html', {'usuario_logado':usuario_logado, 'corretores':corretores})
+    return render(request, 'nossa_equipe.html', {'usuario_logado':usuario_logado, 'corretores':corretores})
 
 def pagina_error(request):
     usuario_logado = None
@@ -473,6 +513,7 @@ def cadastro_imovel(request):
 
             # Criando o imóvel
             imovel = Imovel.objects.create(
+                usuario=usuario_logado,
                 nome_anunciante=nome_anunciante,
                 email_anunciante=email_anunciante,
                 telefone_anunciante=telefone_anunciante,
@@ -526,11 +567,11 @@ def cadastro_imovel(request):
                 fail_silently=False,  # Caso ocorra algum erro, não falhar silenciosamente
             )
             
-            messages.success(request, 'Imóvel cadastrado com sucesso!')
+            messages.success(request, 'Imóvel cadastrado com sucesso! Brevemente entraremos em contacto')
             return redirect('cadastro_imovel')
 
         except Exception as e:
-            messages.error(request, f'Nao foi possivel publicar o imovel: {e}')
+            messages.error(request, f'Nao foi possivel publicar o imovel')
 
     return render(request, 'cadastrar_imovel.html', {'usuario_logado': usuario_logado})
 

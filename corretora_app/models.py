@@ -94,10 +94,18 @@ class Imovel(models.Model):
     )
 
     # Adicionando os dados do anunciante diretamente na model
-    nome_anunciante = models.CharField(max_length=255, blank=False, null=False, verbose_name="Nome do Anunciante")
-    email_anunciante = models.EmailField( blank=False, null=False, verbose_name="E-mail do Anunciante")
-    telefone_anunciante = models.CharField(max_length=20,  blank=False, null=False, verbose_name="Telefone do Anunciante")
+    nome_anunciante = models.CharField(max_length=255, blank=True, null=True, verbose_name="Nome do Anunciante")
+    email_anunciante = models.EmailField(blank=True, null=True, verbose_name="E-mail do Anunciante")
+    telefone_anunciante = models.CharField(max_length=20,  blank=True, null=True, verbose_name="Telefone do Anunciante")
     
+    usuario = models.ForeignKey(
+        'Usuario',
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='imoveis_cadastrados'
+    )
+        
     def clean(self):
         # Se os campos estiverem vazios, trate como None
         if self.quartos == '':

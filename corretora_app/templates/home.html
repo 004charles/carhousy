@@ -3,7 +3,7 @@
 <html lang="pt-br">
 <head>
 	<meta charset="UTF-8">
-	<title>Carhouse | home</title>
+	<title>Carhousy | home</title>
 
 	<!-- responsive meta -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -71,8 +71,8 @@
                             <p>Seu imóvel, nossa missão.</p>
                         </div>
                         <div class="btns-box">
-                            <a class="btn-one" href="projects.html">
-                                <span class="txt">Ver Projectos</span>
+                            <a class="btn-one" href="{% url 'contacto' %}">
+                                <span class="txt">Contate-nos</span>
                             </a>
                         </div>
                         <div class="round-box">
@@ -103,7 +103,7 @@
                             <p>Seu lar, nossa prioridade.</p>
                         </div>
                         <div class="btns-box">
-                            <a class="btn-one" href="#contacto">
+                            <a class="btn-one" href="{% url 'contacto' %}">
                                 <span class="txt">Contate-nos</span>
                             </a>
                         </div>
@@ -295,72 +295,6 @@
         </div>
     </div>
 </section>
-
-
-
-
-
-
-<!--Start Service Style1 Area-->
-<section class="service-style1-area service-style1-area--style2 pdtop">
-    <div class="container">
-        <div class="row">
-            <!--Start Single Service Style1-->
-            <div class="col-6 col-md-6 col-xl-3 wow fadeInUp" data-wow-delay="00ms" data-wow-duration="1500ms">
-                <div class="single-service-style1 single-service-style1--instyle2 text-center">
-                    <div class="icon-holder">
-                        <img src="{% static 'assets/images/icon/services/service-v1-1.png' %}" alt="">
-                    </div>
-                    <div class="title-holder">
-                        <h3><a href="{% url 'house_buy' %}">À venda</a></h3>
-                        
-                    </div>
-                </div>
-            </div> 
-            <!--End Single Service Style1-->
-            <!--Start Single Service Style1-->
-            <div class="col-6 col-md-6 col-xl-3 wow fadeInUp" data-wow-delay="200ms" data-wow-duration="1500ms">
-                <div class="single-service-style1 active single-service-style1--instyle2 text-center">
-                    <div class="icon-holder">
-                        <img src="{% static 'assets/images/icon/services/service-v1-2.png' %}" alt="">
-                    </div>
-                    <div class="title-holder">
-                        <h3><a href="{% url 'house_buy' %}">Terrenos</a></h3>
-                        
-                    </div>
-                </div>
-            </div> 
-            <!--End Single Service Style1-->
-            <!--Start Single Service Style1-->
-            <div class="col-6 col-md-6 col-xl-3 wow fadeInUp" data-wow-delay="00ms" data-wow-duration="1500ms">
-                <div class="single-service-style1 single-service-style1--instyle2 text-center">
-                    <div class="icon-holder">
-                        <img src="{% static 'assets/images/icon/services/service-v1-3.png' %}" alt="">
-                    </div>
-                    <div class="title-holder">
-                        <h3><a href="{% url 'house_buy' %}">Comercial</a></h3>
-                        
-                    </div>
-                </div>
-            </div> 
-            <!--End Single Service Style1-->
-            <!--Start Single Service Style1-->
-            <div class="col-6 col-md-6 col-xl-3 wow fadeInUp" data-wow-delay="300ms" data-wow-duration="1500ms">
-                <div class="single-service-style1 single-service-style1--instyle2 text-center">
-                    <div class="icon-holder">
-                        <img src="{% static 'assets/images/icon/services/service-v1-4.png' %}" alt="">
-                    </div>
-                    <div class="title-holder">
-                        <h3><a href="{% url 'house_buy' %}">Para alugar</a></h3>
-                        
-                    </div>
-                </div>
-            </div> 
-            <!--End Single Service Style1-->
-        </div>
-    </div>
-</section>
-
 <!--End Service Style1 Area-->
 
 {% if imovel_venda %}
@@ -874,7 +808,7 @@
                         <h2>Torna-te um corretor</h2>
                     </div>
                     <div class="btns-box">
-                        <a class="btn-one" href="{% url 'sobre' %}">
+                        <a class="btn-one" href="{% url 'sobre' %}#team">
                             <span class="txt">Ver Todos os corretores</span>
                         </a>
                     </div>

@@ -1,0 +1,103 @@
+{% load static %}
+
+<div class="sidebar-wrapper" data-layout="stroke-svg">
+    <div>
+      <div class="logo-wrapper"><a style="font-size: 30px; color: #fff; font-weight: bold;" href="{% url 'home' %}">Carhousy</a>
+        <div class="back-btn"><i class="fa fa-angle-left"></i></div>
+        <div class="toggle-sidebar">
+          <svg class="stroke-icon sidebar-toggle status_toggle middle">
+            <use href="{% static 'assets2/svg/icon-sprite.svg#toggle-icon' %}"></use>
+          </svg>
+          <svg class="fill-icon sidebar-toggle status_toggle middle">
+            <use href="{% static 'assets2/svg/icon-sprite.svg#fill-toggle-icon' %}"></use>
+          </svg>
+        </div>
+      </div>
+      <div class="logo-icon-wrapper"><a href="{% url 'home' %}"><img class="img-fluid" src="{% static 'assets2/images/logo/logo-icon.png' %}" alt=""></a></div>
+      <nav class="sidebar-main">
+        <div class="left-arrow" id="left-arrow"><i data-feather="arrow-left"></i></div>
+        <div id="sidebar-menu">
+          <ul class="sidebar-links" id="simple-bar">
+            <li class="sidebar-main-title">
+              <div>
+                <h6>Principal</h6>
+              </div>
+            </li>
+            
+            <li class="sidebar-list">
+              <i class="fa fa-home"></i>
+              <a class="sidebar-link sidebar-title" href="javascript:void(0)">
+                <svg >
+                  <use href="{% static 'assets2/svg/icon-sprite.svg#stroke-home' %}"></use>
+                </svg>
+                <svg class="fill-icon">
+                  <use href="{% static 'assets2/svg/icon-sprite.svg#fill-home' %}"></use>
+                </svg>
+                <span>Imóveis</span>
+              </a>
+              <ul class="sidebar-submenu">
+                <li><i class="fa fa-building"></i> <a href="dashboard-02.html">Imóveis Publicados</a></li>
+                <li><i class="fa fa-plus-circle"></i> <a href="{% url 'nova_casa' %}">Publicar Imóvel</a></li>
+                <li><i class="fa fa-clock"></i> <a href="dashboard-04.html">Imóveis Pendentes</a></li>
+                <li><i class="fa fa-check"></i> <a href="dashboard-05.html">Imóveis Vendidos</a></li>
+              </ul>
+            </li>
+            
+            <li class="sidebar-list">
+              <i class="fa fa-users"></i>
+              <a class="sidebar-link sidebar-title" href="javascript:void(0)">
+                <svg class="stroke-icon">
+                  <use href="{% static 'assets2/svg/icon-sprite.svg#stroke-home' %}"></use>
+                </svg>
+                <svg class="fill-icon">
+                  <use href="{% static 'assets2/svg/icon-sprite.svg#fill-home' %}"></use>
+                </svg>
+                <span>Nossa Equipe</span>
+              </a>
+              <ul class="sidebar-submenu">
+                <li><i class="fa fa-user-tie"></i> <a href="dashboard-equipe.html">Todos Corretores</a></li>
+                <li><i class="fa fa-user"></i> <a href="dashboard-usuarios.html">Usuários</a></li>
+                <li><i class="fa fa-comments"></i> <a href="dashboard-depoimentos.html">Depoimentos</a></li>
+              </ul>
+            </li>
+            
+            <li class="sidebar-list">
+              <i class="fa fa-envelope"></i>
+              <a class="sidebar-link sidebar-title" href="javascript:void(0)">
+                <svg class="stroke-icon">
+                  <use href="{% static 'assets2/svg/icon-sprite.svg#stroke-home' %}"></use>
+                </svg>
+                <svg class="fill-icon">
+                  <use href="{% static 'assets2/svg/icon-sprite.svg#fill-home' %}"></use>
+                </svg>
+                <span>Mensagens</span>
+              </a>
+              <ul class="sidebar-submenu">
+                <li><i class="fa fa-user-plus"></i> <a href="dashboard-mensagens.html">Novos Corretores</a></li>
+                <li><i class="fa fa-info-circle"></i> <a href="dashboard-imoveis-info.html">Informações de Imóveis</a></li>
+                <li><i class="fa fa-address-book"></i> <a href="dashboard-contatos.html">Informações de Contatos</a></li>
+              </ul>
+            </li>
+            
+            <li class="sidebar-list">
+              <i class="fa fa-pencil-alt"></i>
+              <a class="sidebar-link sidebar-title" href="javascript:void(0)">
+                <svg class="stroke-icon">
+                  <use href="{% static 'assets2/svg/icon-sprite.svg#stroke-home' %}"></use>
+                </svg>
+                <svg class="fill-icon">
+                  <use href="{% static 'assets2/svg/icon-sprite.svg#fill-home' %}"></use>
+                </svg>
+                <span>Blog</span>
+              </a>
+              <ul class="sidebar-submenu">
+                <li><i class="fa fa-edit"></i> <a href="dashboard-blog-publicar.html">Publicar</a></li>
+                <li><i class="fa fa-file-alt"></i> <a href="dashboard-blogs.html">Blogs Publicados</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>
+      </nav>
+    </div>
+  </div>

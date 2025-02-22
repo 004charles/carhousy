@@ -63,7 +63,7 @@
                     </div>
                     <div class="breadcrumb-menu">
                         <ul>
-                            <li><a href="index.html">Home</a></li>
+                            <li><a href="{% url 'home' %}">Home</a></li>
                             <li><i class="fa fa-angle-right" aria-hidden="true"></i></li>
                             <li class="active">imovies disponíveis</li>
                         </ul>    
@@ -110,6 +110,7 @@
                                        <option value="terreno">terreno</option>
                                        <option value="escritorio">Escritório</option>
                                        <option value="comercial">comercial</option>
+                                       <option value="todos">Todos</option>
                                     </select>
                                 </div>
                             </div>
@@ -118,7 +119,14 @@
                             <div class="inner clearfix">
                                 <h5>Orçamento</h5>
                                 <div class="select-box">
-                                    <input type="text" name="orcamento_imovel" placeholder="10000">
+                                    <select name="orcamento_imovel" class="wide">
+                                       <option value="50000">50000</option>
+                                       <option value="60000">60000</option>
+                                       <option value="1000000">1000000</option>
+                                       <option value="2000000">2000000</option>
+                                       <option value="5000000">5000000</option>
+                                       <option value="10000000">10000000</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
