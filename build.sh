@@ -1,11 +1,9 @@
 #!/bin/bash
-
-# Exit immediately if a command exits with a non-zero status
 set -e
 
 echo "----- Starting Build Process -----"
 
-# Activate virtual environment (if exists)
+# Activate virtual environment
 if [ -d ".venv" ]; then
     echo "Activating virtual environment..."
     source .venv/bin/activate
@@ -14,28 +12,16 @@ fi
 echo "1. Updating pip..."
 pip install --upgrade pip
 
-# In your build.sh, add this after pip upgrade:
-echo "Resolving dependency conflicts..."
-pip install --upgrade --force-reinstall -r requirements.txt
+echo "2. Installing core dependencies first..."
+pip install Django==4.2.8 dj-database-url==2.3.0
 
-echo "2. Installing dependencies..."
+echo "3. Installing remaining dependencies..."
 pip install -r requirements.txt
 
-echo "3. Verifying Django installation..."
-if ! python -c "import django; print(f'Django version: {django.__version__}')"; then
-    echo "Django not found! Installing Django..."
-    pip install django
-fi
-
-echo "4. Checking database connection..."
+echo "4. Verifying installations..."
 python -c "
-import os
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'carhouse_projecto.settings')
-import django
-django.setup()
-from django.db import connection
-connection.ensure_connection()
-print('Database connection established!')
+import django; print(f'Django {django.__version__} installed')
+import dj_database_url; print('dj-database-url installed')
 "
 
 echo "5. Applying database migrations..."
