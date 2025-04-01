@@ -71,11 +71,18 @@ WSGI_APPLICATION = 'carhouse_projecto.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.config(
-        default=os.getenv('DATABASE_URL'),
-        conn_max_age=600,
-        ssl_require=True  # Required for Render PostgreSQL
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'dbcarhousy',
+        'USER': 'dbcarhousy_user',
+        'PASSWORD': 'l6vlIDabb2yL2HB8pzZqi5yGuEyVLTum',
+        'HOST': 'dpg-cvlgli8dl3ps73eg4kfg-a',
+        'PORT': '5432',
+        'OPTIONS': {
+            'sslmode': 'require',
+            'sslrootcert': os.path.join(BASE_DIR, 'prod-ca-2021.crt')  # Download cert
+        },
+    }
 }
 """
 
