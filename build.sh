@@ -12,33 +12,45 @@ fi
 echo "1. Updating pip..."
 pip install --upgrade pip
 
-echo "2. Installing core dependencies first..."
-pip install Django==4.2.8 dj-database-url==2.3.0
-
-echo "3. Installing remaining dependencies..."
+echo "2. Installing dependencies..."
 pip install -r requirements.txt
 
-echo "4. Verifying installations..."
-python -c "
-import django; print(f'Django {django.__version__} installed')
-import dj_database_url; print('dj-database-url installed')
-"
+echo "3. Checking database connection..."
+python << END
+import os
+import time
+from django.db import connection
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'carhouse_projecto.settings')
+import django
+django.setup()
 
-echo "5. Applying database migrations..."
+max_retries = 5
+retry_delay = 5
+
+for i in range(max_retries):
+    try:
+        connection.ensure_connection()
+        print("✓ Database connection established")
+        break
+    except Exception as e:
+        if i == max_retries - 1:
+            raise e
+        print(f"! Database connection failed (attempt {i+1}/{max_retries}), retrying...")
+        time.sleep(retry_delay)
+END
+
+echo "4. Applying migrations..."
 python manage.py migrate
 
-echo "6. Collecting static files..."
+echo "5. Collecting static files..."
 python manage.py collectstatic --noinput --clear
 
-echo "7. Creating superuser if needed..."
-python manage.py shell -c "
-from django.contrib.auth import get_user_model
-User = get_user_model() 
-if not User.objects.filter(username='admin').exists():
-    User.objects.create_superuser('admin', 'admin@example.com', 'admin123')
-    print('Superuser created!')
-else:
-    print('Superuser already exists')
-"
+echo "6. Creating superuser if needed..."
+if [ "$CREATE_SUPERUSER" = "True" ]; then
+    python manage.py createsuperuser \
+        --noinput \
+        --username "$DJANGO_SUPERUSER_USERNAME" \
+        --email "$DJANGO_SUPERUSER_EMAIL" || true
+fi
 
 echo "----- Build Completed Successfully -----"

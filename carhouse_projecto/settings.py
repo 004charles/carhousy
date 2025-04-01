@@ -13,13 +13,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-9fhkb!=(p5p)4@d&b6vn5o*&6hvxy@_zcqt6cu3y#vc-fr0n$p'
+# Move all sensitive data to environment variables
+SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-9fhkb!=(p5p)4@d&b6vn5o*&6hvxy@_zcqt6cu3y#vc-fr0n$p')
+DEBUG = os.getenv('DEBUG', 'False').lower() == 'true'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-
-#ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
-ALLOWED_HOSTS = ["*"]
+# Better allowed hosts configuration
+ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS', '*').split(',')
 
 
 
@@ -74,7 +73,8 @@ WSGI_APPLICATION = 'carhouse_projecto.wsgi.application'
 DATABASES = {
     'default': dj_database_url.config(
         default=os.getenv('DATABASE_URL'),
-        conn_max_age=600
+        conn_max_age=600,
+        ssl_require=True  # Required for Render PostgreSQL
     )
 }
 """
@@ -140,12 +140,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 
-ADMIN_EMAIL = 'muquissicarlos@gmail.com' 
-
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'muquissicarlos@gmail.com' 
-EMAIL_HOST_PASSWORD = 'uruj ywep dyee sfmg' 
-DEFAULT_FROM_EMAIL = 'muquissicarlos@gmail.com'
+# Update email settings to use environment variables
+ADMIN_EMAIL = os.getenv('ADMIN_EMAIL', 'muquissicarlos@gmail.com')
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
+DEFAULT_FROM_EMAIL = os.getenv('ADMIN_EMAIL', 'muquissicarlos@gmail.com')
