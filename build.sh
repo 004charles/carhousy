@@ -1,32 +1,24 @@
 #!/bin/bash
-set -e
 
-echo "----- Starting Build Process -----"
-
-# Activate virtual environment
-if [ -d ".venv" ]; then
-    echo "Activating virtual environment..."
-    source .venv/bin/activate
-fi
-
-echo "1. Updating pip..."
+echo "Atualizando o pip..."
 pip install --upgrade pip
 
-echo "2. Installing dependencies..."
+echo "Instalando dependências..."
 pip install -r requirements.txt
 
-echo "3. Applying migrations..."
+echo "Instalando python-dotenv (caso não esteja no requirements.txt)..."
+pip install python-dotenv
+
+echo "Verificando e instalando gunicorn..."
+pip show gunicorn || pip install gunicorn
+
+echo "Aplicando migrações do banco de dados..."
 python manage.py migrate
 
-echo "4. Collecting static files..."
-python manage.py collectstatic --noinput --clear --ignore *.map
+echo "Coletando arquivos estáticos..."
+python manage.py collectstatic --noinput
 
-echo "5. Creating superuser if needed..."
-if [ "$CREATE_SUPERUSER" = "True" ]; then
-    python manage.py createsuperuser \
-        --noinput \
-        --username "$DJANGO_SUPERUSER_USERNAME" \
-        --email "$DJANGO_SUPERUSER_EMAIL" || true
-fi
+echo "Criando superusuário (se necessário)..."
+echo "from django.contrib.auth import get_user_model; User = get_user_model(); User.objects.filter(username='admin').exists() or User.objects.create_superuser('admin', 'admin@example.com', 'admin123')" | python manage.py shell
 
-echo "----- Build Completed Successfully -----"
+echo "Build concluído com sucesso!"
