@@ -20,15 +20,7 @@ DEBUG = os.getenv('DEBUG', 'False').lower() == 'true'
 # Better allowed hosts configuration
 ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS', '*').split(',')
 
-# Security settings for production
-if not DEBUG:
-    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-    SECURE_SSL_REDIRECT = True
-    SESSION_COOKIE_SECURE = True
-    CSRF_COOKIE_SECURE = True
-    SECURE_HSTS_SECONDS = 31536000  # 1 year
-    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-    SECURE_HSTS_PRELOAD = True
+
 
 # Application definition
 
@@ -78,21 +70,13 @@ WSGI_APPLICATION = 'carhouse_projecto.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+"""
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'dbcarhousy',
-        'USER': 'dbcarhousy_user',
-        'PASSWORD': 'l6vlIDabb2yL2HB8pzZqi5yGuEyVLTum',
-        'HOST': 'dpg-cvlgli8dl3ps73eg4kfg-a',
-        'PORT': '5432',
-        'OPTIONS': {
-            'sslmode': 'require',
-            'sslrootcert': os.path.join(BASE_DIR, 'prod-ca-2021.crt'),
-            'sslcert': os.path.join(BASE_DIR, 'client-cert.pem'),
-            'sslkey': os.path.join(BASE_DIR, 'client-key.pem')
-        },
-    }
+    'default': dj_database_url.config(
+        default=os.getenv('DATABASE_URL'),
+        conn_max_age=600,
+        ssl_require=True  # Required for Render PostgreSQL
+    )
 }
 """
 
@@ -101,7 +85,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
-}"""
+}
 
 
 # Password validation
@@ -157,8 +141,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 
-# Update email settings to use environment variables
-ADMIN_EMAIL = os.getenv('ADMIN_EMAIL', 'muquissicarlos@gmail.com')
-EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
-DEFAULT_FROM_EMAIL = os.getenv('ADMIN_EMAIL', 'muquissicarlos@gmail.com')
+ADMIN_EMAIL = 'muquissicarlos@gmail.com' 
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'muquissicarlos@gmail.com' 
+EMAIL_HOST_PASSWORD = 'uruj ywep dyee sfmg' 
+DEFAULT_FROM_EMAIL = 'muquissicarlos@gmail.com'
