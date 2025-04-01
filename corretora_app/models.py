@@ -98,13 +98,6 @@ class Imovel(models.Model):
     email_anunciante = models.EmailField(blank=True, null=True, verbose_name="E-mail do Anunciante")
     telefone_anunciante = models.CharField(max_length=20,  blank=True, null=True, verbose_name="Telefone do Anunciante")
     
-    usuario = models.ForeignKey(
-        'Usuario',
-        on_delete=models.SET_NULL,
-        null=True,
-        blank=True,
-        related_name='imoveis_cadastrados'
-    )
         
     def clean(self):
         # Se os campos estiverem vazios, trate como None

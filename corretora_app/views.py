@@ -231,7 +231,7 @@ def house_buy(request):
             pass  # Caso o orçamento não seja um número válido, não aplicamos o filtro
     
     if localizacao_imovel:
-        imovel_venda = imovel_venda.filter(endereco__icontains=localizacao_imovel)
+        imovel_venda = imovel_venda.filter(endereco__icontains=localizacao_imovel,apresentar=True)
     
     return render(request, 'casa_vender.html', {'imovel_venda': imovel_venda, 'usuario_logado': usuario_logado})
 

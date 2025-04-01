@@ -281,23 +281,12 @@
                             <li><span>Status:</span> {{imovel_venda.status}}</li>
                             <li><span>Área:</span> {{imovel_venda.area}} m²</li>
                             <li><span>Endereço:</span> {{imovel_venda.endereco}}</li>
-                            <li><span>Preço:</span> {{imovel_venda.preco}}</li>
-                            <li><span>Corretor(es):</span> 
-                                {% for corretor in imovel_venda.corretores.all %}
-                                    {{ corretor.nome }}{% if not forloop.last %}, {% endif %}
-                                {% empty %}
-                                    Nenhum corretor atribuído.
-                                {% endfor %}
-                            </li>                            
-                            <li><span>Número(s):</span> 
-                                {% for corretor in imovel_venda.corretores.all %}
-                                    <a href="tel:{{ corretor.telefone }}">{{ corretor.telefone }}</a>{% if not forloop.last %}, {% endif %}
-                                {% empty %}
-                                    Nenhum número disponível.
-                                {% endfor %}
-                            </li>
+                            <li><span>Preço:</span> {{imovel_venda.preco}} kz</li>
+                                                     
+                            <li><span>Número(s):</span> 936 327 119 - 957 211 858</li>
                             
                             <li><span>Email:</span> <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#contactModal">Enviar Mensagem</button></li>
+                            <li><span>WhatsApp:</span> <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#contactModal">Enviar Mensagem</button></li>
                         </ul>
                     </div>
                 </div>
