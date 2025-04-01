@@ -14,6 +14,10 @@ fi
 echo "1. Updating pip..."
 pip install --upgrade pip
 
+# In your build.sh, add this after pip upgrade:
+echo "Resolving dependency conflicts..."
+pip install --upgrade --force-reinstall -r requirements.txt
+
 echo "2. Installing dependencies..."
 pip install -r requirements.txt
 
