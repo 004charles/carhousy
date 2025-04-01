@@ -81,8 +81,8 @@ class Imovel(models.Model):
     corretores = models.ManyToManyField(
         'Usuario', 
         limit_choices_to={'tipo_usuario': 'corretor'},
-        related_name='imoveis', null=True, 
-        blank=True,
+        related_name='imoveis',
+        blank=True  # Remove null=True
     )
     
     video = models.URLField(max_length=500, blank=True, null=True, verbose_name="URL do vídeo")
@@ -178,9 +178,10 @@ class DadosAdicionais(models.Model):
 class Contrato(models.Model):
     TIPO_CONTRATO = [
         ('compra', 'Compra'),
-        ('venda', 'Venda'),
+        ('venda', 'Venda'), 
         ('aluguel', 'Aluguel'),
     ]
+    
     imovel = models.ForeignKey('Imovel', on_delete=models.CASCADE, related_name='contratos')
     cliente = models.ForeignKey('Usuario', on_delete=models.CASCADE, limit_choices_to={'tipo_usuario': 'cliente'}, related_name='contratos_cliente')
     corretor = models.ForeignKey('Usuario', on_delete=models.SET_NULL, null=True, limit_choices_to={'tipo_usuario': 'corretor'}, related_name='contratos_corretor')
