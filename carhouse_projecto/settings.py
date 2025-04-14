@@ -37,7 +37,6 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -130,9 +129,9 @@ STATICFILES_DIRS = [
 ]
 
 # Whitenoise configuration
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'  # Changed from Manifest
+"""STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'  # Changed from Manifest
 WHITENOISE_MANIFEST_STRICT = False  # Ignore missing files
-WHITENOISE_IGNORE_MISSING_FILES = True  # Specifically ignore .map files
+WHITENOISE_IGNORE_MISSING_FILES = True  # Specifically ignore .map files"""
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
