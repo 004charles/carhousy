@@ -18,7 +18,7 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-9fhkb!=(p5p)4@d&b6vn5o*&6h
 DEBUG = True
 
 # Better allowed hosts configuration
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 
