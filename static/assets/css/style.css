@@ -1,20 +1,13 @@
 
 :root {
     --thm-font: 'Poppins', sans-serif;
-    --thm-gray: #808080;
+    --thm-gray: #64181c;
     --thm-black: #051320;
     --thm-black-rgb: 5, 19, 32;
 }
   
 
 
-
-
-
-
-/*==============================================
-   Base Css
-===============================================*/
 *{
 	margin:0px;
 	padding:0px;
